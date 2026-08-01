@@ -1,11 +1,19 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, ReactNode, useContext, useState } from 'react';
 import { Product } from '../Types/types';
 
 interface FavoriteContentType {
-  favorites: Product[];
+  favorites: FavoriteItem[];
   addToFavorite: (product: Product) => void;
   removeFromFavorite: (product: Product) => void;
   favoriteTotal: number;
+}
+
+export interface FavoriteItem {
+  product: Product;
+}
+
+interface FavoriteProviderProps {
+  children: ReactNode;
 }
 
 export const FavoriteContext = createContext<FavoriteContentType | undefined>(
@@ -22,10 +30,10 @@ export const useFavorite = () => {
   return context;
 };
 
-export const FavoriteProvider = ({ children }) => {
-  const [favorites, setFavorites] = useState<Product[]>([]);
+export const FavoriteProvider = ({ children }: FavoriteProviderProps) => {
+  const [favorites, setFavorites] = useState<FavoriteItem[]>([]);
 
-  const addToFavorite = product => {
+  const addToFavorite = (product: Product) => {
     setFavorites(prevFav => {
       const exist = prevFav.find(item => item.product.id === product.id);
 
@@ -34,11 +42,12 @@ export const FavoriteProvider = ({ children }) => {
           item.product.id === product.id ? { ...item, product } : item,
         );
       }
+
       return [...prevFav, { product }];
     });
   };
 
-  const removeFromFavorite = product => {
+  const removeFromFavorite = (product: Product) => {
     setFavorites(preFav =>
       preFav.filter(item => item.product.id !== product.id),
     );

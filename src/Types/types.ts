@@ -26,6 +26,7 @@ export interface ProductDetails {
 }
 
 export interface Product {
+  product: any;
   quantity: number;
   id: number;
   category: string;
