@@ -1,4 +1,4 @@
-import '../Loader';
+// import '../Loader';
 
 export const Loader = () => (
   <div className="Loader" data-cy="loader">

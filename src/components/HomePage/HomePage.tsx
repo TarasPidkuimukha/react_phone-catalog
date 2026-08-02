@@ -26,9 +26,9 @@ export const HomePage = () => {
           <div>
             <img src="" />
             <span>Description</span>
-            <h4>${price}</h4>
+            <h4>$price</h4>
             <p>screen</p>
-            <p>{specs}</p>
+            <p>specs</p>
             <p>Capacity</p>
             <p>128 GB</p>
             <p>RAM</p>
@@ -53,15 +53,15 @@ export const HomePage = () => {
         <div>
           <img src="" />
           <span>Description</span>
-          <h4>${price}</h4>
+          <h4>$price</h4>
           <p>screen</p>
-          <p>{specs}</p>
+          <p>specs</p>
           <p>Capacity</p>
           <p>128 GB</p>
           <p>RAM</p>
           <p>6GB</p>
           <button>Add to cart</button>
-          <button>{heartButton}</button>
+          <button>heartButton</button>
         </div>
       </div>
     </div>

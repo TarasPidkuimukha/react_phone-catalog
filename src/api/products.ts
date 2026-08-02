@@ -7,21 +7,23 @@ export const useFetchProducts = () => {
 
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [trigger, setTrigger] = useState(0);
 
   useEffect(() => {
     setErrorMessage('');
+    setIsLoading(true);
+
     getProducts()
       .then(setProducts)
       .catch(() => setErrorMessage('Unable to load products'))
-      .finally(() => setIsLoading(false));
-  }, []);
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }, [trigger]);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setErrorMessage('');
-    }, 3000);
-    return () => clearTimeout(timer);
-  }, [errorMessage]);
+  const refetch = () => {
+    setTrigger(prev => prev + 1);
+  };
 
-  return { products, isLoading, errorMessage };
+  return { products, isLoading, errorMessage, refetch };
 };
