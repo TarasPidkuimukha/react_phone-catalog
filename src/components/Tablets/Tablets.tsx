@@ -1,28 +1,14 @@
-import { useState, useEffect } from 'react';
-import { getProducts } from '../../api/fetching';
-import { Product } from '../../Types/types';
-import { ProductList } from '/Users/misko/.giteverything/ts/ts_tasks/react_phone-catalog/src/Product/ProductList';
+import { ProductList } from '../../Product/ProductList';
+import { useFetchProducts } from '../../api/products';
+import { Loader } from '../Loader/Loader';
 
 export const Tablets = () => {
-  const [products, setProducts] = useState<Product[]>([]);
+  const { products, isLoading, errorMessage } = useFetchProducts();
 
-  const [isLoading, setIsLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
+    if (isLoading) return <Loader />;
 
-  useEffect(() => {
-    setErrorMessage('');
-    getProducts()
-      .then(setProducts)
-      .catch(() => setErrorMessage('Unable to load products'))
-      .finally(() => setIsLoading(false));
-  }, []);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setErrorMessage('');
-    }, 3000);
-    return () => clearTimeout(timer);
-  }, [errorMessage]);
+  if (errorMessage)
+    return <button>Something went wrong message with a reload button</button>;
 
   const tablets = products.filter(product => product.category === 'tablets');
   return (

@@ -1,6 +1,11 @@
 import { createContext, ReactNode, useContext, useState } from 'react';
 import { Product } from '../Types/types';
 
+export interface CartItem {
+  product: Product;
+  quantity: number;
+}
+
 interface CartContextType {
   cart: CartItem[];
   addToCart: (product: Product) => void;
@@ -8,11 +13,6 @@ interface CartContextType {
   increaseQuantity: (id: number) => void;
   decreaseQuantity: (id: number) => void;
   cartTotal: number;
-}
-
-export interface CartItem {
-  product: Product;
-  quantity: number;
 }
 
 interface CartProviderProps {

@@ -19,7 +19,7 @@ export const Cart = ({}) => {
         <h2>Cart</h2>
         <div>
           {products.map(product => (
-            <div key={}>
+            <div key={product.id}>
               <button>x</button>
               <img src="" />
               <p>{product.name}</p>
