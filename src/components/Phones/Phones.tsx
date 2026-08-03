@@ -1,3 +1,4 @@
+import { Pagination } from '../../Pagination/Pagination';
 import { ProductList } from '../../Product/ProductList';
 import { useSortedProducts } from '../../Sorting/Sorting';
 import { useFetchProducts } from '../../api/products';
@@ -29,6 +30,17 @@ export const Phones = () => {
         <option value="title">Alphabetic</option>
       </select>
       <ProductList products={sorted} />
+      <Pagination onPageChange={sorted} />
+      <select
+        onChange={event => {
+          setSearchParams({ page: event.target.value });
+        }}
+      >
+        <option value="4">4</option>
+        <option value="8">8</option>
+        <option value="16">16</option>
+        <option value="all">all</option>
+      </select>
     </div>
   );
 };
