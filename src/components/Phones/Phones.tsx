@@ -3,11 +3,14 @@ import { ProductList } from '../../Product/ProductList';
 import { useSortedProducts } from '../../Sorting/Sorting';
 import { useFetchProducts } from '../../api/products';
 import { Loader } from '../Loader/Loader';
+import { usePagination } from '../Pagination/usePagination';
 
 export const Phones = () => {
   const { products, isLoading, errorMessage, refetch } = useFetchProducts();
   const phones = products.filter(product => product.category === 'phones');
   const { sorted, sortType, setSearchParams } = useSortedProducts(phones);
+  const { page, perPage, paginatedItems, total, onPageChange, onPerPage } =
+    usePagination(sorted);
   if (isLoading) return <Loader />;
 
   if (errorMessage)
@@ -29,13 +32,15 @@ export const Phones = () => {
         <option value="price">Cheapest</option>
         <option value="title">Alphabetic</option>
       </select>
-      <ProductList products={sorted} />
-      <Pagination onPageChange={sorted} />
-      <select
-        onChange={event => {
-          setSearchParams({ page: event.target.value });
-        }}
-      >
+      <ProductList products={paginatedItems} />
+      {perPage !== 'all' && (
+        <Pagination
+          total={total}
+          onPageChange={onPageChange}
+          perPage={Number(perPage)}
+        />
+      )}
+      <select onChange={event => onPerPage(event.target.value)}>
         <option value="4">4</option>
         <option value="8">8</option>
         <option value="16">16</option>

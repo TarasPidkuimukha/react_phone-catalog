@@ -12,11 +12,23 @@ export const usePagination = (sorted: Product[]) => {
   const paginatedItems = perPage === 'all' ? sorted : sorted.slice(start, end);
 
   const onPageChange = (page: any) => {
-    if (page === 1) searchParams.delete(page);
-    const newParam = page.toString();
-    searchParams.set(newParam, page);
+    if (page === 1) {
+      searchParams.delete('page');
+    } else {
+      searchParams.set('page', page.toString());
+    }
     setSearchParams(searchParams);
   };
 
-  return { page, perPage, paginatedItems, total, onPageChange };
+  const onPerPage = (perPage: any) => {
+    if (perPage === 'all') {
+      searchParams.delete('perPage');
+    } else {
+      searchParams.set('perPage', perPage.toString());
+    }
+
+    setSearchParams(searchParams);
+  };
+
+  return { page, perPage, paginatedItems, total, onPageChange, onPerPage };
 };

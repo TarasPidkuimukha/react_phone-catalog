@@ -1,12 +1,12 @@
 import classNames from 'classnames';
 import React from 'react';
 
-interface PaginationProps {
+type PaginationProps = {
   total: number;
   perPage: number;
   currentPage: number;
   onPageChange: (page: number) => void;
-}
+};
 
 export const Pagination: React.FC<PaginationProps> = ({
   total,
