@@ -2,14 +2,17 @@ import { ProductList } from '../../Product/ProductList';
 import { useSortedProducts } from '../../Sorting/Sorting';
 import { useFetchProducts } from '../../api/products';
 import { Loader } from '../Loader/Loader';
+import { Pagination } from '../Pagination/Pagination';
+import { usePagination } from '../Pagination/usePagination';
 
 export const Accessories = () => {
   const { products, isLoading, errorMessage, refetch } = useFetchProducts();
   const accessories = products.filter(
     product => product.category === 'accessories',
   );
-
-  const { sorted, sortType, setSearchParams } = useSortedProducts(accessories);
+  const { sorted, setSearchParams } = useSortedProducts(accessories);
+  const { perPage, paginatedItems, total, onPageChange, onPerPage } =
+    usePagination(sorted);
 
   if (isLoading) return <Loader />;
 
@@ -32,7 +35,20 @@ export const Accessories = () => {
         <option value="price">Cheapest</option>
         <option value="title">Alphabetic</option>
       </select>
-      <ProductList products={sorted} />
+      <ProductList products={paginatedItems} />
+      {perPage !== 'all' && (
+        <Pagination
+          total={total}
+          onPageChange={onPageChange}
+          perPage={Number(perPage)}
+        />
+      )}
+      <select onChange={event => onPerPage(event.target.value)}>
+        <option value="4">4</option>
+        <option value="8">8</option>
+        <option value="16">16</option>
+        <option value="all">all</option>
+      </select>
     </div>
   );
 };

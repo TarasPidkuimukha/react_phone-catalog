@@ -12,7 +12,7 @@ export const usePagination = (sorted: Product[]) => {
   const paginatedItems = perPage === 'all' ? sorted : sorted.slice(start, end);
 
   const onPageChange = (page: any) => {
-    if (page === 1) {
+    if (page === 0) {
       searchParams.delete('page');
     } else {
       searchParams.set('page', page.toString());

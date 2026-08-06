@@ -1,4 +1,4 @@
-import { Pagination } from '../../Pagination/Pagination';
+import { Pagination } from '../Pagination/Pagination';
 import { ProductList } from '../../Product/ProductList';
 import { useSortedProducts } from '../../Sorting/Sorting';
 import { useFetchProducts } from '../../api/products';
