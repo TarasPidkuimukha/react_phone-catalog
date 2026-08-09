@@ -19,12 +19,13 @@ export const App: React.FC = () => {
       <main>
         <div>
           <Routes>
-            <Route path="/" element={<HomePage />} />
+            <Route path="/" element={<HomePage products={[]} />} />
             <Route path="/phones" element={<Phones />} />
             <Route path="/tablets" element={<Tablets />} />
             <Route path="/accessories" element={<Accessories />} />
             <Route path="/favorites" element={<Favorites />} />
-            <Route path="/cart" element={<Cart />} />
+            <Route path="/cart" element={<Cart product={undefined} />} />
+            <Route path="/product/:productId" />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </div>

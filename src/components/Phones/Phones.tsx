@@ -1,5 +1,5 @@
 import { Pagination } from '../Pagination/Pagination';
-import { ProductList } from '../../Product/ProductList';
+import { ProductList } from '../../Product/ProductList/ProductList';
 import { useSortedProducts } from '../../Sorting/Sorting';
 import { useFetchProducts } from '../../api/products';
 import { Loader } from '../Loader/Loader';
@@ -23,6 +23,14 @@ export const Phones = () => {
 
   return (
     <div>
+      <h1>Mobile Phones</h1>
+
+      <select onChange={event => onPerPage(event.target.value)}>
+        <option value="4">4</option>
+        <option value="8">8</option>
+        <option value="16">16</option>
+        <option value="all">all</option>
+      </select>
       <select
         onChange={event => {
           setSearchParams({ sort: event.target.value });
@@ -32,20 +40,23 @@ export const Phones = () => {
         <option value="price">Cheapest</option>
         <option value="title">Alphabetic</option>
       </select>
-      <ProductList products={paginatedItems} />
+      {phones.length !== 0 ? (
+        <div>
+          <span>{phones.length} models</span>
+
+          <ProductList products={paginatedItems} />
+        </div>
+      ) : (
+        <p>There are no phones</p>
+      )}
       {perPage !== 'all' && (
         <Pagination
           total={total}
           onPageChange={onPageChange}
           perPage={Number(perPage)}
+          currentPage={page}
         />
       )}
-      <select onChange={event => onPerPage(event.target.value)}>
-        <option value="4">4</option>
-        <option value="8">8</option>
-        <option value="16">16</option>
-        <option value="all">all</option>
-      </select>
     </div>
   );
 };

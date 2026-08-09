@@ -1,4 +1,5 @@
 import classNames from 'classnames';
+
 import React from 'react';
 
 type PaginationProps = {
@@ -10,13 +11,13 @@ type PaginationProps = {
 
 export const Pagination: React.FC<PaginationProps> = ({
   total,
-  perPage,
-  currentPage = 0,
+  perPage = 4,
+  currentPage = 1,
   onPageChange,
 }) => {
   const pageNumber = [];
 
-  for (let i = 1; i <= Math.ceil(total / perPage); i++) {
+  for (let i = 1; i <= Math.ceil(total / Number(perPage)); i++) {
     pageNumber.push(i);
   }
 
@@ -28,11 +29,12 @@ export const Pagination: React.FC<PaginationProps> = ({
         >
           <button
             onClick={() => {
-              if (currentPage !== 0) {
+              if (currentPage !== 1) {
                 onPageChange(currentPage - 1);
               }
             }}
           >
+            &lsaquo;
             <img src="" />
           </button>
         </li>
@@ -67,6 +69,7 @@ export const Pagination: React.FC<PaginationProps> = ({
               }
             }}
           >
+            &rsaquo;
             <img src="" />
           </button>
         </li>
@@ -74,7 +77,5 @@ export const Pagination: React.FC<PaginationProps> = ({
     </div>
   );
 };
-//стрілочку можна додати як < > але її візуалізувати
-//чомусь не переключається з третьої на другу, а першої взагалі нема
-//при першому виборі кількості відображених товарів, показує порожню сторінку
-// коли обираєш 4 товара на сторінці, показує всі сторінки, а має показувати лише 4 сторінки, а не всі 16. тут треба зробити за принципом каруселі(таке завдання було)
+//дати логіку стрілкам, бо решта наче працює все,
+//  хіба може треба шоб додавався в адресу page=1

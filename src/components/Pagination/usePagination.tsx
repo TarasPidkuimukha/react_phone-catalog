@@ -3,31 +3,33 @@ import { Product } from '../../Types/types';
 
 export const usePagination = (sorted: Product[]) => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const page = Number(searchParams.get('page')) ?? 1;
-  const perPage = searchParams.get('perPage') ?? 'all';
-  const start = Number(perPage) * (Number(page) - 1);
+  const page = Number(searchParams.get('page') ?? '1');
+  const perPage = searchParams.get('perPage') ?? '4';
+  const start = (page - 1) * Number(perPage);
   const end = start + Number(perPage);
   const total = sorted.length;
 
   const paginatedItems = perPage === 'all' ? sorted : sorted.slice(start, end);
 
-  const onPageChange = (page: any) => {
-    if (page === 0) {
-      searchParams.delete('page');
+  const onPageChange = (newPage: number | string) => {
+    const params = new URLSearchParams(searchParams);
+    if (Number(newPage) <= 1) {
+      params.delete('page');
     } else {
-      searchParams.set('page', page.toString());
+      params.set('page', newPage.toString());
     }
-    setSearchParams(searchParams);
+    setSearchParams(params);
   };
 
-  const onPerPage = (perPage: any) => {
-    if (perPage === 'all') {
-      searchParams.delete('perPage');
+  const onPerPage = (newPerPage: number | string) => {
+    const params = new URLSearchParams(searchParams);
+    if (newPerPage === 'all') {
+      params.delete('perPage');
     } else {
-      searchParams.set('perPage', perPage.toString());
+      params.set('perPage', newPerPage.toString());
     }
 
-    setSearchParams(searchParams);
+    setSearchParams(params);
   };
 
   return { page, perPage, paginatedItems, total, onPageChange, onPerPage };

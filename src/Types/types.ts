@@ -1,18 +1,14 @@
-export interface DescriptionItem {
-  title: string;
-  text: string[];
-}
-
-export interface ProductDetails {
-  id: string;
+export interface Product {
+  id: number;
   category: 'phones' | 'tablets' | 'accessories';
   namespaceId: string;
   name: string;
   capacityAvailable: string[];
   capacity: string;
-  priceRegular: number;
+  price: number;
   priceDiscount: number;
   colorsAvailable: string[];
+  year: number;
   color: string;
   images: string[];
   description: DescriptionItem[];
@@ -25,19 +21,7 @@ export interface ProductDetails {
   zoom?: string;
 }
 
-export interface Product {
-  product: any;
-  quantity: number;
-  id: number;
-  category: string;
-  itemId: string;
-  name: string;
-  fullPrice: number;
-  price: number;
-  screen: string;
-  capacity: string;
-  color: string;
-  ram: string;
-  year: number;
-  image: string;
+export interface DescriptionItem {
+  title: string;
+  text: string[];
 }

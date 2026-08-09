@@ -1,5 +1,5 @@
-import { Product } from '../Types/types';
-import { ProductCard } from './ProductCard';
+import { Product } from '../../Types/types';
+import { ProductCard } from '../ProductCard/ProductCard';
 
 interface ProductListProps {
   products: Product[];

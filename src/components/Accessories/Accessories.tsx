@@ -1,4 +1,4 @@
-import { ProductList } from '../../Product/ProductList';
+import { ProductList } from '../../Product/ProductList/ProductList';
 import { useSortedProducts } from '../../Sorting/Sorting';
 import { useFetchProducts } from '../../api/products';
 import { Loader } from '../Loader/Loader';
@@ -11,7 +11,7 @@ export const Accessories = () => {
     product => product.category === 'accessories',
   );
   const { sorted, setSearchParams } = useSortedProducts(accessories);
-  const { perPage, paginatedItems, total, onPageChange, onPerPage } =
+  const { page, perPage, paginatedItems, total, onPageChange, onPerPage } =
     usePagination(sorted);
 
   if (isLoading) return <Loader />;
@@ -26,6 +26,15 @@ export const Accessories = () => {
 
   return (
     <div>
+      <h1>Accessories</h1>
+
+      <select onChange={event => onPerPage(event.target.value)}>
+        <option value="4">4</option>
+        <option value="8">8</option>
+        <option value="16">16</option>
+        <option value="all">all</option>
+      </select>
+      <span>{accessories.length} models</span>
       <select
         onChange={event => {
           setSearchParams({ sort: event.target.value });
@@ -35,20 +44,21 @@ export const Accessories = () => {
         <option value="price">Cheapest</option>
         <option value="title">Alphabetic</option>
       </select>
-      <ProductList products={paginatedItems} />
+      {accessories.length !== 0 ? (
+        <div>
+          <ProductList products={paginatedItems} />
+        </div>
+      ) : (
+        <p>There are no accessories</p>
+      )}
       {perPage !== 'all' && (
         <Pagination
           total={total}
           onPageChange={onPageChange}
           perPage={Number(perPage)}
+          currentPage={page}
         />
       )}
-      <select onChange={event => onPerPage(event.target.value)}>
-        <option value="4">4</option>
-        <option value="8">8</option>
-        <option value="16">16</option>
-        <option value="all">all</option>
-      </select>
     </div>
   );
 };

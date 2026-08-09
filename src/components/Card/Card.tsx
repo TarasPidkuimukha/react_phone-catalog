@@ -1,7 +1,12 @@
 import { useState } from 'react';
+import { Product } from '../../Types/types';
 
-export const Cart = ({}) => {
-  const [products, setProducts] = useState([]);
+interface CardProps {
+  product: Product;
+}
+
+export const Cart: React.FC<CardProps> = () => {
+  const [products, setProducts] = useState<Product[]>([]);
   const [cartItems, setCartItems] = useState([]);
 
   const [isAdded, setIsAdded] = useState(false);
@@ -26,7 +31,7 @@ export const Cart = ({}) => {
 
               <div>
                 <button>
-                  <span>{amount}</span>
+                  <span>amount</span>
                   <img src="" />
                 </button>
                 <button>

@@ -1,6 +1,6 @@
-import { Product } from '../Types/types';
-import { useCart } from '../context/CartContext';
-import { useFavorite } from '../context/FavoriteContext';
+import { Product } from '../../Types/types';
+import { useCart } from '../../context/CartContext';
+import { useFavorite } from '../../context/FavoriteContext';
 
 interface ProductCardProps {
   product: Product;
@@ -17,12 +17,12 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       <img src="" alt="product photo" />
       <span>{product.name}</span>
       <section>
-        {product.price === product.fullPrice ? (
+        {product.priceDiscount === product.price ? (
           <p>{product.price}</p>
         ) : (
           <>
-            <p>{product.fullPrice}</p>
             <p>{product.price}</p>
+            <p>{product.priceDiscount}</p>
           </>
         )}
       </section>
