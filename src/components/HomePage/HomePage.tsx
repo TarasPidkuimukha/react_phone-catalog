@@ -4,6 +4,7 @@ import { Footer } from '../Footer/Footer';
 import { Link } from 'react-router-dom';
 import { useFetchProducts } from '../../api/products';
 import { Loader } from '../Loader/Loader';
+import { PictureSlider } from '../../Product/PictureSlider/PictureSlider';
 
 export const HomePage = () => {
   const { products, isLoading, errorMessage, refetch } = useFetchProducts();
@@ -51,31 +52,7 @@ export const HomePage = () => {
       <h2>Welcome to Nice Gadgets store!</h2>
 
       <div>
-        <button
-          onClick={() =>
-            setCurrentIndex(
-              (currentIndex - 1 + products.length) % products.length,
-            )
-          }
-        >
-          &lsaquo;
-        </button>
-        <div>
-          <h3>
-            Now available in out store!
-            <img src="" />
-          </h3>
-          <p>Be the firts!</p>
-          <button>ORDER NOW</button>
-          <h3>iPhone 14 Pro</h3>
-          <p>Pro.Beyond.</p>
-          <img src="" />
-        </div>
-        <button
-          onClick={() => setCurrentIndex((currentIndex + 1) % products.length)}
-        >
-          &rsaquo;
-        </button>
+        <PictureSlider />
       </div>
       <div>
         <h4>Brand new models</h4>
