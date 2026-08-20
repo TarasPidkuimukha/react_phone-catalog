@@ -9,3 +9,14 @@ export function getProducts(): Promise<Product[]> {
     throw new Error('Failed to fetch products');
   });
 }
+
+export function getProductsByCategory(
+  category: 'phones' | 'tablets' | 'accessories',
+) {
+  return fetch(`/api/${category}.json`).then(response => {
+    if (response.ok) {
+      return response.json();
+    }
+    throw new Error('Failed to fetch products');
+  });
+}

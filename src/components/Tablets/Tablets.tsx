@@ -4,6 +4,7 @@ import { useFetchProducts } from '../../api/products';
 import { Loader } from '../Loader/Loader';
 import { Pagination } from '../Pagination/Pagination';
 import { usePagination } from '../Pagination/usePagination';
+// import './Tablets.scss';
 
 export const Tablets = () => {
   const { products, isLoading, errorMessage, refetch } = useFetchProducts();
@@ -23,27 +24,31 @@ export const Tablets = () => {
     );
 
   return (
-    <div>
-      <h1>Tablets</h1>
+    <div className="tablets">
+      <h1 className="title">Tablets</h1>
+      <span>{tablets.length} models</span>
 
-      <select onChange={event => onPerPage(event.target.value)}>
+      <select
+        className="tablets__perPage"
+        onChange={event => onPerPage(event.target.value)}
+      >
         <option value="4">4</option>
         <option value="8">8</option>
         <option value="16">16</option>
         <option value="all">all</option>
       </select>
+      <select
+        className="tablets__sortBy"
+        onChange={event => {
+          setSearchParams({ sort: event.target.value });
+        }}
+      >
+        <option value="age">Newest</option>
+        <option value="price">Cheapest</option>
+        <option value="title">Alphabetic</option>
+      </select>
       {tablets.length !== 0 ? (
-        <div>
-          <span>{tablets.length} models</span>
-          <select
-            onChange={event => {
-              setSearchParams({ sort: event.target.value });
-            }}
-          >
-            <option value="age">Newest</option>
-            <option value="price">Cheapest</option>
-            <option value="title">Alphabetic</option>
-          </select>
+        <div className="tablets__content">
           <ProductList products={paginatedItems} />
         </div>
       ) : (

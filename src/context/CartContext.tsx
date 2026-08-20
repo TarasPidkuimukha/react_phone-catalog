@@ -1,18 +1,25 @@
-import { createContext, ReactNode, useContext, useState } from 'react';
-import { Product } from '../Types/types';
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
+import { Product, ProductDetails } from '../Types/types';
 
-export interface CartItem {
+export interface CartItemType {
   product: Product;
   quantity: number;
 }
 
 interface CartContextType {
-  cart: CartItem[];
+  cart: CartItemType[];
   addToCart: (product: Product) => void;
-  removeFromCart: (id: number) => void;
-  increaseQuantity: (id: number) => void;
-  decreaseQuantity: (id: number) => void;
+  removeFromCart: (itemId: string) => void;
+  increaseQuantity: (itemId: string) => void;
+  decreaseQuantity: (itemId: string) => void;
   cartTotal: number;
+  clearCart: () => void;
 }
 
 interface CartProviderProps {
@@ -34,15 +41,29 @@ export const useCart = () => {
 };
 
 export const CartProvider = ({ children }: CartProviderProps) => {
-  const [cart, setCart] = useState<CartItem[]>([]);
+  const [cart, setCart] = useState<CartItemType[]>(() => {
+    const savedCart = localStorage.getItem('cart');
+    if (savedCart === null) {
+      return [];
+    } else {
+      return JSON.parse(savedCart);
+    }
+  });
 
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }, [cart]);
+
+  // #region logic
   const addToCart = (product: Product) => {
     setCart(prevCart => {
-      const exist = prevCart.find(item => item.product.id === product.id);
+      const exist = prevCart.find(
+        item => item.product.itemId === product.itemId,
+      );
 
       if (exist) {
         return prevCart.map(item =>
-          item.product.id === product.id
+          item.product.itemId === product.itemId
             ? { ...item, quantity: item.quantity + 1 }
             : item,
         );
@@ -52,36 +73,44 @@ export const CartProvider = ({ children }: CartProviderProps) => {
     });
   };
 
-  const increaseQuantity = (id: number) => {
+  const increaseQuantity = (itemId: string) => {
     setCart(prevCart =>
       prevCart.map(item =>
-        item.product.id === id
+        item.product.itemId === itemId
           ? { ...item, quantity: item.quantity + 1 }
           : item,
       ),
     );
   };
 
-  const decreaseQuantity = (id: number) => {
+  const decreaseQuantity = (itemId: string) => {
     setCart(prevCart =>
       prevCart
         .map(item =>
-          item.product.id === id
+          item.product.itemId === itemId
             ? { ...item, quantity: item.quantity - 1 }
             : item,
         )
-        .filter(item => item.quantity > 0),
+        .filter(item => item.quantity > 1),
     );
   };
 
-  const removeFromCart = (id: number) => {
-    setCart(prevCart => prevCart.filter(item => item.product.id !== id));
+  const removeFromCart = (itemId: string) => {
+    setCart(prevCart =>
+      prevCart.filter(item => item.product.itemId !== itemId),
+    );
+  };
+
+  const clearCart = () => {
+    setCart([]);
   };
 
   const cartTotal = cart.reduce(
     (sum, item) => sum + item.product.price * item.quantity,
     0,
   );
+
+  // #endregion
 
   return (
     <CartContext.Provider
@@ -92,6 +121,7 @@ export const CartProvider = ({ children }: CartProviderProps) => {
         decreaseQuantity,
         removeFromCart,
         cartTotal,
+        clearCart,
       }}
     >
       {children}

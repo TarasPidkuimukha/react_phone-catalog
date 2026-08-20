@@ -1,0 +1,105 @@
+//className='productCart'- це і є клас-контейнер, без потреби не створюй клас container
+
+@use '../../styles/mixins' as *;
+@use '../../styles/variables' as *;
+
+.productCard {
+  @include pageGrid;
+  justify-content: center;
+  align-items: center;
+  width: 272px;
+  height: 506px;
+  border: 1px;
+
+  gap: 8px;
+  padding: 32px;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    position: relative;
+    grid-column: 1/-1;
+
+    @include onTablet {
+      grid-row: 1/5;
+    }
+  }
+
+  &__img {
+    width: 208px;
+    height: 196px;
+  }
+
+  &__name {
+    display: inline-block;
+    width: 208px;
+    height: 58px;
+    padding-top: 16px;
+  }
+
+  &__price {
+    display: flex;
+    justify-self: start;
+    align-items: center;
+    width: 108px;
+    height: 31px;
+    gap: 8px;
+
+    &--discount {
+      display: flex;
+      justify-self: end;
+      align-items: center;
+      width: 50px;
+      height: 28px;
+    }
+  }
+
+  &__info {
+    display: inline-block;
+    justify-content: space-between;
+    align-items: center;
+    width: 208px;
+    height: 77px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    gap: 8px;
+  }
+
+  &__title {
+    display: flex;
+    justify-self: start;
+    align-items: center;
+  }
+
+  &__value {
+    display: flex;
+    justify-self: end;
+    align-self: center;
+  }
+
+  &__button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 208px;
+    height: 40px;
+    gap: 8px;
+
+    &--add {
+      display: flex;
+      justify-self: start;
+      align-items: center;
+      width: 160px;
+      height: 40px;
+    }
+
+    &--heart {
+      display: flex;
+      justify-self: end;
+      align-items: center;
+      width: 40px;
+      height: 40px;
+    }
+  }
+}

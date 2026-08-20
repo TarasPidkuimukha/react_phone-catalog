@@ -1,14 +1,15 @@
 import { Route, Routes } from 'react-router-dom';
-import './App.scss';
+// import './App.scss';
 import { HomePage } from './components/HomePage/HomePage';
 import { Phones } from './components/Phones/Phones';
 import { Tablets } from './components/Tablets/Tablets';
 import { Favorites } from './components/Favorite/Favorites';
-import { Cart } from './components/Card/Card';
+import { Cart } from './components/Card/Cart';
 import { Accessories } from './components/Accessories/Accessories';
 import { Header } from './components/Header/Header';
 import { Footer } from './components/Footer/Footer';
 import { NotFoundPage } from './components/NotFoundPage/NotFoundPage';
+import { ProductDetailsPage } from './Product/ProductDetailsPage/ProductDetailsPage';
 
 export const App: React.FC = () => {
   return (
@@ -19,18 +20,20 @@ export const App: React.FC = () => {
       <main>
         <div>
           <Routes>
-            <Route path="/" element={<HomePage products={[]} />} />
+            <Route path="/" element={<HomePage />} />
             <Route path="/phones" element={<Phones />} />
             <Route path="/tablets" element={<Tablets />} />
             <Route path="/accessories" element={<Accessories />} />
             <Route path="/favorites" element={<Favorites />} />
-            <Route path="/cart" element={<Cart product={undefined} />} />
-            <Route path="/product/:productId" />
+            <Route path="/cart" element={<Cart />} />
+            <Route
+              path="/product/:category/:productId"
+              element={<ProductDetailsPage />}
+            />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </div>
       </main>
-
       <div>
         <Footer />
       </div>

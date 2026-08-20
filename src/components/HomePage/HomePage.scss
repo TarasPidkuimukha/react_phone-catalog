@@ -1,0 +1,19 @@
+@use '../../styles/mixins' as *;
+@use '../../styles/variables' as *;
+
+.homePage {
+  @include pageGrid;
+  display: flex;
+  justify-content: center;
+  background-color: $main-color;
+  @include contentPaddingInline;
+
+  &____pictureSlider {
+  }
+
+  &__productSlider {
+  }
+
+  &__categories {
+  }
+}

@@ -1,4 +1,10 @@
-import { createContext, ReactNode, useContext, useState } from 'react';
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 import { Product } from '../Types/types';
 
 interface FavoriteContentType {
@@ -31,7 +37,19 @@ export const useFavorite = () => {
 };
 
 export const FavoriteProvider = ({ children }: FavoriteProviderProps) => {
-  const [favorites, setFavorites] = useState<FavoriteItem[]>([]);
+  const [favorites, setFavorites] = useState<FavoriteItem[]>(() => {
+    const savedFavs = localStorage.getItem('favorites');
+    if (savedFavs === null) {
+      return [];
+    } else {
+      return JSON.parse(savedFavs);
+    }
+  });
+
+  useEffect(() => {
+    localStorage.setItem('favorites', JSON.stringify(favorites));
+  }, [favorites]);
+  // #region logic
 
   const addToFavorite = (product: Product) => {
     setFavorites(prevFav => {
@@ -52,6 +70,7 @@ export const FavoriteProvider = ({ children }: FavoriteProviderProps) => {
       preFav.filter(item => item.product.id !== product.id),
     );
   };
+  // #endregion
 
   const favoriteTotal = favorites.length;
 

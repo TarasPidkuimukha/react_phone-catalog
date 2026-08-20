@@ -1,5 +1,6 @@
 import { Product } from '../../Types/types';
 import { ProductCard } from '../ProductCard/ProductCard';
+// import './ProductList.scss';
 
 interface ProductListProps {
   products: Product[];
@@ -7,11 +8,11 @@ interface ProductListProps {
 
 export const ProductList: React.FC<ProductListProps> = ({ products }) => {
   return (
-    <div>
+    <div className="productList">
       {products.length > 0 ? (
         products.map(product => (
-          <div>
-            <ProductCard key={product.id} product={product} />
+          <div key={product.id}>
+            <ProductCard product={product} />
           </div>
         ))
       ) : (

@@ -1,0 +1,21 @@
+@use '../../styles/mixins' as *;
+@use '../../styles/variables' as *;
+
+.header {
+  border: none;
+
+  &__container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__navLink {
+    display: inline;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__fav-icon {
+  }
+}
