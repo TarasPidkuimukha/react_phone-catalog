@@ -4,7 +4,7 @@ import { useSortedProducts } from '../../Sorting/Sorting';
 import { useFetchProducts } from '../../api/products';
 import { Loader } from '../Loader/Loader';
 import { usePagination } from '../Pagination/usePagination';
-// import './Phones.scss';
+import './Phones.scss';
 
 export const Phones = () => {
   const { products, isLoading, errorMessage, refetch } = useFetchProducts();
@@ -24,32 +24,38 @@ export const Phones = () => {
 
   return (
     <div className="phones">
-      <h1 className="title">Mobile Phones</h1>
-      <span>{phones.length} models</span>
+      <h1 className="phones__title">Mobile Phones</h1>
+      <span className="phones__count">{phones.length} models</span>
 
-      <select
-        className="phones__perPager"
-        onChange={event => onPerPage(event.target.value)}
-      >
-        <option value="4">4</option>
-        <option value="8">8</option>
-        <option value="16">16</option>
-        <option value="all">all</option>
-      </select>
-      <select
-        className="phones__sortBy"
-        onChange={event => {
-          setSearchParams({ sort: event.target.value });
-        }}
-      >
-        <option value="age">Newest</option>
-        <option value="price">Cheapest</option>
-        <option value="title">Alphabetic</option>
-      </select>
-      {phones.length !== 0 ? (
-        <div className="phones__content">
-          <ProductList products={paginatedItems} />
+      <div className="phones__filters">
+        <div className="phones__filter">
+          <label className="phones__filter--label">Sort by</label>
+          <select
+            className="phones__filter--select"
+            onChange={event => {
+              setSearchParams({ sort: event.target.value });
+            }}
+          >
+            <option value="age">Newest</option>
+            <option value="price">Cheapest</option>
+            <option value="title">Alphabetic</option>
+          </select>
         </div>
+        <div className="phones__filter">
+          <label className="phones__filter--label">Items on page</label>
+          <select
+            className="phones__filter--select"
+            onChange={event => onPerPage(event.target.value)}
+          >
+            <option value="16">16</option>
+            <option value="8">8</option>
+            <option value="4">4</option>
+            <option value="all">all</option>
+          </select>
+        </div>
+      </div>
+      {phones.length !== 0 ? (
+        <ProductList products={paginatedItems} />
       ) : (
         <p>There are no phones</p>
       )}

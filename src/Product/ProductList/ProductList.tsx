@@ -1,6 +1,6 @@
 import { Product } from '../../Types/types';
 import { ProductCard } from '../ProductCard/ProductCard';
-// import './ProductList.scss';
+import './ProductList.scss';
 
 interface ProductListProps {
   products: Product[];
@@ -21,3 +21,4 @@ export const ProductList: React.FC<ProductListProps> = ({ products }) => {
     </div>
   );
 };
+//за замовчуванням має показувати 16 елементів
