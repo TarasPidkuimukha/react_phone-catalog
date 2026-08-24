@@ -14,7 +14,7 @@
   margin: 0 auto;
   height: 100%;
 
-  padding: 24px 16px;
+  padding: 32px;
   border: 1px solid $elements-color;
 
   border-radius: 2%;
@@ -26,6 +26,12 @@
     padding: 32px;
   }
 
+  &__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   &:hover {
     box-shadow: $hover-shadow;
   }
@@ -33,7 +39,7 @@
   a {
     text-decoration: none;
     color: inherit;
-    display: flex;
+
     flex-direction: column;
     align-items: center;
   }
@@ -46,9 +52,12 @@
   }
 
   &__name {
+    display: flex;
+
     @include font-style(14px, 21px 600);
     color: $main-text-color;
-    width: 100%;
+    width: 208px;
+    height: 58px;
 
     margin-top: 16px;
   }
@@ -103,19 +112,27 @@
   &__button {
     display: flex;
     width: 100%;
-    gap: 8px;
+    gap: 10px;
 
     &--add {
+      @include font-style(14px, 21px, 600);
       flex-grow: 1;
       height: 40px;
       background-color: $main-text-color;
       border: none;
-      border-radius: 2px;
+      border-radius: 4px;
       color: $main-color;
       &:hover {
         background-color: #fff;
         color: $main-text-color;
         border: 1px solid $main-text-color;
+      }
+      &--added {
+        @include font-style(14px, 21px, 600);
+        flex-grow: 1; //все працює, але чому мені потрібно було це додати, щоб кнопка не втрачала розмір, а вона сама не тримала її?
+        background-color: #fff;
+        color: #27ae60;
+        border: 1px solid $elements-color;
       }
     }
 
@@ -128,8 +145,10 @@
 
       background-color: $main-color;
       border: 1px solid $elements-color;
-      border-radius: 2px;
+      border-radius: 4px;
       flex-shrink: 0;
     }
   }
 }
+
+//коли опис не влазить в один рядок, то ціна з'їжджає, треба це передбачити

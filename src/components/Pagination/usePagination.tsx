@@ -4,7 +4,7 @@ import { Product } from '../../Types/types';
 export const usePagination = (sorted: Product[]) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const page = Number(searchParams.get('page') ?? '1');
-  const perPage = searchParams.get('perPage') ?? '4';
+  const perPage = searchParams.get('perPage') ?? '16';
   const start = (page - 1) * Number(perPage);
   const end = start + Number(perPage);
   const total = sorted.length;
@@ -31,6 +31,8 @@ export const usePagination = (sorted: Product[]) => {
 
     setSearchParams(params);
   };
+
+  
 
   return { page, perPage, paginatedItems, total, onPageChange, onPerPage };
 };

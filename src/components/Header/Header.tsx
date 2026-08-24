@@ -2,53 +2,73 @@ import { NavLink } from 'react-router-dom';
 import { useCart } from '../../context/CartContext';
 import { useFavorite } from '../../context/FavoriteContext';
 
-// import './Header.scss';
+import './Header.scss';
 export const Header = () => {
   const { cart } = useCart();
   const { favoriteTotal } = useFavorite();
   const cartQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
-    <nav className="header">
+    <header className="header">
       <div className="header__container">
-        <img src="" alt="logo" className="logo" />
-        <ul>
+        <div className="header__nav">
+          <NavLink to="/" className="header__logo-link">
+            <img
+              src="public\img\Icons\Logo.svg"
+              alt="logo"
+              className="header__logo"
+            />
+          </NavLink>
+          <ul className="header__list">
+            <li>
+              <NavLink className="header__link" to={'/'}>
+                Home
+              </NavLink>
+            </li>
+            <li>
+              <NavLink className="header__link" to={'/phones'}>
+                Phones
+              </NavLink>
+            </li>
+            <li>
+              <NavLink className="header__link" to={'/tablets'}>
+                Tablets
+              </NavLink>
+            </li>
+            <li>
+              <NavLink className="header__link" to={'/accessories'}>
+                Accessories
+              </NavLink>
+            </li>
+          </ul>
+        </div>
+        <ul className="header__actions">
           <li>
-            <NavLink className="header__navLink" to={'/'}>
-              Home
+            <NavLink className="header__action" to={'/favorites'}>
+              <img
+                src="public\img\Icons\unselected heart icon.svg"
+                alt=""
+                className="header__icon"
+              />
+              {favoriteTotal > 0 && (
+                <p className="header__badge">{favoriteTotal}</p>
+              )}
             </NavLink>
           </li>
-          <li>
-            <NavLink className="header__navLink" to={'/phones'}>
-              Phones
-            </NavLink>
-          </li>
-          <li>
-            <NavLink className="header__navLink " to={'/tablets'}>
-              Tablets
-            </NavLink>
-          </li>
-          <li>
-            <NavLink className="header__navLink" to={'/accessories'}>
-              Accessories
-            </NavLink>
-          </li>
-        </ul>
-        <ul>
-          <li>
-            <NavLink className="header__navLink" to={'/favorites'}>
-              <img src="" alt="" className="header__fav-icon" />
-              {favoriteTotal > 0 && <p>{favoriteTotal}</p>}
-            </NavLink>
-          </li>
-          <li>
-            <NavLink className="header__navLink" to={'/cart'}>
-              <img src="" alt="" className="header__cart-icon" />
-              {cartQuantity > 0 && <p>{cartQuantity}</p>}
+          <li className="header__item">
+            <NavLink className="header__action" to={'/cart'}>
+              <img
+                src="public\img\Icons\cart icon.svg"
+                alt="cart_icon"
+                className="header__icon"
+              />
+              {cartQuantity > 0 && (
+                <p className="header__badge">{cartQuantity}</p>
+              )}
             </NavLink>
           </li>
         </ul>
       </div>
-    </nav>
+    </header>
   );
 };

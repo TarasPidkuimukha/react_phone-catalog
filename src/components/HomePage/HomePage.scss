@@ -2,18 +2,106 @@
 @use '../../styles/variables' as *;
 
 .homePage {
-  @include pageGrid;
-  display: flex;
-  justify-content: center;
-  background-color: $main-color;
-  @include contentPaddingInline;
+  margin: 0;
+  padding: 0;
 
-  &____pictureSlider {
+  &__container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 16px;
+    gap: 24px;
+    @include onDesktop {
+      padding: 0 32px;
+
+      gap: 56px;
+    }
+    @include onTablet {
+      padding: 0 32px;
+
+      gap: 32px;
+    }
   }
 
-  &__productSlider {
+  &__subtitle {
+    display: flex;
+    margin: 0;
+
+    @include font-style(32px, 41px, 700);
   }
 
   &__categories {
+    display: block;
+
+    &-list {
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      list-style: none;
+      @include onDesktop {
+        flex-direction: row;
+      }
+      @include onTablet {
+        flex-direction: row;
+      }
+    }
+
+    a {
+      text-decoration: none;
+    }
+  }
+
+  &__category-card {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 32px;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 1px;
+
+    @include onTablet {
+      gap: 16px;
+    }
+    @include onDesktop {
+      gap: 16px;
+    }
+    &-img {
+      display: block;
+      width: 280px;
+      height: 280px;
+      object-fit: contain;
+
+      @include onTablet {
+        width: 180px;
+        height: 180px;
+      }
+
+      @include onDesktop {
+        width: 360px;
+        height: 360px;
+      }
+    }
+    &-title {
+      @include font-style(22px, 31px, 700);
+      color: $main-text-color;
+    }
+
+    &__count {
+      @include font-style(14px, 21px, 400);
+      color: $secondary-color;
+    }
+
+    &:hover {
+      box-shadow: $hover-shadow;
+    }
+  }
+
+  &__productSlider {
+    display: flex;
+    flex-direction: column;
   }
 }

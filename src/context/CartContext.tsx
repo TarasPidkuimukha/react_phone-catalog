@@ -91,7 +91,7 @@ export const CartProvider = ({ children }: CartProviderProps) => {
             ? { ...item, quantity: item.quantity - 1 }
             : item,
         )
-        .filter(item => item.quantity > 1),
+        .filter(item => item.quantity >= 1),
     );
   };
 

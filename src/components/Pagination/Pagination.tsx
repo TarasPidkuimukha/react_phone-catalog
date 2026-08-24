@@ -1,4 +1,5 @@
 import classNames from 'classnames';
+import './Pagination.scss';
 
 import React from 'react';
 
@@ -11,7 +12,7 @@ type PaginationProps = {
 
 export const Pagination: React.FC<PaginationProps> = ({
   total,
-  perPage = 4,
+  perPage = 16,
   currentPage = 1,
   onPageChange,
 }) => {
@@ -22,30 +23,30 @@ export const Pagination: React.FC<PaginationProps> = ({
   }
 
   return (
-    <div>
-      <ul>
-        <li
-          className={classNames('page-item', { disabled: currentPage === 1 })}
-        >
+    <div className="pagination">
+      <ul className="pagination__container">
+        <li>
           <button
+            disabled={currentPage === 1}
+            className={classNames('pagination__button', {
+              'pagination__button--disabled': currentPage === 1,
+            })}
             onClick={() => {
-              if (currentPage !== 1) {
-                onPageChange(currentPage - 1);
-              }
+              onPageChange(currentPage - 1);
+              // if (currentPage !== 1) {
+              // }
             }}
           >
             &lsaquo;
-            <img src="" />
+            {/* <img src="" alt="prev" /> */}
           </button>
         </li>
         {pageNumber.map(page => (
-          <li
-            key={page}
-            className={classNames('page-item', {
-              active: page === currentPage,
-            })}
-          >
+          <li key={page}>
             <button
+              className={classNames('pagination__button', {
+                'pagination__button--active': page === currentPage,
+              })}
               onClick={() => {
                 if (page !== currentPage) {
                   onPageChange(page);
@@ -56,26 +57,25 @@ export const Pagination: React.FC<PaginationProps> = ({
             </button>
           </li>
         ))}
-        <li
-          className={classNames('page-item', {
-            disabled: currentPage === pageNumber.length,
-          })}
-        >
+        <li>
           <button
-            aria-disabled={currentPage === pageNumber.length ? 'true' : 'false'}
+            className={classNames('pagination__button', {
+              'pagination__button--disabled': currentPage === pageNumber.length,
+            })}
+            disabled={currentPage === pageNumber.length}
+            // aria-disabled={currentPage === pageNumber.length ? 'true' : 'false'}
             onClick={() => {
-              if (currentPage !== pageNumber.length) {
-                onPageChange(currentPage + 1);
-              }
+              onPageChange(currentPage + 1);
+              // if (currentPage !== pageNumber.length) {
+              // якщо щось повернути обидва onPageChange в цю перевірку
+              // }
             }}
           >
             &rsaquo;
-            <img src="" />
+            {/* <img src="" alt="next" /> */}
           </button>
         </li>
       </ul>
     </div>
   );
 };
-//дати логіку стрілкам, бо решта наче працює все,
-//  хіба може треба шоб додавався в адресу page=1

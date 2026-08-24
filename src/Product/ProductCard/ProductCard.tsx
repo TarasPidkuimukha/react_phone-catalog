@@ -16,12 +16,14 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
   return (
     <div className="productCard">
-      <Link to={`/product/${product.category}/${product.id}`}>
-        <img
-          className="productCard__img"
-          src={product.image} //як мені показувати катинки
-          alt="product photo"
-        />
+      <Link to={`/product/${product.category}/${product.itemId}`}>
+        <div className="productCard__container">
+          <img
+            className="productCard__img"
+            src={product.image} //як мені показувати катинки
+            alt="product photo"
+          />
+        </div>
         <span className="productCard__name">{product.name}</span>
       </Link>
       <section className="productCard__price">
@@ -61,7 +63,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       </div>
       <div className="productCard__button">
         {findAddedItem ? (
-          <button className="productCard__button--add">Added to cart</button>
+          <button className="productCard__button--add--added">Added</button>
         ) : (
           <button
             className="productCard__button--add"
@@ -75,14 +77,20 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             className="productCard__button--heart"
             onClick={() => removeFromFavorite(product)}
           >
-            <img src="" alt="selected heart button" />
+            <img
+              src="public\img\Icons\selected heart icon.svg"
+              alt="selected heart button"
+            />
           </button>
         ) : (
           <button
             className="productCard__button--heart"
             onClick={() => addToFavorite(product)}
           >
-            <img src="" alt="unselected heart button" />
+            <img
+              src="public\img\Icons\unselected heart icon.svg"
+              alt="unselected heart button"
+            />
           </button>
         )}
       </div>

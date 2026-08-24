@@ -5,6 +5,7 @@ export interface Product {
   name: string;
   fullPrice: number;
   price: number;
+  screen: string;
   capacity: string;
   color: string;
   ram: string;
@@ -19,7 +20,7 @@ export interface Description {
 
 export interface ProductDetails {
   id: string;
-  category: string;
+  category: 'phones' | 'tablets' | 'accessories';
   namespaceId: string;
   name: string;
   capacityAvailable: string[];

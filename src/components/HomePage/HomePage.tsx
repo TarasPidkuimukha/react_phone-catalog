@@ -5,7 +5,7 @@ import { useFetchProducts } from '../../api/products';
 import { Loader } from '../Loader/Loader';
 import { PictureSlider } from '../../Product/PictureSlider/PictureSlider';
 
-// import './HomePage.scss';
+import './HomePage.scss';
 
 export const HomePage = () => {
   const { products, isLoading, errorMessage, refetch } = useFetchProducts();
@@ -27,8 +27,8 @@ export const HomePage = () => {
   const tablets = products.filter(product => product.category === 'tablets');
 
   const withDiscount = [...products].filter(
-    product => product.price !== product.price,
-  );
+    product => product.price !== product.fullPrice,
+  ); //тут помилка, треба виправити
 
   const discountPrice = withDiscount.sort((a, b) => {
     const diffA = a.price - a.price; //тут треба буде змінити на інший масив і також на інший тип
@@ -42,39 +42,67 @@ export const HomePage = () => {
 
   return (
     <div className="homePage">
-      <h1>Product Catalog</h1>
-      <h2>Welcome to Nice Gadgets store!</h2>
+      <div className="homePage__container">
+        {/* <h1>Product Catalog</h1> */}
+        <h1 className="homePage__title">Welcome to Nice Gadgets store!</h1>
 
-      <div className="homePage__pictureSlider">
-        <PictureSlider />
-      </div>
-      <div className="homePage__productSlider">
-        <h4>Brand new models</h4>
-        <ProductsSlider products={newestProduct} />
-      </div>
-      <div className="homePage__categories">
-        <h2>Shop be category</h2>
-        <Link to="/phones">
-          <img src="" />
-          Mobile phones
-          {phones.length}
-        </Link>
-        <Link to="/tablets">
-          <img src="" />
-          Tablets
-          {tablets.length}
-        </Link>
-        <Link to="/accessories">
-          <img src="" />
-          Accessories
-          {accessories.length}
-        </Link>
-      </div>
-      <div className="homePage__productSlider">
-        <h3>Hot prices</h3>
-        <ProductsSlider products={discountPrice} />
+        <div className="homePage__pictureSlider">
+          <PictureSlider />
+        </div>
+
+        <ProductsSlider title="Brand new models" products={newestProduct} />
+
+        <h2 className="homePage__subtitle">Shop be category</h2>
+        <div className="homePage__categories">
+          <ul className="homePage__categories-list">
+            <li className="homePage__categories-item">
+              <Link className="homePage__category-card" to="/phones">
+                <img
+                  src="public\img\category-phones.webp"
+                  alt="picture"
+                  className="homePage__category-card-img"
+                />
+                <span className="homePage__category-card-title">
+                  Mobile phones
+                </span>
+                <span className="homePage__category-card__count">
+                  {phones.length} models
+                </span>
+              </Link>
+            </li>
+            <li className="homePage__categories-item">
+              <Link className="homePage__category-card" to="/tablets">
+                <img
+                  src="public\img\category-tablets.webp"
+                  alt="picture"
+                  className="homePage__category-card-img"
+                />
+                <span className="homePage__category-card-title">Tablets</span>
+                <span className="homePage__category-card__count">
+                  {tablets.length} models
+                </span>
+              </Link>
+            </li>
+            <li className="homePage__categories-item">
+              <Link className="homePage__category-card" to="/accessories">
+                <img
+                  src="public\img\category-accessories.webp"
+                  alt="picture"
+                  className="homePage__category-card-img"
+                />
+                <span className="homePage__category-card-title">
+                  Accessories
+                </span>
+                <span className="homePage__category-card__count">
+                  {accessories.length} models
+                </span>
+              </Link>
+            </li>
+          </ul>
+        </div>
+
+        <ProductsSlider title="Hot prices" products={discountPrice} />
       </div>
     </div>
   );
 };
-//треба передати слайдери з відповідними масивами на свої місця тут, робити наступне

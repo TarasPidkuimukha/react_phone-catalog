@@ -6,12 +6,13 @@ import { ProductCard } from '../ProductCard/ProductCard';
 import { Loader } from '../../components/Loader/Loader';
 import { useState, useEffect } from 'react';
 import { getProductsByCategory } from '../../api/fetching';
-import { Product } from '../../Types/types';
+import { Product, ProductDetails } from '../../Types/types';
 
 // import './ProductDetailsPage.scss';
 
 export const ProductDetailsPage = () => {
-  const [productsCategory, setProductsCategory] = useState<Product[]>([]);
+  const [productsWithDetails, setProductsCategory] =
+    useState<ProductDetails>(null);
 
   const [isLoad, setIsLoad] = useState(false);
   const [errorMes, setErrorMes] = useState('');

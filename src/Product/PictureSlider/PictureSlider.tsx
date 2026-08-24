@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-// import './PictureSlider.scss';
+import './PictureSlider.scss';
 
 export const PictureSlider = () => {
   const bannerImages = [
@@ -18,7 +18,7 @@ export const PictureSlider = () => {
   return (
     <div className="pictureSlider">
       <button
-        className="pictureSlider__arrows"
+        className="pictureSlider__arrow"
         onClick={() =>
           setBunnerIndex(
             (bunnerIndex - 1 + bannerImages.length) % bannerImages.length,
@@ -28,13 +28,18 @@ export const PictureSlider = () => {
         &lsaquo;
       </button>
       <div className="pictureSlider__content">
+        {/* <button className="pictureSlider__orderButton">
+        <span>ORDER NOW</span>
+        </button>;
         <h3 className="pictureSlider__title">Now available in our store</h3>
-        <h4 className="pictureSlider__motto">Be the firts!</h4>
-        <img src={bannerImages[bunnerIndex]} />
-        <button className="pictureSlider__orderButton">ORDER NOW</button>
+        <h4 className="pictureSlider__motto">Be the firts!</h4> */}
+        <img
+          className="pictureSlider__content-img"
+          src={bannerImages[bunnerIndex]}
+        />
       </div>
       <button
-        className="pictureSlider__arrows"
+        className="pictureSlider__arrow"
         onClick={() => setBunnerIndex((bunnerIndex + 1) % bannerImages.length)}
       >
         &rsaquo;

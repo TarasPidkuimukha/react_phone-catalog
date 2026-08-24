@@ -1,0 +1,126 @@
+@use '../../styles/mixins.scss' as *;
+@use '../../styles/variables.scss' as *;
+
+.cart {
+  &__content {
+    display: flex;
+
+    flex-direction: column;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 16px;
+    &__main {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    @include onTablet {
+      justify-content: space-between;
+      align-items: start;
+      margin-top: 40px;
+
+      gap: 32px;
+    }
+
+    @include onDesktop {
+      justify-content: space-between;
+      padding: 0 32px;
+
+      gap: 32px;
+      align-items: start;
+    }
+
+    &__title {
+      @include font-style(48px, 56px, 800);
+      color: $main-text-color;
+      margin-bottom: 0 0 8px 0;
+    }
+  }
+
+  &__back {
+    margin-top: 24 px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+    width: 66px;
+    height: 16px;
+
+    &-text {
+      @include font-style(16px, 21px, 600);
+      color: $secondary-color;
+
+      cursor: default;
+    }
+    &-btn {
+      width: 32px;
+      height: 32px;
+      padding: 0;
+      background: transparent;
+      border: none;
+      color: $secondary-color;
+    }
+  }
+
+  &__checkout {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    gap: 16px;
+    height: 100%;
+    padding: 24px;
+
+    border: 1px solid $elements-color;
+
+    @include onDesktop {
+      gap: 24px;
+      justify-content: end;
+    }
+    &-count {
+      @include font-style(14px, 21px, 400);
+      margin: 0;
+      padding: 0;
+      justify-content: end;
+    }
+    &-divider {
+      width: 100%;
+      border: 1px solid $elements-color;
+      margin: 8px;
+    }
+    &-total {
+      @include font-style(32px, 41px, 700);
+      margin: 0;
+      padding: 0;
+    }
+    &-btn {
+      display: flex;
+      width: 100%;
+      gap: 10px;
+      background-color: transparent;
+      margin: 0;
+      padding: 0;
+      @include font-style(14px, 21px, 600);
+      flex-grow: 1;
+      height: 40px;
+      background-color: $main-text-color;
+      border: none;
+      border-radius: 4px;
+      color: $main-color;
+      align-items: center;
+      justify-content: center;
+      &:hover {
+        background-color: #fff;
+        color: $main-text-color;
+        border: 1px solid $main-text-color;
+      }
+    }
+  }
+}
+
+// треба щоб був один загальний контейнер, в якому буде -
+// кнопка Back і заголоком cart
+// в  цьому контейнері буде ще один контейнер для списку товарів,
+// а під ним інший контейнер для блоку checkout з всім що там є. головний контейнер має бути flex flex-direction: column на телефоні та планшеті, щоб стояло один під одним ,
+// і row на компі, щоб сипсок товарів був ліворуч, а блок checkout праворуч

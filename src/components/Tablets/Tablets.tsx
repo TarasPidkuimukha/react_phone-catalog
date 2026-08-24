@@ -4,7 +4,7 @@ import { useFetchProducts } from '../../api/products';
 import { Loader } from '../Loader/Loader';
 import { Pagination } from '../Pagination/Pagination';
 import { usePagination } from '../Pagination/usePagination';
-// import './Tablets.scss';
+import './Tablets.scss';
 
 export const Tablets = () => {
   const { products, isLoading, errorMessage, refetch } = useFetchProducts();
@@ -25,32 +25,38 @@ export const Tablets = () => {
 
   return (
     <div className="tablets">
-      <h1 className="title">Tablets</h1>
-      <span>{tablets.length} models</span>
-
-      <select
-        className="tablets__perPage"
-        onChange={event => onPerPage(event.target.value)}
-      >
-        <option value="4">4</option>
-        <option value="8">8</option>
-        <option value="16">16</option>
-        <option value="all">all</option>
-      </select>
-      <select
-        className="tablets__sortBy"
-        onChange={event => {
-          setSearchParams({ sort: event.target.value });
-        }}
-      >
-        <option value="age">Newest</option>
-        <option value="price">Cheapest</option>
-        <option value="title">Alphabetic</option>
-      </select>
-      {tablets.length !== 0 ? (
-        <div className="tablets__content">
-          <ProductList products={paginatedItems} />
+      <h1 className="tablets__title">Tablets</h1>
+      <span className="tablets__count">{tablets.length} models</span>
+      <div className="tablets__filters">
+        <div className="tablets__filter">
+          <label className="tablets__filter--label">Sort by</label>
+          <select
+            className="tablets__filter--select"
+            onChange={event => {
+              setSearchParams({ sort: event.target.value });
+            }}
+          >
+            <option value="age">Newest</option>
+            <option value="price">Cheapest</option>
+            <option value="title">Alphabetic</option>
+          </select>
         </div>
+        <div className="tablets__filter">
+          <label className="tablets__filter--label">Items on page</label>
+          <select
+            className="tablets__filter--select"
+            onChange={event => onPerPage(event.target.value)}
+          >
+            <option value="4">4</option>
+            <option value="8">8</option>
+            <option value="16">16</option>
+            <option value="all">all</option>
+          </select>
+        </div>
+      </div>
+
+      {tablets.length !== 0 ? (
+        <ProductList products={paginatedItems} />
       ) : (
         <p>There are no tablets</p>
       )}
