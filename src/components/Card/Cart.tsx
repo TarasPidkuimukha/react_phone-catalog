@@ -31,30 +31,34 @@ export const Cart = () => {
                 />
               ))
             ) : (
-              <p>Your cart is empty</p>
+              <p className="cart__empty">Your cart is empty</p>
             )}
           </div>
-          <div className="cart__checkout">
-            <h3 className="cart__checkout-total">${cartTotal}</h3>
-            <p className="cart__checkout-count">
-              Total for {cartQuantity} items
-            </p>
-            <hr className="cart__checkout-divider" />
-            {cart.length > 0 && (
-              <button
-                type="button"
-                className="cart__checkout-btn"
-                onClick={() => {
-                  window.confirm(
-                    'Checkout is not implemented yet. Do you want to clear the Cart?',
-                  );
-                  clearCart();
-                }}
-              >
-                Checkout
-              </button>
-            )}
-          </div>
+          {cart.length > 0 ? (
+            <div className="cart__checkout">
+              <h3 className="cart__checkout-total">${cartTotal}</h3>
+              <p className="cart__checkout-count">
+                Total for {cartQuantity} items
+              </p>
+              <hr className="cart__checkout-divider" />
+              {cart.length > 0 && (
+                <button
+                  type="button"
+                  className="cart__checkout-btn"
+                  onClick={() => {
+                    window.confirm(
+                      'Checkout is not implemented yet. Do you want to clear the Cart?',
+                    );
+                    clearCart();
+                  }}
+                >
+                  Checkout
+                </button>
+              )}
+            </div>
+          ) : (
+            <></>
+          )}
         </div>
       </div>
     </div>
