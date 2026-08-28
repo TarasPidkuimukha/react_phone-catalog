@@ -12,6 +12,10 @@
 
   width: 288px;
 
+  &:hover {
+    box-shadow: $hover-shadow;
+  }
+
   @include onTablet {
     align-items: center;
     flex-direction: row;
@@ -38,9 +42,13 @@
     gap: 24px;
 
     &-btn {
+      width: 16px;
+      height: 16px;
       border: none;
       background-color: transparent;
+      justify-content: center;
       color: $secondary-color;
+      padding: 0;
     }
     &-img {
       align-items: center;
@@ -82,6 +90,9 @@
       background-color: transparent;
       border: 1px solid $elements-color;
       color: $secondary-color;
+      &:hover {
+        box-shadow: $hover-shadow;
+      }
     }
     &-value {
       @include font-style(12px, 15px, 600);

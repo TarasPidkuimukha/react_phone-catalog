@@ -53,13 +53,13 @@
 
   &__name {
     display: flex;
-
+    align-items: center;
     @include font-style(14px, 21px 600);
     color: $main-text-color;
     width: 208px;
     height: 58px;
 
-    margin-top: 16px;
+    padding: 8px 0;
   }
 
   &__price {

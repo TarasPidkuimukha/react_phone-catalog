@@ -11,7 +11,7 @@ export const CartItem: React.FC<CartItemType> = ({ product, quantity }) => {
           className="cartItem__info-btn"
           onClick={() => removeFromCart(product.itemId)}
         >
-          Х
+          <img src="public\img\Icons\closing icon.svg" alt="x" />
         </button>
 
         <img className="cartItem__info-img" src={product.image} />

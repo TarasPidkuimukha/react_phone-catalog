@@ -12,6 +12,7 @@
     overflow: hidden;
     width: 320px;
     height: 320px;
+    border-radius: 2px;
 
     &-img {
       display: block;
@@ -39,7 +40,7 @@
     display: none;
     padding: 0;
     width: 32px;
-    border-radius: 1px;
+    border-radius: 2px;
     border: 1px solid $elements-color;
     background: transparent;
 

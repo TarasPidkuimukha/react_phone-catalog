@@ -5,6 +5,10 @@
   border-bottom: 1px solid $elements-color;
   margin: 0;
   height: 64px;
+  // display: none;
+  @include onDesktop {
+    display: block;
+  }
 
   &__icon {
     width: 18px;
@@ -61,14 +65,17 @@
   }
 
   &__list {
-    display: flex;
+    display: none;
+
     align-items: center;
     list-style: none;
 
     margin: 0;
     padding: 0;
     gap: 32px;
+
     @include onDesktop {
+      display: flex;
       gap: 64px;
     }
   }
@@ -91,11 +98,15 @@
 
   &__actions {
     justify-content: right;
-    display: flex;
+    display: none;
     align-items: center;
     margin: 0;
     padding: 2px;
     list-style: none;
+
+    @include onDesktop {
+      display: flex;
+    }
   }
 
   &__action {
@@ -110,6 +121,94 @@
     position: relative;
     &.active {
       color: $main-text-color;
+    }
+  }
+
+  &__button {
+    margin: 0;
+    align-items: flex-end;
+
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 0;
+    width: 64px;
+    height: 64px;
+
+    @include onDesktop {
+      display: none;
+    }
+  }
+
+  &__mob {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+
+    background-color: #fff;
+
+    z-index: 1;
+    display: none;
+
+    @include onDesktop {
+      display: none;
+    }
+
+    &-header {
+      display: flex;
+      justify-content: space-between;
+      height: 64px;
+      align-items: center;
+    }
+
+    &--open {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .header__button {
+      align-items: flex-end;
+
+      border: none;
+      background: none;
+      cursor: pointer;
+      padding: 0;
+      width: 64px;
+      height: 64px;
+    }
+
+    .header__list {
+      display: flex;
+      flex-direction: column;
+      align-items: centers;
+      gap: 32px;
+    }
+
+    .header__actions {
+      position: relative;
+      display: flex;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      border-top: 1px solid $elements-color;
+      li {
+        display: flex;
+        flex: 1;
+      }
+    }
+
+    .header__action {
+      width: 100%;
+      justify-content: center;
+      // border-left: 0;
     }
   }
 }
