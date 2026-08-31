@@ -1,5 +1,5 @@
 export interface Product {
-  id: number;
+  id?: number;
   category: 'phones' | 'tablets' | 'accessories';
   itemId: string;
   name: string;
@@ -30,7 +30,7 @@ export interface ProductDetails {
   colorsAvailable: string[];
   color: string;
   images: string[];
-  description: string[];
+  description: Description[];
   screen: string;
   resolution: string;
   processor: string;
@@ -38,4 +38,5 @@ export interface ProductDetails {
   camera: string;
   zoom: string;
   cell: string[];
+  year?: number;
 }

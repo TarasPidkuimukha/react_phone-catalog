@@ -6,16 +6,8 @@
 
   cursor: default;
 
-
   &__content {
-    grid-template-columns: repeat(1, 272px);
-
-    @media (min-width: 640px) {
-      grid-template-columns: repeat(3, 272px);
-    }
-
     @media (min-width: 1200px) {
-      grid-template-columns: repeat(4, 272px);
       width: 1136px;
       margin: 32px auto;
     }
@@ -75,7 +67,6 @@
   }
 
   &__checkout {
-    width: 288px;
     display: flex;
     flex-direction: column;
     gap: 16px;
@@ -88,9 +79,6 @@
 
     @include onDesktop {
       width: 368px;
-    }
-    @include onTablet {
-      width: 592px;
     }
 
     &-total {

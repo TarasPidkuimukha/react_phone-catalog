@@ -9,8 +9,8 @@
   align-items: stretch;
 
   border: 1px solid $elements-color;
-
-  width: 288px;
+  box-sizing: border-box;
+  width: 100%;
 
   &:hover {
     box-shadow: $hover-shadow;
@@ -21,7 +21,6 @@
     flex-direction: row;
     justify-content: space-between;
 
-    width: 592px;
     height: 128px;
     gap: 24px;
   }

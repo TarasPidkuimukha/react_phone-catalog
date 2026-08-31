@@ -128,7 +128,11 @@ export const Header = () => {
 
         <ul className="header__actions">
           <li>
-            <NavLink className="header__action" to={'/favorites'}>
+            <NavLink
+              onClick={() => setIsOpen(false)}
+              className="header__action"
+              to={'/favorites'}
+            >
               <img
                 src="img\Icons\unselected heart icon.svg"
                 alt=""
@@ -140,7 +144,11 @@ export const Header = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink className="header__action" to={'/cart'}>
+            <NavLink
+              onClick={() => setIsOpen(false)}
+              className="header__action"
+              to={'/cart'}
+            >
               <img
                 src="img\Icons\cart icon.svg"
                 alt="cart_icon"

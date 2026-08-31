@@ -1,0 +1,93 @@
+@use '../../styles/mixins.scss' as *;
+@use '../../styles/variables.scss' as *;
+
+.productDetails {
+  margin: 0 auto;
+
+  cursor: default;
+
+  &__content {
+    @media (min-width: 1200px) {
+      width: 1136px;
+      margin: 32px auto;
+    }
+    margin: 32px;
+  }
+  &__back {
+    display: flex;
+    margin: 0;
+    padding: 0;
+
+    width: 66px;
+    height: 16px;
+
+    &-btn {
+      background-color: transparent;
+      border: none;
+      color: $secondary-color;
+      align-items: center;
+    }
+    &-text {
+      width: 100%;
+      color: $secondary-color;
+      @include font-style(14px, 21px, 400);
+      cursor: default;
+    }
+  }
+
+  &__title {
+    display: inline-block;
+    @include font-style(32px, 41px, 700);
+    color: $main-text-color;
+  }
+
+
+  &__images {
+
+  }
+
+
+  &__colors {
+
+  }
+
+  &__capacity {
+
+  }
+
+  &__price {
+
+  }
+
+
+  &__info {
+    .productDetails__text {
+
+    }
+    .productDetails__value {
+
+    }
+  }
+
+  &__decription {
+    &--subTitle {
+
+    }
+
+    &--info {
+
+    }
+    &--infoTitle {
+
+    }
+
+    &--infoText {
+      
+    }
+  }
+
+  &__productCard {
+    display: flex;
+    flex-direction: column;
+  }
+}
