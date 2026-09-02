@@ -6,10 +6,9 @@ import './ProductCard.scss';
 
 interface ProductCardProps {
   product: Product;
-  title: string;
 }
 
-export const ProductCard: React.FC<ProductCardProps> = ({ product, title }) => {
+export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const { cart, addToCart } = useCart();
   const { favorites, addToFavorite, removeFromFavorite } = useFavorite();
   const findAddedItem = cart.some(item => item.product.id === product.id);

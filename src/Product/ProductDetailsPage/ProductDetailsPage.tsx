@@ -8,9 +8,10 @@ import { useState, useEffect } from 'react';
 import { getProductsByCategory } from '../../api/fetching';
 import { Product, ProductDetails } from '../../Types/types';
 
-// import './ProductDetailsPage.scss';
+import './ProductDetailsPage.scss';
 
 export const ProductDetailsPage = () => {
+  //#region Logic
   const [productWithDetails, setProductWithDetails] =
     useState<ProductDetails | null>(null);
 
@@ -107,121 +108,174 @@ export const ProductDetailsPage = () => {
   // const product = products.find(
   //   product => product.itemId === productWithDetails.id,
   // );
+  //#endregion
 
   return (
     <div className="productDetails">
       <div className="productDetails__content">
-        <button onClick={() => navigate(-1)}>Back</button>
-        <h2>{productWithDetails.name}</h2>
-        <div className="productDetails__images">
-          {productWithDetails.images.map((image, index) => (
-            <button key={index}>{image}</button>
-          ))}
+        <div>
+          <button
+            className="productDetails__back"
+            type="button"
+            onClick={() => navigate(-1)}
+          >
+            <span>&lsaquo;</span>
+            <span>Back</span>
+          </button>
         </div>
-        <span className="productDetails__colors">
-          Available colors
-          {productWithDetails.colorsAvailable.map((color, index) => (
-            <button key={index}>{color}</button>
-          ))}
-        </span>
-        <p className="productDetails__capacity">
-          Select capacity
-          {productWithDetails.capacityAvailable.map((item, index) => (
-            <button key={index}>{item}</button>
-          ))}
-        </p>
-        <div className="productDetails__price">
-          {productWithDetails.priceDiscount ===
-          productWithDetails.priceRegular ? (
-            <p>${productWithDetails.priceRegular}</p>
-          ) : (
-            <div>
-              <p>${productWithDetails.priceDiscount}</p>
-              <p>${productWithDetails.priceRegular}</p>
+        <h2 className="productDetails__title">{productWithDetails.name}</h2>
+
+        <div className="productDetails__top">
+          <div className="productDetails__images">
+            {productWithDetails.images.map((image, index) => (
+              // <img src="" alt="" />
+              <button key={index}>{image}</button>
+            ))}
+          </div>
+
+          <div className="productDetails__actions">
+            <div className="productDetails__colors">
+              <span className="productDetails__colors-title">
+                Available colors
+              </span>
+              <div className="productDetails__colors-button">
+                {productWithDetails.colorsAvailable.map((color, index) => (
+                  <button
+                    className="productDetails__btn"
+                    type="button"
+                    key={index}
+                  >
+                    {color}
+                  </button>
+                ))}
+              </div>
             </div>
-          )}
+            <hr className="productDetails__divider" />
+            <div className="productDetails__capacity">
+              <span className="productDetails__capacity-title">
+                Select capacity
+              </span>
+              <div className="productDetails__capacity-button">
+                {productWithDetails.capacityAvailable.map((item, index) => (
+                  <button type="button" key={index}>
+                    {item}
+                  </button>
+                ))}
+              </div>
+            </div>
+            <hr className="productDetails__divider" />
+            <div className="productDetails__price">
+              {productWithDetails.priceDiscount ===
+              productWithDetails.priceRegular ? (
+                <span className="productDetails__price--full">
+                  ${productWithDetails.priceRegular}
+                </span>
+              ) : (
+                <>
+                  <span className="productDetails__price--discount">
+                    ${productWithDetails.priceDiscount}
+                  </span>
+                  <span className="productDetails__price--full">
+                    ${productWithDetails.priceRegular}
+                  </span>
+                </>
+              )}
+            </div>
+            <div className="productDetails__buttons">
+              {findAddedItem ? (
+                <button
+                  type="button"
+                  className="productDetails__buttons--add--added"
+                >
+                  Added
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  className="productDetails__buttons--add"
+                  onClick={() => addToCart(product)}
+                >
+                  Add to cart
+                </button>
+              )}
+              {findFavItem ? (
+                <button
+                  type="button"
+                  className="productDetails__buttons--heart"
+                  onClick={() => removeFromFavorite(product)}
+                >
+                  <img
+                    src="img\Icons\selected heart icon.svg"
+                    alt="selected heart button"
+                  />
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  className="productDetails__buttons--heart"
+                  onClick={() => addToFavorite(product)}
+                >
+                  <img
+                    src="img\Icons\unselected heart icon.svg"
+                    alt="unselected heart button"
+                  />
+                </button>
+              )}
+            </div>
+          </div>
         </div>
 
-        {findAddedItem ? (
-          <button type="button" className="productCard__button--add--added">
-            Added
-          </button>
-        ) : (
-          <button
-            type="button"
-            className="productCard__button--add"
-            onClick={() => addToCart(product)}
-          >
-            Add to cart
-          </button>
-        )}
-        {findFavItem ? (
-          <button
-            type="button"
-            className="productCard__button--heart"
-            onClick={() => removeFromFavorite(product)}
-          >
-            <img
-              src="img\Icons\selected heart icon.svg"
-              alt="selected heart button"
-            />
-          </button>
-        ) : (
-          <button
-            type="button"
-            className="productCard__button--heart"
-            onClick={() => addToFavorite(product)}
-          >
-            <img
-              src="img\Icons\unselected heart icon.svg"
-              alt="unselected heart button"
-            />
-          </button>
-        )}
         <div className="productDetails__info">
-          <span>
-            <p className="productDetails__text">Screen</p>
-            <p className="productDetails__text">{productWithDetails.screen}</p>
-          </span>
-          <span>
-            <p>Resolution {productWithDetails.resolution}</p>
-          </span>
+          <section className="productDetails__info-section">
+            <span className="productDetails__info-section-title">Screen</span>
+            <span className="productDetails__info-section-value">
+              {productWithDetails.screen}
+            </span>
+          </section>
+          <section className="productDetails__info-section">
+            <span className="productDetails__info-section-title">
+              Resolution
+            </span>
+            <span className="productDetails__info-section-value">
+              {productWithDetails.resolution}
+            </span>
+          </section>
 
-          <span>
-            <p className="productDetails__text">Processor</p>
-            <p className="productDetails__value">
+          <section className="productDetails__info-section">
+            <span className="productDetails__info-section-title">
+              Processor
+            </span>
+            <span className="productDetails__info-section-value">
               {productWithDetails.processor}
-            </p>
-          </span>
-          <span>
-            <p className="productDetails__text">RAM</p>
-            <p className="productDetails__value">{productWithDetails.ram}</p>
-          </span>
+            </span>
+          </section>
+          <section className="productDetails__info-section">
+            <span className="productDetails__info-section-title">RAM</span>
+            <span className="productDetails__info-section-value">
+              {productWithDetails.ram}
+            </span>
+          </section>
         </div>
         <div className="productDetails__decription">
-          <h3 className="productDetails__decription--subTitle">About</h3>
+          <h3 className="productDetails__subTitle">About</h3>
+          <hr className="productDetails__divider" />
           {productWithDetails.description.map((item, index) => (
-            <div className="productDetails__decription--info" key={index}>
-              <h4 className="productDetails__decription--infoTitle">
+            <div className="productDetails__decription-info" key={index}>
+              <h4 className="productDetails__decription-infoTitle">
                 {item.title}
               </h4>
-              <p className="productDetails__decription--infoText">
-                {item.text}
-              </p>
+              <p className="productDetails__decription-infoText">{item.text}</p>
             </div>
           ))}
-          <div className="productDetails__productCard">
-            {recommendShuf.map(product => (
-              <ProductCard
-                title="You may also like"
-                key={product.itemId}
-                product={product}
-              />
-            ))}
-
+        </div>
+        <div className="productDetails__productCard">
+          <span className="productDetails__productCard-title">
+            You may also like
+          </span>
+          <div className="productDetails__arrows">
             <button
+              className="productDetails__arrow"
               type="button"
-              className="productDetails__extraProducts--buttons"
               onClick={() =>
                 setCurrentIndex(
                   (currentIndex - 4 + recommended.length) % recommended.length,
@@ -231,14 +285,19 @@ export const ProductDetailsPage = () => {
               &lsaquo;
             </button>
             <button
+              className="productDetails__arrow"
               type="button"
-              className="productDetails__extraProducts--buttons"
               onClick={() =>
                 setCurrentIndex((currentIndex + 4) % recommended.length)
               }
             >
               &rsaquo;
             </button>
+          </div>
+          <div className="productDetails__carts">
+            {recommendShuf.map(product => (
+              <ProductCard key={product.itemId} product={product} />
+            ))}
           </div>
         </div>
       </div>

@@ -13,10 +13,14 @@ export const Cart = () => {
     <div className="cart">
       <div className="cart__content">
         <div className="cart__back">
-          <button className="cart__back-btn" onClick={() => navigate(-1)}>
-            &lsaquo;
+          <button
+            type="button"
+            className="cart__back-btn"
+            onClick={() => navigate(-1)}
+          >
+            <span>&lsaquo;</span>
+            <span className="cart__back-text">Back</span>
           </button>
-          <span className="cart__back-text">Back</span>
         </div>
 
         <h2 className="cart__title">Cart</h2>

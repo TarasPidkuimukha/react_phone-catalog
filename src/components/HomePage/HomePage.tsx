@@ -8,6 +8,7 @@ import { PictureSlider } from '../../Product/PictureSlider/PictureSlider';
 import './HomePage.scss';
 
 export const HomePage = () => {
+  //#region
   const { products, isLoading, errorMessage, refetch } = useFetchProducts();
 
   if (isLoading) return <Loader />;
@@ -40,6 +41,7 @@ export const HomePage = () => {
   //не треба двічі стоврювати два окреми для знижки і новизни,
   // ти просто передаєш у компонент інший масив
 
+  //#endregion
   return (
     <div className="homePage">
       <div className="homePage__container">
