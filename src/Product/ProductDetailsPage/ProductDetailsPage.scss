@@ -11,9 +11,8 @@
     display: flex;
     flex-direction: column;
     gap: 32px;
-    @include onDesktop {
-      flex-direction: row;
-    }
+
+    box-sizing: border-box;
   }
 
   &__title {
@@ -31,6 +30,9 @@
     display: flex;
     gap: 40px;
     flex-direction: column;
+    @include onDesktop {
+      flex-direction: row;
+    }
   }
 
   &__divider {
@@ -68,9 +70,46 @@
   &__actions {
     display: flex;
     flex-direction: column;
+    @include onDesktop {
+      flex: 2;
+    }
+  }
+
+  &__image {
+    object-fit: contain;
+    width: 288px;
+    height: 288px;
+    @include onDesktop {
+      width: 464px;
+      height: 464px;
+    }
   }
 
   &__images {
+    display: flex;
+    flex-direction: column;
+
+    @include onDesktop {
+      flex-direction: row;
+    }
+    flex: 1;
+
+    &-img {
+      display: flex;
+      flex-direction: row;
+      width: 50px;
+      height: 50px;
+      object-fit: contain;
+      @include onDesktop {
+        flex-direction: column;
+        width: 80px;
+        height: 80px;
+      }
+
+      &--active {
+        border: 1px solid $main-text-color;
+      }
+    }
   }
 
   &__colors {
@@ -152,7 +191,7 @@
         @include font-style(14px, 21px, 600);
         width: 231px;
         height: 48px;
-        flex-grow: 1; //все працює, але чому мені потрібно було це додати, щоб кнопка не втрачала розмір, а вона сама не тримала її?
+        flex-grow: 1;
         background-color: #fff;
         color: #27ae60;
         border: 1px solid $elements-color;
@@ -173,33 +212,19 @@
   }
 
   &__info {
-    &-section {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      &-title {
-        @include font-style(14px, 21px, 600);
-        justify-content: left;
-        color: $secondary-color;
-      }
-      &-value {
-        color: $main-text-color;
-        @include font-style(12px, 15px, 500);
-        justify-content: right;
-      }
-    }
-  }
-  &__text {
-  }
-
-  &__info {
     display: flex;
     flex-direction: column;
-    margin-bottom: 16px;
+    margin: 24px 0;
     gap: 8px;
+
+    &-title {
+      color: $main-text-color;
+      @include font-style(20px, 26px, 600);
+    }
 
     &-section {
       display: flex;
+      justify-content: space-between;
 
       &-title {
         @include font-style(12px, 15px, 600);
@@ -213,6 +238,9 @@
     }
   }
   &__decription {
+    @include onDesktop {
+      margin-bottom: 80px;
+    }
     &-info {
       display: flex;
       flex-direction: column;
@@ -224,7 +252,7 @@
 
     &-infoText {
       color: $secondary-color;
-      @include font-style(14px, 21px, 400);
+      @include font-style(16px, 21px, 400);
       margin: 0;
     }
   }
@@ -233,6 +261,15 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
+
+    &-top {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    // @include onDesktop {
+    //   flex-direction: row;
+    // }
 
     &-title {
       color: $main-text-color;
@@ -258,8 +295,10 @@
   &__carts {
     display: flex;
     flex-direction: row;
-    gap: 8px;
-    margin: 0;
+    justify-content: center;
+    gap: 16px;
+    align-items: center;
+
     overflow: hidden; //це повна дурниця, треба запитати як це зробити
   }
 }

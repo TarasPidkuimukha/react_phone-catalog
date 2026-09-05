@@ -7,6 +7,7 @@ import { Loader } from '../../components/Loader/Loader';
 import { useState, useEffect } from 'react';
 import { getProductsByCategory } from '../../api/fetching';
 import { Product, ProductDetails } from '../../Types/types';
+import classNames from 'classnames';
 
 import './ProductDetailsPage.scss';
 
@@ -18,6 +19,8 @@ export const ProductDetailsPage = () => {
   const [isLoad, setIsLoad] = useState(false);
   const [errorMes, setErrorMes] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  const [activePicIdx, setActivePicIdx] = useState<number>(0);
 
   const { products, isLoading, errorMessage, refetch } = useFetchProducts();
   const { productId, category } = useParams();
@@ -127,9 +130,20 @@ export const ProductDetailsPage = () => {
 
         <div className="productDetails__top">
           <div className="productDetails__images">
+            <img
+              className="productDetails__image"
+              src={`/${productWithDetails.images[activePicIdx]}`}
+              alt="product image"
+            />
             {productWithDetails.images.map((image, index) => (
-              // <img src="" alt="" />
-              <button key={index}>{image}</button>
+              <img
+                src={`/${image}`}
+                alt="product image"
+                className={classNames('productDetails__images-img', {
+                  'productDetails__images-img--active': index === activePicIdx,
+                })}
+                onClick={() => setActivePicIdx(index)}
+              />
             ))}
           </div>
 
@@ -140,13 +154,13 @@ export const ProductDetailsPage = () => {
               </span>
               <div className="productDetails__colors-button">
                 {productWithDetails.colorsAvailable.map((color, index) => (
-                  <button
+                  <img
                     className="productDetails__btn"
-                    type="button"
+                    src={`/${color}`}
+                    alt={color}
                     key={index}
-                  >
-                    {color}
-                  </button>
+                    
+                  />
                 ))}
               </div>
             </div>
@@ -222,40 +236,43 @@ export const ProductDetailsPage = () => {
                 </button>
               )}
             </div>
+            <div className="productDetails__info">
+              <span className="productDetails__info-title">Tech specs</span>
+              <section className="productDetails__info-section">
+                <span className="productDetails__info-section-title">
+                  Screen
+                </span>
+                <span className="productDetails__info-section-value">
+                  {productWithDetails.screen}
+                </span>
+              </section>
+              <section className="productDetails__info-section">
+                <span className="productDetails__info-section-title">
+                  Resolution
+                </span>
+                <span className="productDetails__info-section-value">
+                  {productWithDetails.resolution}
+                </span>
+              </section>
+
+              <section className="productDetails__info-section">
+                <span className="productDetails__info-section-title">
+                  Processor
+                </span>
+                <span className="productDetails__info-section-value">
+                  {productWithDetails.processor}
+                </span>
+              </section>
+              <section className="productDetails__info-section">
+                <span className="productDetails__info-section-title">RAM</span>
+                <span className="productDetails__info-section-value">
+                  {productWithDetails.ram}
+                </span>
+              </section>
+            </div>
           </div>
         </div>
 
-        <div className="productDetails__info">
-          <section className="productDetails__info-section">
-            <span className="productDetails__info-section-title">Screen</span>
-            <span className="productDetails__info-section-value">
-              {productWithDetails.screen}
-            </span>
-          </section>
-          <section className="productDetails__info-section">
-            <span className="productDetails__info-section-title">
-              Resolution
-            </span>
-            <span className="productDetails__info-section-value">
-              {productWithDetails.resolution}
-            </span>
-          </section>
-
-          <section className="productDetails__info-section">
-            <span className="productDetails__info-section-title">
-              Processor
-            </span>
-            <span className="productDetails__info-section-value">
-              {productWithDetails.processor}
-            </span>
-          </section>
-          <section className="productDetails__info-section">
-            <span className="productDetails__info-section-title">RAM</span>
-            <span className="productDetails__info-section-value">
-              {productWithDetails.ram}
-            </span>
-          </section>
-        </div>
         <div className="productDetails__decription">
           <h3 className="productDetails__subTitle">About</h3>
           <hr className="productDetails__divider" />
@@ -268,31 +285,35 @@ export const ProductDetailsPage = () => {
             </div>
           ))}
         </div>
+
         <div className="productDetails__productCard">
-          <span className="productDetails__productCard-title">
-            You may also like
-          </span>
-          <div className="productDetails__arrows">
-            <button
-              className="productDetails__arrow"
-              type="button"
-              onClick={() =>
-                setCurrentIndex(
-                  (currentIndex - 4 + recommended.length) % recommended.length,
-                )
-              }
-            >
-              &lsaquo;
-            </button>
-            <button
-              className="productDetails__arrow"
-              type="button"
-              onClick={() =>
-                setCurrentIndex((currentIndex + 4) % recommended.length)
-              }
-            >
-              &rsaquo;
-            </button>
+          <div className="productDetails__productCard-top">
+            <span className="productDetails__productCard-title">
+              You may also like
+            </span>
+            <div className="productDetails__arrows">
+              <button
+                className="productDetails__arrow"
+                type="button"
+                onClick={() =>
+                  setCurrentIndex(
+                    (currentIndex - 4 + recommended.length) %
+                      recommended.length,
+                  )
+                }
+              >
+                &lsaquo;
+              </button>
+              <button
+                className="productDetails__arrow"
+                type="button"
+                onClick={() =>
+                  setCurrentIndex((currentIndex + 4) % recommended.length)
+                }
+              >
+                &rsaquo;
+              </button>
+            </div>
           </div>
           <div className="productDetails__carts">
             {recommendShuf.map(product => (
