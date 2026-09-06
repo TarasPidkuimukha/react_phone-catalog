@@ -130,21 +130,24 @@ export const ProductDetailsPage = () => {
 
         <div className="productDetails__top">
           <div className="productDetails__images">
+            <div className="productDetails__images-box">
+              {productWithDetails.images.map((image, index) => (
+                <img
+                  src={`/${image}`}
+                  alt="product image"
+                  className={classNames('productDetails__images-img', {
+                    'productDetails__images-img--active':
+                      index === activePicIdx,
+                  })}
+                  onClick={() => setActivePicIdx(index)}
+                />
+              ))}
+            </div>
             <img
               className="productDetails__image"
               src={`/${productWithDetails.images[activePicIdx]}`}
               alt="product image"
             />
-            {productWithDetails.images.map((image, index) => (
-              <img
-                src={`/${image}`}
-                alt="product image"
-                className={classNames('productDetails__images-img', {
-                  'productDetails__images-img--active': index === activePicIdx,
-                })}
-                onClick={() => setActivePicIdx(index)}
-              />
-            ))}
           </div>
 
           <div className="productDetails__actions">
@@ -154,12 +157,10 @@ export const ProductDetailsPage = () => {
               </span>
               <div className="productDetails__colors-button">
                 {productWithDetails.colorsAvailable.map((color, index) => (
-                  <img
+                  <button
                     className="productDetails__btn"
-                    src={`/${color}`}
-                    alt={color}
                     key={index}
-                    
+                    style={{ backgroundColor: `${color}` }}
                   />
                 ))}
               </div>
@@ -171,7 +172,11 @@ export const ProductDetailsPage = () => {
               </span>
               <div className="productDetails__capacity-button">
                 {productWithDetails.capacityAvailable.map((item, index) => (
-                  <button type="button" key={index}>
+                  <button
+                    className="productDetails__capacity-btn"
+                    type="button"
+                    key={index}
+                  >
                     {item}
                   </button>
                 ))}

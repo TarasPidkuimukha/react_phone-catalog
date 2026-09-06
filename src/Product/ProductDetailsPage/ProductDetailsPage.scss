@@ -10,9 +10,16 @@
     margin: 16px;
     display: flex;
     flex-direction: column;
-    gap: 32px;
+    gap: 24px;
 
     box-sizing: border-box;
+
+    @include onTablet {
+      margin: 24px;
+    }
+    @include onDesktop {
+      margin: 24px 152px;
+    }
   }
 
   &__title {
@@ -28,10 +35,17 @@
 
   &__top {
     display: flex;
-    gap: 40px;
+    gap: 65px;
     flex-direction: column;
+
+    @include onTablet {
+      flex-direction: row;
+      gap: 0;
+      justify-content: space-between;
+    }
     @include onDesktop {
       flex-direction: row;
+      gap: 240px;
     }
   }
 
@@ -70,8 +84,13 @@
   &__actions {
     display: flex;
     flex-direction: column;
+
+    @include onTablet {
+      width: 320px;
+    }
     @include onDesktop {
-      flex: 2;
+      width: 500px;
+      // flex: 1;
     }
   }
 
@@ -79,6 +98,11 @@
     object-fit: contain;
     width: 288px;
     height: 288px;
+
+    @include onTablet {
+      width: 424px;
+      height: 424px;
+    }
     @include onDesktop {
       width: 464px;
       height: 464px;
@@ -88,11 +112,30 @@
   &__images {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    @include onTablet {
+      gap: 24px;
+    }
 
     @include onDesktop {
       flex-direction: row;
+      justify-content: flex-end;
     }
-    flex: 1;
+
+    &-box {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 10px;
+      @include onTablet {
+        flex-direction: row;
+      }
+
+      @include onDesktop {
+        flex-direction: column;
+      }
+    }
 
     &-img {
       display: flex;
@@ -113,8 +156,6 @@
   }
 
   &__colors {
-    display: flex;
-    flex-direction: column;
     @include font-style(14px, 21px, 400);
     color: $secondary-color;
 
@@ -125,17 +166,33 @@
       gap: 8px;
     }
   }
-
-  //кружечки кольорів
   &__btn {
+    width: 32px;
+    height: 32px;
     border: 1px solid #fff;
     border-radius: 50%;
   }
+
+  //кружечки кольорів
 
   &__capacity {
     display: flex;
     flex-direction: column;
     gap: 8px;
+
+    &-btn {
+      background-color: #fff;
+      border-style: none;
+      border: 1px solid $main-text-color;
+      border-radius: 2px;
+      // color: $main-text-color;
+      @include font-style(12px, 15px, 400);
+
+      &:hover {
+        background-color: $main-text-color;
+        color: #fff;
+      }
+    }
     &-title {
       @include font-style(14px, 21px, 400);
       color: $secondary-color;
@@ -173,10 +230,15 @@
     gap: 10px;
     margin-top: 16px;
 
+    @include onDesktop {
+      gap: 24px;
+      justify-content: center;
+    }
+
     &--add {
       @include font-style(14px, 21px, 600);
-      flex-grow: 1;
-      width: 263px;
+
+      width: 380px;
       height: 48px;
       background-color: $main-text-color;
       border: none;
@@ -267,13 +329,13 @@
       justify-content: space-between;
     }
 
-    // @include onDesktop {
-    //   flex-direction: row;
-    // }
-
     &-title {
       color: $main-text-color;
       @include font-style(22px, 31px, 700);
+    }
+
+    @include onTablet {
+      margin-top: 25px;
     }
   }
   &__arrow {
@@ -298,7 +360,30 @@
     justify-content: center;
     gap: 16px;
     align-items: center;
+    > *:not(:first-child) {
+      display: none;
+    }
 
-    overflow: hidden; //це повна дурниця, треба запитати як це зробити
+    @include onTablet {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      gap: 16px;
+      align-items: center;
+      :nth-child(n + 4) {
+        display: flex;
+      }
+    }
+
+    @include onDesktop {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      gap: 16px;
+      align-items: center;
+      > *:not(:first-child) {
+        display: flex;
+      }
+    }
   }
 }
