@@ -21,4 +21,3 @@ export const ProductList: React.FC<ProductListProps> = ({ products }) => {
     </div>
   );
 };
-//за замовчуванням має показувати 16 елементів

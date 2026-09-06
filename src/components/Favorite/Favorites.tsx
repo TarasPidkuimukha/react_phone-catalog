@@ -13,10 +13,12 @@ export const Favorites = () => {
       {products.length > 0 ? (
         <div className="favorites__items">
           <p className="favorites__count">{products.length} Items</p>
-          <ProductList products={products} />
+          <div className="favorites__content">
+            <ProductList products={products} />
+          </div>
         </div>
       ) : (
-        <p>There are no favorites yet</p>
+        <p className="favorites__subTitle">There are no favorites yet</p>
       )}
     </div>
   );

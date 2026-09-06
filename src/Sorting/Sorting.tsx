@@ -12,7 +12,7 @@ export const useSortedProducts = (products: Product[]) => {
       case 'age':
         return b.year - a.year;
       case 'price':
-        return b.price - a.price;
+        return a.price - b.price;
 
       default:
         return 0;

@@ -5,7 +5,7 @@
   border-bottom: 1px solid $elements-color;
   margin: 0;
   height: 64px;
-  // display: none;
+
   @include onDesktop {
     display: block;
   }
@@ -44,6 +44,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    // padding-left: 24px;
   }
 
   &__nav {
@@ -165,23 +166,11 @@
       height: 64px;
       align-items: center;
       border-bottom: 1px solid $elements-color;
+      width: 100%;
     }
 
     &--open {
       display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .header__button {
-      align-items: flex-end;
-
-      border: none;
-      background: none;
-      cursor: pointer;
-      padding: 0;
-      width: 64px;
-      height: 64px;
     }
 
     .header__list {
