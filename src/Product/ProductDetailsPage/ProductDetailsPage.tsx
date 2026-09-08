@@ -62,10 +62,6 @@ export const ProductDetailsPage = () => {
       </div>
     );
 
-  // const sortedById = productsCategory.find(item => {
-  //   return item.id === productId;
-  // });
-
   if (!productWithDetails)
     return (
       <div>
@@ -108,9 +104,24 @@ export const ProductDetailsPage = () => {
 
   const recommendShuf = recommended.slice(currentIndex, currentIndex + 4);
 
-  // const product = products.find(
-  //   product => product.itemId === productWithDetails.id,
-  // );
+  const colorsChange = (color: string) =>
+    products.find(
+      product =>
+        product.color === color &&
+        product.itemId.split('-').slice(0, -2).join('-') ===
+          productWithDetails.id.split('-').slice(0, -2).join('-') &&
+        product.capacity === productWithDetails.capacity,
+    );
+
+  const capacityChange = (capacity: string) =>
+    products.find(
+      product =>
+        product.capacity === capacity &&
+        product.color === productWithDetails.color &&
+        product.itemId.split('-').slice(0, -2).join('-') ===
+          productWithDetails.id.split('-').slice(0, -2).join('-'),
+    );
+
   //#endregion
 
   return (
@@ -161,6 +172,11 @@ export const ProductDetailsPage = () => {
                     className="productDetails__btn"
                     key={index}
                     style={{ backgroundColor: `${color}` }}
+                    onClick={() => {
+                      const colorChanged = colorsChange(color);
+                      if (colorChanged !== undefined)
+                        navigate(`/product/${category}/${colorChanged.itemId}`);
+                    }}
                   />
                 ))}
               </div>
@@ -176,6 +192,13 @@ export const ProductDetailsPage = () => {
                     className="productDetails__capacity-btn"
                     type="button"
                     key={index}
+                    onClick={() => {
+                      const capacityChanged = capacityChange(item);
+                      if (capacityChanged !== undefined)
+                        navigate(
+                          `/product/${category}/${capacityChanged.itemId}`,
+                        );
+                    }}
                   >
                     {item}
                   </button>
