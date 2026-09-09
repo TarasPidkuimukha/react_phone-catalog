@@ -35,14 +35,17 @@ export const ProductDetailsPage = () => {
       category !== 'phones' &&
       category !== 'tablets' &&
       category !== 'accessories'
-    )
-      return;
+    ) {
+    {
+return;
+}
 
     getProductsByCategory(category)
       .then(products => {
         const currentProduct = products.find(
           product => product.id === productId,
         );
+
         setProductWithDetails(currentProduct || null);
       })
       .catch(() => setErrorMes('Unable to load products'))
@@ -54,22 +57,29 @@ export const ProductDetailsPage = () => {
   // window.scrollTo(0, 0);
 
   const { favorites, addToFavorite, removeFromFavorite } = useFavorite();
-  if (isLoading || isLoad) return <Loader />;
 
-  if (errorMessage || errorMes)
-    return (
-      <div>
-        <p>Oops, something went wrong</p>
-        <button onClick={refetch}>Reload</button>
-      </div>
-    );
+  if (isLoading || isLoad) {
+return <Loader />;
+}
 
-  if (!productWithDetails)
-    return (
-      <div>
-        <p>No product found</p>
-      </div>
-    );
+  if (errorMessage || errorMes) {
+  {
+return (
+    <div>
+      <p>Oops, something went wrong</p>
+      <button onClick={refetch}>Reload</button>
+    </div>
+  );
+  }
+
+  if (!productWithDetails) {
+  {
+return (
+    <div>
+      <p>No product found</p>
+    </div>
+  );
+  }
 
   const product: Product = {
     category: productWithDetails.category,
@@ -98,10 +108,13 @@ export const ProductDetailsPage = () => {
 
     for (let i = filtered.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
+
       [filtered[i], filtered[j]] = [filtered[j], filtered[i]];
     }
+
     return filtered.slice(0, 8);
   };
+
   const recommended = shuffled();
 
   const recommendShuf = recommended.slice(currentIndex, currentIndex + 4);
@@ -123,7 +136,7 @@ export const ProductDetailsPage = () => {
         product.itemId.split('-').slice(0, -2).join('-') ===
           productWithDetails.id.split('-').slice(0, -2).join('-'),
     );
-
+  // інший масив і інша перевірка
   //#endregion
 
   return (
@@ -176,8 +189,11 @@ export const ProductDetailsPage = () => {
                     style={{ backgroundColor: `${color}` }}
                     onClick={() => {
                       const colorChanged = colorsChange(color);
-                      if (colorChanged !== undefined)
-                        navigate(`/product/${category}/${colorChanged.itemId}`);
+
+                      if (colorChanged !== undefined) {
+                      {
+navigate(`/product/${category}/${colorChanged.itemId}`);
+}
                     }}
                   />
                 ))}
@@ -196,10 +212,14 @@ export const ProductDetailsPage = () => {
                     key={index}
                     onClick={() => {
                       const capacityChanged = capacityChange(item);
-                      if (capacityChanged !== undefined)
-                        navigate(
-                          `/product/${category}/${capacityChanged.itemId}`,
-                        );
+
+                      if (capacityChanged !== undefined) {
+                      {
+navigate(
+                        `/product/${category}/${capacityChanged.itemId}`,
+                      );
+                      }
+
                       console.log(capacityChanged);
                     }}
                   >
