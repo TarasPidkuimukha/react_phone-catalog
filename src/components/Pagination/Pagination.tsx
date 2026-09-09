@@ -38,7 +38,6 @@ export const Pagination: React.FC<PaginationProps> = ({
             }}
           >
             &lsaquo;
-            {/* <img src="" alt="prev" /> */}
           </button>
         </li>
         {pageNumber.map(page => (
@@ -72,7 +71,6 @@ export const Pagination: React.FC<PaginationProps> = ({
             }}
           >
             &rsaquo;
-            {/* <img src="" alt="next" /> */}
           </button>
         </li>
       </ul>

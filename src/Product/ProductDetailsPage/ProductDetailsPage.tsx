@@ -51,6 +51,8 @@ export const ProductDetailsPage = () => {
       });
   }, [productId, category]);
 
+  // window.scrollTo(0, 0);
+
   const { favorites, addToFavorite, removeFromFavorite } = useFavorite();
   if (isLoading || isLoad) return <Loader />;
 
@@ -198,6 +200,7 @@ export const ProductDetailsPage = () => {
                         navigate(
                           `/product/${category}/${capacityChanged.itemId}`,
                         );
+                      console.log(capacityChanged);
                     }}
                   >
                     {item}
@@ -247,7 +250,7 @@ export const ProductDetailsPage = () => {
                   onClick={() => removeFromFavorite(product)}
                 >
                   <img
-                    src="img\Icons\selected heart icon.svg"
+                    src="public\img\Icons\selected heart icon.svg"
                     alt="selected heart button"
                   />
                 </button>
@@ -258,7 +261,7 @@ export const ProductDetailsPage = () => {
                   onClick={() => addToFavorite(product)}
                 >
                   <img
-                    src="img\Icons\unselected heart icon.svg"
+                    src="public\img\Icons\unselected heart icon.svg"
                     alt="unselected heart button"
                   />
                 </button>

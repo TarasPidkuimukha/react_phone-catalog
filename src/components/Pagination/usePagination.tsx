@@ -32,7 +32,5 @@ export const usePagination = (sorted: Product[]) => {
     setSearchParams(params);
   };
 
-  
-
   return { page, perPage, paginatedItems, total, onPageChange, onPerPage };
 };

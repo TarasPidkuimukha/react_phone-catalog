@@ -30,6 +30,7 @@ export const Phones = () => {
       <div className="phones__filters">
         <div className="phones__filter">
           <label className="phones__filter--label">Sort by</label>
+
           <select
             className="phones__filter--select"
             onChange={event => {
@@ -43,6 +44,7 @@ export const Phones = () => {
         </div>
         <div className="phones__filter">
           <label className="phones__filter--label">Items on page</label>
+
           <select
             className="phones__filter--select"
             onChange={event => onPerPage(event.target.value)}

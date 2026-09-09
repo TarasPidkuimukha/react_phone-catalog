@@ -34,6 +34,9 @@
 
   &:hover {
     box-shadow: $hover-shadow;
+    transform: scale(1.1);
+    transform-origin: center;
+    transition: transform 500ms ease-in-out;
   }
 
   a {
