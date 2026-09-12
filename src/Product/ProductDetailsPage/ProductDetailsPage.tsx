@@ -21,6 +21,7 @@ export const ProductDetailsPage = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const [activePicIdx, setActivePicIdx] = useState<number>(0);
+  // const [existingItems, setExistingItems] = useState<ProductDetails[]>([]);
 
   const { products, isLoading, errorMessage, refetch } = useFetchProducts();
   const { productId, category } = useParams();
@@ -36,9 +37,8 @@ export const ProductDetailsPage = () => {
       category !== 'tablets' &&
       category !== 'accessories'
     ) {
-    {
-return;
-}
+      return;
+    }
 
     getProductsByCategory(category)
       .then(products => {
@@ -47,6 +47,7 @@ return;
         );
 
         setProductWithDetails(currentProduct || null);
+        // setExistingItems(products);
       })
       .catch(() => setErrorMes('Unable to load products'))
       .finally(() => {
@@ -59,26 +60,26 @@ return;
   const { favorites, addToFavorite, removeFromFavorite } = useFavorite();
 
   if (isLoading || isLoad) {
-return <Loader />;
-}
+    return <Loader />;
+  }
 
   if (errorMessage || errorMes) {
-  {
-return (
-    <div>
-      <p>Oops, something went wrong</p>
-      <button onClick={refetch}>Reload</button>
-    </div>
-  );
+    return (
+      <div>
+        <p>Oops, something went wrong</p>
+        <button onClick={refetch}>Reload</button>
+      </div>
+    );
   }
 
   if (!productWithDetails) {
-  {
-return (
-    <div>
-      <p>No product found</p>
-    </div>
-  );
+    {
+      return (
+        <div>
+          <p>No product found</p>
+        </div>
+      );
+    }
   }
 
   const product: Product = {
@@ -120,23 +121,11 @@ return (
   const recommendShuf = recommended.slice(currentIndex, currentIndex + 4);
 
   const colorsChange = (color: string) =>
-    products.find(
-      product =>
-        product.color === color &&
-        product.itemId.split('-').slice(0, -2).join('-') ===
-          productWithDetails.id.split('-').slice(0, -2).join('-') &&
-        product.capacity === productWithDetails.capacity,
-    );
+    `${productWithDetails.namespaceId}-${productWithDetails.capacity.toLowerCase()}-${color.toLowerCase()}`;
 
   const capacityChange = (capacity: string) =>
-    products.find(
-      product =>
-        product.capacity === capacity &&
-        product.color === productWithDetails.color &&
-        product.itemId.split('-').slice(0, -2).join('-') ===
-          productWithDetails.id.split('-').slice(0, -2).join('-'),
-    );
-  // інший масив і інша перевірка
+    `${productWithDetails.namespaceId}-${capacity.toLowerCase()}-${productWithDetails.color.toLowerCase()}`;
+
   //#endregion
 
   return (
@@ -159,6 +148,7 @@ return (
             <div className="productDetails__images-box">
               {productWithDetails.images.map((image, index) => (
                 <img
+                  key={index}
                   src={`/${image}`}
                   alt="product image"
                   className={classNames('productDetails__images-img', {
@@ -190,10 +180,7 @@ return (
                     onClick={() => {
                       const colorChanged = colorsChange(color);
 
-                      if (colorChanged !== undefined) {
-                      {
-navigate(`/product/${category}/${colorChanged.itemId}`);
-}
+                      return navigate(`/product/${category}/${colorChanged}`);
                     }}
                   />
                 ))}
@@ -207,20 +194,18 @@ navigate(`/product/${category}/${colorChanged.itemId}`);
               <div className="productDetails__capacity-button">
                 {productWithDetails.capacityAvailable.map((item, index) => (
                   <button
-                    className="productDetails__capacity-btn"
+                    className={classNames('productDetails__capacity-btn', {
+                      'productDetails__capacity-btn--active':
+                        item === productWithDetails.capacity,
+                    })}
                     type="button"
                     key={index}
                     onClick={() => {
                       const capacityChanged = capacityChange(item);
 
-                      if (capacityChanged !== undefined) {
-                      {
-navigate(
-                        `/product/${category}/${capacityChanged.itemId}`,
+                      return navigate(
+                        `/product/${category}/${capacityChanged}`,
                       );
-                      }
-
-                      console.log(capacityChanged);
                     }}
                   >
                     {item}

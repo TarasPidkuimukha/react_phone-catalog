@@ -15,11 +15,11 @@ export const Cart = () => {
         <div className="cart__back">
           <button
             type="button"
-            className="cart__back-btn"
+            className="cart__back"
             onClick={() => navigate(-1)}
           >
             <span>&lsaquo;</span>
-            <span className="cart__back-text">Back</span>
+            <span>Back</span>
           </button>
         </div>
 

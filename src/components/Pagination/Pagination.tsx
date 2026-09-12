@@ -1,7 +1,8 @@
-import classNames from 'classnames';
+// import classNames from 'classnames';
 import './Pagination.scss';
 
 import React from 'react';
+import ReactPaginate from 'react-paginate';
 
 type PaginationProps = {
   total: number;
@@ -16,15 +17,31 @@ export const Pagination: React.FC<PaginationProps> = ({
   currentPage = 1,
   onPageChange,
 }) => {
-  const pageNumber = [];
+  // const pageNumber = [];
 
-  for (let i = 1; i <= Math.ceil(total / Number(perPage)); i++) {
-    pageNumber.push(i);
-  }
+  // for (let i = 1; i <= Math.ceil(total / Number(perPage)); i++) {
+  //   pageNumber.push(i);
+  // }
 
   return (
     <div className="pagination">
-      <ul className="pagination__container">
+      <ReactPaginate
+        pageCount={Math.ceil(total / Number(perPage))}
+        onPageChange={page => onPageChange(page.selected + 1)}
+        forcePage={currentPage - 1}
+        pageRangeDisplayed={4}
+        marginPagesDisplayed={1}
+        previousLabel="&lsaquo;"
+        nextLabel="&rsaquo;"
+        containerClassName="pagination__container"
+        pageClassName="pagination__button"
+        disabledClassName="pagination__button--disabled"
+        previousLinkClassName="pagination__button"
+        nextLinkClassName="pagination__button"
+        pageLinkClassName="pagination__button"
+        activeClassName="pagination__button--active"
+      />
+      {/* <ul className="pagination__container">
         <li>
           <button
             disabled={currentPage === 1}
@@ -73,7 +90,7 @@ export const Pagination: React.FC<PaginationProps> = ({
             &rsaquo;
           </button>
         </li>
-      </ul>
+      </ul> */}
     </div>
   );
 };

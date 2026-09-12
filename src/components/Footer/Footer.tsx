@@ -33,16 +33,15 @@ export const Footer = () => {
             </a>
           </li>
         </ul>
-        <div className="footer__back-to-top">
+
+        <button
+          className="footer__back-to-top"
+          type="button"
+          onClick={() => scrollToTop()}
+        >
           <span className="footer__back-text">Back to top</span>
-          <button
-            type="button"
-            className="footer__arrow-btn chevron-up"
-            onClick={() => scrollToTop()}
-          >
-            &lsaquo;
-          </button>
-        </div>
+          <span className="footer__arrow-btn chevron-up"> &lsaquo;</span>
+        </button>
       </div>
     </footer>
   );
