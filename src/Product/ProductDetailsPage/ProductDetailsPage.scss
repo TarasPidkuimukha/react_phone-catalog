@@ -35,7 +35,7 @@
 
   &__top {
     display: flex;
-    gap: 65px;
+    gap: 64px;
     flex-direction: column;
 
     @include onTablet {
@@ -45,7 +45,7 @@
     }
     @include onDesktop {
       flex-direction: row;
-      gap: 240px;
+      justify-content: space-between;
     }
   }
 
@@ -105,8 +105,8 @@
       height: 424px;
     }
     @include onDesktop {
-      width: 464px;
-      height: 464px;
+      width: 424px;
+      height: 424px;
     }
   }
 

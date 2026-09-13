@@ -1,7 +1,12 @@
-import { useState } from 'react';
 import { Product } from '../../Types/types';
 import { ProductCard } from '../ProductCard/ProductCard';
 import './ProductSlider.scss';
+import { useRef } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay } from 'swiper/modules';
+import type { Swiper as SwiperType } from 'swiper';
+import 'swiper/css';
+import 'swiper/css/pagination';
 
 interface ProductsSliderProps {
   products: Product[];
@@ -12,9 +17,7 @@ export const ProductsSlider: React.FC<ProductsSliderProps> = ({
   products,
   title,
 }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  const visibleCards = products.slice(currentIndex, currentIndex + 4);
+  const swiperRef = useRef<SwiperType | null>(null);
 
   return (
     <div className="productSlider">
@@ -23,29 +26,50 @@ export const ProductsSlider: React.FC<ProductsSliderProps> = ({
         <div className="productSlider__buttons">
           <button
             className="productSlider__button"
-            onClick={() =>
-              setCurrentIndex(
-                (currentIndex - 4 + products.length) % products.length,
-              )
-            }
+            onClick={() => swiperRef.current?.slidePrev()}
           >
             &lsaquo;
           </button>
           <button
             className="productSlider__button"
-            onClick={() =>
-              setCurrentIndex((currentIndex + 4) % products.length)
-            }
+            onClick={() => swiperRef.current?.slideNext()}
           >
             &rsaquo;
           </button>
         </div>
       </div>
-      <div className="productSlider__content">
-        {visibleCards.map(product => (
-          <ProductCard key={product.id} product={product} title={''} />
+
+      <Swiper
+        className="productSlider__content"
+        onSwiper={swiper => {
+          swiperRef.current = swiper;
+        }}
+        modules={[Autoplay]}
+        autoplay={{ delay: 3000 }}
+        pagination={{ clickable: true }}
+        slidesPerGroup={2}
+        slidesPerView={1}
+        breakpoints={{
+          768: {
+            slidesPerView: 2,
+            slidesPerGroup: 2,
+          },
+          1024: {
+            slidesPerView: 3,
+            slidesPerGroup: 3,
+          },
+          1200: {
+            slidesPerView: 4,
+            slidesPerGroup: 4,
+          },
+        }}
+      >
+        {products.map(product => (
+          <SwiperSlide key={product.id}>
+            <ProductCard product={product} title={''} />
+          </SwiperSlide>
         ))}
-      </div>
+      </Swiper>
     </div>
   );
 };
