@@ -121,7 +121,7 @@ export const ProductDetailsPage = () => {
   const recommendShuf = recommended.slice(currentIndex, currentIndex + 4);
 
   const colorsChange = (color: string) =>
-    `${productWithDetails.namespaceId}-${productWithDetails.capacity.toLowerCase()}-${color.toLowerCase()}`;
+    `${productWithDetails.namespaceId}-${productWithDetails.capacity.toLowerCase()}-${color.split(' ').join('-').toLowerCase()}`;
 
   const capacityChange = (capacity: string) =>
     `${productWithDetails.namespaceId}-${capacity.toLowerCase()}-${productWithDetails.color.toLowerCase()}`;

@@ -45,10 +45,11 @@ export const ProductsSlider: React.FC<ProductsSliderProps> = ({
           swiperRef.current = swiper;
         }}
         modules={[Autoplay]}
-        autoplay={{ delay: 3000 }}
+        autoplay={{ delay: 9000 }}
         pagination={{ clickable: true }}
         slidesPerGroup={2}
         slidesPerView={1}
+        spaceBetween={16}
         breakpoints={{
           768: {
             slidesPerView: 2,
