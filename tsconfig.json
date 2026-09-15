@@ -1,9 +1,9 @@
 {
   "extends": "@mate-academy/students-ts-config",
-  "include": [
-    "src"
-  ],
+  "include": ["src"],
   "compilerOptions": {
+    "target": "es2020",
+    "moduleResolution": "bundler",
     "sourceMap": false,
     "types": ["node", "cypress"]
   }
