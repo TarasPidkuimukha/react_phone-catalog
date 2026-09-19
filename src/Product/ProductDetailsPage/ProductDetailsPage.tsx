@@ -10,6 +10,7 @@ import { Product, ProductDetails } from '../../Types/types';
 import classNames from 'classnames';
 
 import './ProductDetailsPage.scss';
+import { ProductsSlider } from '../ProductsSlider/ProductsSlider';
 
 export const ProductDetailsPage = () => {
   //#region Logic
@@ -113,12 +114,12 @@ export const ProductDetailsPage = () => {
       [filtered[i], filtered[j]] = [filtered[j], filtered[i]];
     }
 
-    return filtered.slice(0, 8);
+    return filtered.slice(0, 32);
   };
 
   const recommended = shuffled();
 
-  const recommendShuf = recommended.slice(currentIndex, currentIndex + 4);
+  // const recommendShuf = recommended.slice(currentIndex, currentIndex + 4);
 
   const colorsChange = (color: string) =>
     `${productWithDetails.namespaceId}-${productWithDetails.capacity.toLowerCase()}-${color.split(' ').join('-').toLowerCase()}`;
@@ -127,6 +128,7 @@ export const ProductDetailsPage = () => {
     `${productWithDetails.namespaceId}-${capacity.toLowerCase()}-${productWithDetails.color.toLowerCase()}`;
 
   //#endregion
+  console.log(products.length);
 
   return (
     <div className="productDetails">
@@ -327,7 +329,7 @@ export const ProductDetailsPage = () => {
             <span className="productDetails__productCard-title">
               You may also like
             </span>
-            <div className="productDetails__arrows">
+            {/* <div className="productDetails__arrows">
               <button
                 className="productDetails__arrow"
                 type="button"
@@ -349,15 +351,21 @@ export const ProductDetailsPage = () => {
               >
                 &rsaquo;
               </button>
-            </div>
+            </div> */}
           </div>
           <div className="productDetails__carts">
-            {recommendShuf.map(product => (
-              <ProductCard key={product.itemId} product={product} />
-            ))}
+            <ProductsSlider products={recommended} />
           </div>
         </div>
       </div>
     </div>
   );
 };
+
+// recommendShuf;
+
+// {
+//   recommendShuf.map(product => (
+//     <ProductCard key={product.itemId} product={product} />
+//   ));
+// // }

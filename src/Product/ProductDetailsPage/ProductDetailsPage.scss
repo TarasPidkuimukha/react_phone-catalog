@@ -35,17 +35,17 @@
 
   &__top {
     display: flex;
-    gap: 64px;
+    gap: 48px;
     flex-direction: column;
 
     @include onTablet {
       flex-direction: row;
-      gap: 0;
+      // gap: 0;
       justify-content: space-between;
     }
     @include onDesktop {
       flex-direction: row;
-      justify-content: space-between;
+      justify-content: flex-start;
     }
   }
 
@@ -92,15 +92,17 @@
       width: 0;
       flex-grow: 1;
     }
-    // @include onDesktop {
-    //   width: 100%;
-    //   // flex: 1;
-    // }
   }
 
   &__image {
     object-fit: contain;
-    width: calc(100% - 106px);
+    width: 380px;
+    height: 380px;
+
+    @include onDesktop {
+      width: calc(100% - 106px);
+      height: 450px;
+    }
   }
 
   &__images {
@@ -108,6 +110,7 @@
     flex-direction: column;
     align-items: center;
     gap: 10px;
+
     @include onTablet {
       width: 0;
       flex-grow: 1;
@@ -116,7 +119,6 @@
 
     @include onDesktop {
       flex-direction: row;
-      // justify-content: flex-end;
     }
 
     &-box {
@@ -183,8 +185,7 @@
       background-color: #fff;
       border-style: none;
       border: 1px solid $main-text-color;
-      border-radius: 2px;
-      // color: $main-text-color;
+
       @include font-style(12px, 15px, 400);
 
       &:hover {
@@ -261,6 +262,12 @@
         background-color: #fff;
         color: #27ae60;
         border: 1px solid $elements-color;
+      }
+
+      @include onDesktop {
+        flex-grow: 0;
+        justify-content: center;
+        max-width: 400px;
       }
     }
     &--heart {
@@ -342,52 +349,38 @@
       margin-top: 25px;
     }
   }
-  &__arrow {
-    background-color: transparent;
-    border-radius: 1px;
-    border: 1px solid $elements-color;
-    width: 32px;
-    height: 32px;
-    &:hover {
-      border: 1px solid $main-text-color;
-      box-shadow: $hover-shadow;
-    }
-  }
-  &__arrows {
-    display: flex;
-    flex-direction: row;
-    gap: 8px;
-  }
+  // &__arrow {
+  //   background-color: transparent;
+  //   border-radius: 1px;
+  //   border: 1px solid $elements-color;
+  //   width: 32px;
+  //   height: 32px;
+  //   &:hover {
+  //     border: 1px solid $main-text-color;
+  //     box-shadow: $hover-shadow;
+  //   }
+  // }
+  // &__arrows {
+  //   display: flex;
+  //   flex-direction: row;
+  //   gap: 8px;
+  // }
   &__carts {
+    width: 100%;
+    min-width: 0;
     display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 16px;
+    flex-direction: column;
     align-items: center;
-    > *:not(:first-child) {
-      display: none;
-    }
 
     @include onTablet {
       display: flex;
       flex-direction: row;
-      justify-content: center;
-      gap: 16px;
       align-items: center;
-      :nth-child(n + 4) {
-        display: flex;
-      }
     }
 
     @include onDesktop {
       display: flex;
       flex-direction: row;
-      justify-content: center;
-      gap: 16px;
-      align-items: center;
-      > *:not(:first-child) {
-        display: flex;
-      }
     }
   }
 }

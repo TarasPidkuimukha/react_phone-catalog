@@ -20,8 +20,8 @@
   margin-bottom: 40px;
 
   @include onTablet {
-    width: 272px;
-    max-width: none;
+    // width: 272px;
+    max-width: 288px;
     padding: 32px;
   }
 
@@ -33,9 +33,9 @@
 
   &:hover {
     box-shadow: $hover-shadow;
-    transform: scale(1.1);
-    transform-origin: center;
-    transition: transform 500ms ease-in-out;
+    // transform: scale(1.1);
+    // transform-origin: center;
+    // transition: transform 500ms ease-in-out;
   }
 
   a {
