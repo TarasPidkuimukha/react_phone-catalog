@@ -3,11 +3,10 @@ import { ProductCard } from '../ProductCard/ProductCard';
 import './ProductSlider.scss';
 import { useRef } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, Pagination } from 'swiper/modules';
 import type { Swiper as SwiperType } from 'swiper';
-// Обов'язкові базові стилі Swiper:
+
 import 'swiper/css';
-import 'swiper/css/autoplay';
+
 import 'swiper/css/pagination';
 interface ProductsSliderProps {
   products: Product[];
@@ -45,10 +44,8 @@ export const ProductsSlider: React.FC<ProductsSliderProps> = ({
         onSwiper={swiper => {
           swiperRef.current = swiper;
         }}
-        autoplay={{ delay: 5000 }}
         pagination={{ clickable: true }}
-        spaceBetween={16}
-        // centeredSlides={true}
+        spaceBetween={8}
         breakpoints={{
           0: { slidesPerView: 1.5, slidesPerGroup: 1 },
           760: { slidesPerView: 2, slidesPerGroup: 2 },

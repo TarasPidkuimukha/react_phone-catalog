@@ -16,7 +16,7 @@
 
   &__back {
     display: flex;
-    // margin: 24px 16px;
+
     gap: 5px;
 
     padding: 0;
@@ -27,7 +27,7 @@
     height: 16px;
 
     color: $secondary-color;
-    @include font-style(14px, 21px, 400);
+    @include font-style(14px, 21px, 600);
     cursor: pointer;
     background-color: transparent;
 
@@ -36,11 +36,13 @@
 
   &__title {
     display: inline-block;
-    @include font-style(32px, 41px, 700);
+    @include font-style(48px, 56px, 800);
     color: $main-text-color;
+    margin-top: 32px;
   }
 
   &__empty {
+    margin: 0;
     justify-content: center;
     @include font-style(32px, 41px, 700);
     color: $main-text-color;

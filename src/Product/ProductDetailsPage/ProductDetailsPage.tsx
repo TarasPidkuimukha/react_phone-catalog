@@ -329,29 +329,6 @@ export const ProductDetailsPage = () => {
             <span className="productDetails__productCard-title">
               You may also like
             </span>
-            {/* <div className="productDetails__arrows">
-              <button
-                className="productDetails__arrow"
-                type="button"
-                onClick={() =>
-                  setCurrentIndex(
-                    (currentIndex - 4 + recommended.length) %
-                      recommended.length,
-                  )
-                }
-              >
-                &lsaquo;
-              </button>
-              <button
-                className="productDetails__arrow"
-                type="button"
-                onClick={() =>
-                  setCurrentIndex((currentIndex + 4) % recommended.length)
-                }
-              >
-                &rsaquo;
-              </button>
-            </div> */}
           </div>
           <div className="productDetails__carts">
             <ProductsSlider products={recommended} />
@@ -361,11 +338,3 @@ export const ProductDetailsPage = () => {
     </div>
   );
 };
-
-// recommendShuf;
-
-// {
-//   recommendShuf.map(product => (
-//     <ProductCard key={product.itemId} product={product} />
-//   ));
-// // }
