@@ -9,8 +9,14 @@
 
   grid-template-columns: repeat(1, 272px);
 
-  @media (min-width: 640px) {
+  @media (min-width: 640px) and (max-width: 950px) {
+    grid-template-columns: repeat(2, 272px);
+    justify-content: center;
+  }
+
+  @media (min-width: 950px) and (max-width: 1200px) {
     grid-template-columns: repeat(3, 272px);
+    justify-content: center;
   }
 
   @media (min-width: 1200px) {

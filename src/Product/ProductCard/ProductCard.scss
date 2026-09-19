@@ -20,8 +20,8 @@
   margin-bottom: 40px;
 
   @include onTablet {
-    // width: 272px;
-    max-width: 288px;
+    width: 100%;
+
     padding: 32px;
   }
 
