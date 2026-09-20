@@ -6,9 +6,11 @@ export function getProducts(): Promise<Product[]> {
     if (response.ok) {
       return response.json();
     }
+
     throw new Error('Failed to fetch products');
   });
 }
+
 export function getProductsByCategory(
   category: 'phones' | 'tablets' | 'accessories',
 ): Promise<ProductDetails[]> {
@@ -18,6 +20,7 @@ export function getProductsByCategory(
     if (response.ok) {
       return response.json();
     }
+
     throw new Error('Failed to fetch products');
   });
 }

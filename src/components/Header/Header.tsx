@@ -22,7 +22,7 @@ export const Header = () => {
         <div className="header__nav">
           <NavLink to="/" className="header__logo-link">
             <img
-              src="img\Icons\Logo.svg"
+              src="./img/Icons/Logo.svg"
               alt="logo"
               className="header__logo"
             />
@@ -34,7 +34,7 @@ export const Header = () => {
             onClick={toggle}
           >
             <img
-              src="img\Icons\burger menu.svg"
+              src="./img/Icons/burger menu.svg"
               alt="menu"
             />
           </button>
@@ -77,7 +77,7 @@ export const Header = () => {
               to={'/favorites'}
             >
               <img
-                src="img\Icons\unselected heart icon.svg"
+                src="./img/Icons/unselected heart icon.svg"
                 alt=""
                 className="header__icon"
               />
@@ -94,7 +94,7 @@ export const Header = () => {
               to={'/cart'}
             >
               <img
-                src="img\Icons\cart icon.svg"
+                src="./img/Icons/cart icon.svg"
                 alt="cart_icon"
                 className="header__icon"
               />
@@ -116,7 +116,7 @@ export const Header = () => {
         <div className="header__mob-header">
           <NavLink to="/" className="header__logo-link">
             <img
-              src="img\Icons\Logo.svg"
+              src="./img/Icons/Logo.svg"
               alt="logo"
               className="header__logo"
             />
@@ -126,7 +126,10 @@ export const Header = () => {
             type="button"
             onClick={toggle}
           >
-            <img src="img\Icons\closing icon.svg" alt="x" />
+            <img
+              src="./img/Icons/closing icon.svg"
+              alt="x"
+            />
           </button>
         </div>
 
@@ -177,7 +180,7 @@ export const Header = () => {
               to={'/favorites'}
             >
               <img
-                src="img\Icons\unselected heart icon.svg"
+                src="./img/Icons/unselected heart icon.svg"
                 alt=""
                 className="header__icon"
               />
@@ -195,7 +198,7 @@ export const Header = () => {
               to={'/cart'}
             >
               <img
-                src="img\Icons\cart icon.svg"
+                src="./img/Icons/cart icon.svg"
                 alt="cart_icon"
                 className="header__icon"
               />

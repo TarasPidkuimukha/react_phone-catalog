@@ -169,7 +169,7 @@ export const ProductDetailsPage = () => {
             </div>
             <img
               className="productDetails__image"
-              src={`/${productWithDetails.images[activePicIdx]}`}
+              src={`./${productWithDetails.images[activePicIdx]}`}
               alt="product image"
             />
           </div>
@@ -279,7 +279,7 @@ export const ProductDetailsPage = () => {
                   }
                 >
                   <img
-                    src="public\img\Icons\selected heart icon.svg"
+                    src="./img/Icons/selected heart icon.svg"
                     alt="selected heart button"
                   />
                 </button>
@@ -290,7 +290,7 @@ export const ProductDetailsPage = () => {
                   onClick={() => addToFavorite(product)}
                 >
                   <img
-                    src="public\img\Icons\unselected heart icon.svg"
+                    src="./img/Icons/unselected heart icon.svg"
                     alt="unselected heart button"
                   />
                 </button>
