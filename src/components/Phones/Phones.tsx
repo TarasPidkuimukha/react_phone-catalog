@@ -31,9 +31,7 @@ export const Phones = () => {
     {
       return (
         <div>
-          <p className="wrong">
-            Oops, something went wrong
-          </p>
+          <p>Oops, something went wrong</p>
           <button onClick={refetch}>Reload</button>
         </div>
       );
