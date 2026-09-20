@@ -11,6 +11,7 @@
       width: 1136px;
       margin: 32px auto;
     }
+
     margin: 32px;
   }
 
@@ -27,7 +28,9 @@
     height: 16px;
 
     color: $secondary-color;
+
     @include font-style(14px, 21px, 600);
+
     cursor: pointer;
     background-color: transparent;
 
@@ -36,7 +39,9 @@
 
   &__title {
     display: inline-block;
+
     @include font-style(48px, 56px, 800);
+
     color: $main-text-color;
     margin-top: 32px;
   }
@@ -44,7 +49,9 @@
   &__empty {
     margin: 0;
     justify-content: center;
+
     @include font-style(32px, 41px, 700);
+
     color: $main-text-color;
     align-items: center;
   }
@@ -54,7 +61,7 @@
     gap: 32px;
     flex-direction: column;
 
-    @include onDesktop {
+    @include on-desktop {
       flex-direction: row;
       gap: 16px;
     }
@@ -77,19 +84,22 @@
     height: 190px;
     padding-bottom: 0;
 
-    @include onDesktop {
+    @include on-desktop {
       width: 368px;
     }
 
     &-total {
       color: $main-text-color;
+
       @include font-style(32px, 41px, 700);
+
       margin: 0;
     }
 
     &-count {
       margin: 0;
       color: $secondary-color;
+
       @include font-style(14px, 21px, 400);
     }
 
@@ -102,7 +112,9 @@
     &-btn {
       display: flex;
       width: 100%;
+
       @include font-style(14px, 21px, 600);
+
       height: 48px;
       background-color: $main-text-color;
       border: none;

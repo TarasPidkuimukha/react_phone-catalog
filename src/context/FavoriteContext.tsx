@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/indent */
 import {
   createContext,
   ReactNode,
@@ -22,9 +23,9 @@ interface FavoriteProviderProps {
   children: ReactNode;
 }
 
-export const FavoriteContext = createContext<FavoriteContentType | undefined>(
-  undefined,
-);
+export const FavoriteContext = createContext<
+  FavoriteContentType | undefined
+>(undefined);
 
 export const useFavorite = () => {
   const context = useContext(FavoriteContext);
@@ -36,9 +37,14 @@ export const useFavorite = () => {
   return context;
 };
 
-export const FavoriteProvider = ({ children }: FavoriteProviderProps) => {
-  const [favorites, setFavorites] = useState<FavoriteItem[]>(() => {
+export const FavoriteProvider = ({
+  children,
+}: FavoriteProviderProps) => {
+  const [favorites, setFavorites] = useState<
+    FavoriteItem[]
+  >(() => {
     const savedFavs = localStorage.getItem('favorites');
+
     if (savedFavs === null) {
       return [];
     } else {
@@ -47,17 +53,24 @@ export const FavoriteProvider = ({ children }: FavoriteProviderProps) => {
   });
 
   useEffect(() => {
-    localStorage.setItem('favorites', JSON.stringify(favorites));
+    localStorage.setItem(
+      'favorites',
+      JSON.stringify(favorites),
+    );
   }, [favorites]);
   // #region logic
 
   const addToFavorite = (product: Product) => {
     setFavorites(prevFav => {
-      const exist = prevFav.find(item => item.product.id === product.id);
+      const exist = prevFav.find(
+        item => item.product.id === product.id,
+      );
 
       if (exist) {
         return prevFav.map(item =>
-          item.product.id === product.id ? { ...item, product } : item,
+          item.product.id === product.id
+            ? { ...item, product }
+            : item,
         );
       }
 
@@ -76,7 +89,12 @@ export const FavoriteProvider = ({ children }: FavoriteProviderProps) => {
 
   return (
     <FavoriteContext.Provider
-      value={{ favorites, addToFavorite, removeFromFavorite, favoriteTotal }}
+      value={{
+        favorites,
+        addToFavorite,
+        removeFromFavorite,
+        favoriteTotal,
+      }}
     >
       {children}
     </FavoriteContext.Provider>

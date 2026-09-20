@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/indent */
 import {
   createContext,
   ReactNode,
@@ -5,7 +6,7 @@ import {
   useEffect,
   useState,
 } from 'react';
-import { Product, ProductDetails } from '../Types/types';
+import { Product } from '../Types/types';
 
 export interface CartItemType {
   product: Product;
@@ -26,9 +27,9 @@ interface CartProviderProps {
   children: ReactNode;
 }
 
-export const CartContext = createContext<CartContextType | undefined>(
-  undefined,
-);
+export const CartContext = createContext<
+  CartContextType | undefined
+>(undefined);
 
 export const useCart = () => {
   const context = useContext(CartContext);
@@ -40,9 +41,12 @@ export const useCart = () => {
   return context;
 };
 
-export const CartProvider = ({ children }: CartProviderProps) => {
+export const CartProvider = ({
+  children,
+}: CartProviderProps) => {
   const [cart, setCart] = useState<CartItemType[]>(() => {
     const savedCart = localStorage.getItem('cart');
+
     if (savedCart === null) {
       return [];
     } else {
@@ -97,7 +101,9 @@ export const CartProvider = ({ children }: CartProviderProps) => {
 
   const removeFromCart = (itemId: string) => {
     setCart(prevCart =>
-      prevCart.filter(item => item.product.itemId !== itemId),
+      prevCart.filter(
+        item => item.product.itemId !== itemId,
+      ),
     );
   };
 

@@ -6,10 +6,11 @@
   padding: 32px 16px;
   margin-top: 80px;
 
-  @include onTablet {
+  @include on-tablet {
     height: 82px;
   }
-  @include onDesktop {
+
+  @include on-desktop {
     height: 82px;
     padding-left: 152px;
     padding-right: 152px;
@@ -21,13 +22,14 @@
     align-items: left;
     gap: 32px;
 
-    @include onTablet {
+    @include on-tablet {
       flex-direction: row;
       justify-content: space-between;
       height: 100%;
       align-items: center;
     }
-    @include onDesktop {
+
+    @include on-desktop {
       flex-direction: row;
       justify-content: space-between;
       height: 100%;
@@ -53,12 +55,13 @@
     flex-direction: column;
     align-items: start;
     gap: 16px;
-    @include onTablet {
+
+    @include on-tablet {
       flex-direction: row;
       gap: 32px;
     }
 
-    @include onDesktop {
+    @include on-desktop {
       gap: 106px;
       flex-direction: row;
     }
@@ -66,7 +69,9 @@
 
   &__link {
     text-decoration: none;
+
     @include font-style(18px, 26px, 600);
+
     color: $secondary-color;
     text-transform: uppercase;
     &:hover {
@@ -84,6 +89,7 @@
   }
   &__back-text {
     @include font-style(16px, 21px, 600);
+
     color: $secondary-color;
     &:hover {
       color: $main-text-color;
@@ -100,7 +106,7 @@
     border: 1px solid $elements-color;
   }
 }
+
 .chevron-up {
-  // display: inline-block;
-  transform: rotate(90deg); /* Повертає лапку вгору */
+  transform: rotate(90deg);
 }

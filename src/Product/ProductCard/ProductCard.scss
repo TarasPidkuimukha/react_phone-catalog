@@ -1,5 +1,3 @@
-//className='productCart'- це і є клас-контейнер, без потреби не створюй клас container
-
 @use '../../styles/mixins.scss' as *;
 @use '../../styles/variables.scss' as *;
 
@@ -8,18 +6,15 @@
   flex-direction: column;
   justify-content: space-between;
   box-sizing: border-box;
-
   width: 100%;
   max-width: 288px;
   height: 100%;
-
   padding: 32px;
   border: 1px solid $elements-color;
-
   border-radius: 2%;
   margin-bottom: 40px;
 
-  @include onTablet {
+  @include on-tablet {
     width: 100%;
 
     padding: 32px;
@@ -53,11 +48,12 @@
   &__name {
     display: flex;
     align-items: center;
+
     @include font-style(14px, 21px 600);
+
     color: $main-text-color;
     width: 208px;
     height: 58px;
-
     padding: 8px 0;
   }
 
@@ -68,16 +64,19 @@
 
     &--discount {
       @include font-style(22px, 31px, 600);
+
       color: $main-text-color;
     }
     &--full {
       @include font-style(22px, 31px, 600);
+
       color: $secondary-color;
       text-decoration: line-through;
-      text-decoration-color: #fff;
 
+      text-decoration-color: #fff;
       align-items: center;
     }
+
   }
 
   &__divider {
@@ -98,11 +97,13 @@
 
       &--title {
         @include font-style(12px, 15px, 600);
+
         color: $secondary-color;
       }
 
       &--value {
         @include font-style(12px, 15px, 400);
+
         color: $main-text-color;
       }
     }
@@ -115,11 +116,13 @@
 
     &--add {
       @include font-style(14px, 21px, 600);
+
       flex-grow: 1;
       height: 40px;
       background-color: $main-text-color;
       border: none;
       border-radius: 4px;
+
       color: $main-color;
       &:hover {
         background-color: #fff;
@@ -128,10 +131,12 @@
       }
       &--added {
         @include font-style(14px, 21px, 600);
-        flex-grow: 1; //все працює, але чому мені потрібно було це додати, щоб кнопка не втрачала розмір, а вона сама не тримала її?
+
+        flex-grow: 1;
         background-color: #fff;
         color: #27ae60;
         border: 1px solid $elements-color;
+
       }
     }
 
@@ -149,5 +154,3 @@
     }
   }
 }
-
-//коли опис не влазить в один рядок, то ціна з'їжджає, треба це передбачити

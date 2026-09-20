@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/indent */
 import { Product } from '../../Types/types';
 import { ProductCard } from '../ProductCard/ProductCard';
 import './ProductSlider.scss';
@@ -13,10 +14,9 @@ interface ProductsSliderProps {
   title?: string;
 }
 
-export const ProductsSlider: React.FC<ProductsSliderProps> = ({
-  products,
-  title,
-}) => {
+export const ProductsSlider: React.FC<
+  ProductsSliderProps
+> = ({ products, title }) => {
   const swiperRef = useRef<SwiperType | null>(null);
 
   return (
@@ -48,14 +48,16 @@ export const ProductsSlider: React.FC<ProductsSliderProps> = ({
         spaceBetween={8}
         breakpoints={{
           0: { slidesPerView: 1.5, slidesPerGroup: 1 },
-          760: { slidesPerView: 2, slidesPerGroup: 2 },
+          760: { slidesPerView: 2.5, slidesPerGroup: 2 },
           960: { slidesPerView: 3, slidesPerGroup: 3 },
           1200: { slidesPerView: 4, slidesPerGroup: 4 },
         }}
+        loop={true}
+        speed={1500}
       >
         {products.map(product => (
           <SwiperSlide key={product.id}>
-            <ProductCard product={product} title={''} />
+            <ProductCard product={product} />
           </SwiperSlide>
         ))}
       </Swiper>

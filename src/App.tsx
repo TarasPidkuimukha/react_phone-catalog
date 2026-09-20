@@ -1,3 +1,4 @@
+// eslint-disable-next-line max-len
 import { Route, Routes } from 'react-router-dom';
 import './App.scss';
 import { HomePage } from './components/HomePage/HomePage';
@@ -9,7 +10,7 @@ import { Accessories } from './components/Accessories/Accessories';
 import { Header } from './components/Header/Header';
 import { Footer } from './components/Footer/Footer';
 import { NotFoundPage } from './components/NotFoundPage/NotFoundPage';
-import { ProductDetailsPage } from './Product/ProductDetailsPage/ProductDetailsPage';
+import { ProductDetailsPage } from './Product/ProductDetailsPage';
 
 export const App: React.FC = () => {
   return (
@@ -23,8 +24,14 @@ export const App: React.FC = () => {
             <Route path="/" element={<HomePage />} />
             <Route path="/phones" element={<Phones />} />
             <Route path="/tablets" element={<Tablets />} />
-            <Route path="/accessories" element={<Accessories />} />
-            <Route path="/favorites" element={<Favorites />} />
+            <Route
+              path="/accessories"
+              element={<Accessories />}
+            />
+            <Route
+              path="/favorites"
+              element={<Favorites />}
+            />
             <Route path="/cart" element={<Cart />} />
             <Route
               path="/product/:category/:productId"

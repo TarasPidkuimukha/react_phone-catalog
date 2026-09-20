@@ -7,7 +7,10 @@ export const Cart = () => {
   const { cart, cartTotal, clearCart } = useCart();
   const navigate = useNavigate();
 
-  const cartQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
+  const cartQuantity = cart.reduce(
+    (sum, item) => sum + item.quantity,
+    0,
+  );
 
   return (
     <div className="cart">
@@ -35,12 +38,16 @@ export const Cart = () => {
                 />
               ))
             ) : (
-              <p className="cart__empty">Your cart is empty</p>
+              <p className="cart__empty">
+                Your cart is empty
+              </p>
             )}
           </div>
           {cart.length > 0 ? (
             <div className="cart__checkout">
-              <h3 className="cart__checkout-total">${cartTotal}</h3>
+              <h3 className="cart__checkout-total">
+                ${cartTotal}
+              </h3>
               <p className="cart__checkout-count">
                 Total for {cartQuantity} items
               </p>
@@ -51,7 +58,7 @@ export const Cart = () => {
                   className="cart__checkout-btn"
                   onClick={() => {
                     window.confirm(
-                      'Checkout is not implemented yet. Do you want to clear the Cart?',
+                      'Checkout is not implemented yet',
                     );
                     clearCart();
                   }}

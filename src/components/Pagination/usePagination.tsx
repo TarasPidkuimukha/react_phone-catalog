@@ -9,21 +9,25 @@ export const usePagination = (sorted: Product[]) => {
   const end = start + Number(perPage);
   const total = sorted.length;
 
-  const paginatedItems = perPage === 'all' ? sorted : sorted.slice(start, end);
+  const paginatedItems =
+    perPage === 'all' ? sorted : sorted.slice(start, end);
 
   const onPageChange = (newPage: number | string) => {
     const params = new URLSearchParams(searchParams);
+
     if (Number(newPage) <= 1) {
       params.delete('page');
     } else {
       params.set('page', newPage.toString());
     }
+
     setSearchParams(params);
   };
 
   const onPerPage = (newPerPage: number | string) => {
     const params = new URLSearchParams(searchParams);
-    if (newPerPage === 'all') {
+
+    if (newPerPage === '16') {
       params.delete('perPage');
     } else {
       params.set('perPage', newPerPage.toString());
@@ -32,5 +36,12 @@ export const usePagination = (sorted: Product[]) => {
     setSearchParams(params);
   };
 
-  return { page, perPage, paginatedItems, total, onPageChange, onPerPage };
+  return {
+    page,
+    perPage,
+    paginatedItems,
+    total,
+    onPageChange,
+    onPerPage,
+  };
 };

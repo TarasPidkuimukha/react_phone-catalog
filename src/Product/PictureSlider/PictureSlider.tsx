@@ -13,6 +13,7 @@ const bannerImages = [
   '/img/banner-phones.png',
   '/img/banner-tablets.png',
 ];
+
 export const PictureSlider = () => {
   const swiperRef = useRef<SwiperType | null>(null);
 
@@ -32,10 +33,15 @@ export const PictureSlider = () => {
         modules={[Autoplay]}
         autoplay={{ delay: 3000 }}
         pagination={{ clickable: true }}
+        loop={true}
+        speed={1200}
       >
         {bannerImages.map((img, index) => (
           <SwiperSlide key={index}>
-            <img className="pictureSlider__content-img" src={img} />
+            <img
+              className="pictureSlider__content-img"
+              src={img}
+            />
           </SwiperSlide>
         ))}
       </Swiper>
@@ -48,36 +54,3 @@ export const PictureSlider = () => {
     </div>
   );
 };
-
-// const [bunnerIndex, setBunnerIndex] = useState(0);
-
-// useEffect(() => {
-//   const timer = setInterval(() => {
-//     setBunnerIndex(prev => (prev + 1) % bannerImages.length);
-//   }, 3000);
-//   return () => clearInterval(timer);
-// }, [bannerImages.length]);
-// <div className="pictureSlider">
-//   <button
-//     className="pictureSlider__arrow"
-//     onClick={() =>
-//       setBunnerIndex(
-//         (bunnerIndex - 1 + bannerImages.length) % bannerImages.length,
-//       )
-//     }
-//   >
-//     &lsaquo;
-//   </button>
-//   <div className="pictureSlider__content">
-// <img
-//   className="pictureSlider__content-img"
-//   src={bannerImages[bunnerIndex]}
-// />
-//   </div>
-//   <button
-//     className="pictureSlider__arrow"
-//     onClick={() => setBunnerIndex((bunnerIndex + 1) % bannerImages.length)}
-//   >
-//     &rsaquo;
-//   </button>
-// </div>

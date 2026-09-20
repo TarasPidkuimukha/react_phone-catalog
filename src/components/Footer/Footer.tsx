@@ -18,7 +18,10 @@ export const Footer = () => {
         </Link>
         <ul className="footer__list">
           <li>
-            <a className="footer__link" href="https://github.com">
+            <a
+              className="footer__link"
+              href="https://github.com"
+            >
               GITHUB
             </a>
           </li>
@@ -39,8 +42,13 @@ export const Footer = () => {
           type="button"
           onClick={() => scrollToTop()}
         >
-          <span className="footer__back-text">Back to top</span>
-          <span className="footer__arrow-btn chevron-up"> &lsaquo;</span>
+          <span className="footer__back-text">
+            Back to top
+          </span>
+          <span className="footer__arrow-btn chevron-up">
+            {' '}
+            &lsaquo;
+          </span>
         </button>
       </div>
     </footer>

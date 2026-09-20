@@ -10,7 +10,7 @@
   $mb-lh: null,
   $mb-ls: null
 ) {
-  font-family: 'Mont', sans-serif;
+  font-family: Mont, sans-serif;
   font-size: $df-size;
   line-height: $df-lh;
   font-weight: $weight;
@@ -27,20 +27,57 @@
 }
 
 h1 {
-  @include font-style(48px, 56px, 700, -0.01em, 700, 32px, 41px, -0.01em);
+  @include font-style(
+    48px,
+    56px,
+    700,
+    -0.01em,
+    700,
+    32px,
+    41px,
+    -0.01em
+  );
+
   color: $main-text-color;
 }
 
 h2 {
-  @include font-style(32px, 41px, 700, -0.01em, 700, 22px, 31px, 0);
+  @include font-style(
+    32px,
+    41px,
+    700,
+    -0.01em,
+    700,
+    22px,
+    31px,
+    0
+  );
 }
 
 h3 {
-  @include font-style(22px, 31px, 700, 0, 600, 20px, 26px, 0);
+  @include font-style(
+    22px,
+    31px,
+    700,
+    0,
+    600,
+    20px,
+    26px,
+    0
+  );
 }
 
 h4 {
-  @include font-style(20px, 26px, 600, 0, 600, 16px, 20px, 0);
+  @include font-style(
+    20px,
+    26px,
+    600,
+    0,
+    600,
+    16px,
+    20px,
+    0
+  );
 }
 
 .buttons {
@@ -56,46 +93,58 @@ h4 {
 }
 
 .text-uppercase {
-  @include font-style(12px, 11px, $weight: 700, $ls: 0.04em);
+  @include font-style(
+    12px,
+    11px,
+    $weight: 700,
+    $ls: 0.04em
+  );
+
   text-transform: uppercase;
 }
 
 .btn-primary {
   @include font-style(14px, 21px, $weight: 600);
+
   color: $main-color;
 }
 
-@mixin onTablet {
+@mixin on-tablet {
   @media (min-width: $tablet-min-width) {
     @content;
   }
 }
 
-@mixin onDesktop {
+@mixin on-desktop {
   @media (min-width: $desktop-min-width) {
     @content;
   }
 }
 
-@mixin contentPaddingInline() {
+@mixin content-padding-inline {
   padding-inline: 16px;
-  @include onTablet {
+
+  @include on-tablet {
     padding-inline: 24px;
   }
 }
 
-@mixin pageGrid {
+@mixin page-grid {
   --columns: 4;
   --column-size: 1fr;
 
   display: grid;
   column-gap: 16px;
-  grid-template-columns: repeat(var(--columns), var(--columns-size));
+  grid-template-columns: repeat(
+    var(--columns),
+    var(--columns-size)
+  );
 
-  @include onTablet {
+  @include on-tablet {
     --columns: 12;
   }
-  @include onDesktop {
+
+  @include on-desktop {
     --colomns: 24;
     --column-size: 32px;
   }

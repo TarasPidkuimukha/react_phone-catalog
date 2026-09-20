@@ -17,6 +17,7 @@ export function getProductsByCategory(
     if (response.ok) {
       return response.json();
     }
+
     throw new Error('Failed to fetch products');
   });
 }

@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/indent */
 import { useNavigate, useParams } from 'react-router-dom';
 import { useFetchProducts } from '../../api/products';
 import { useFavorite } from '../../context/FavoriteContext';
 import { useCart } from '../../context/CartContext';
-import { ProductCard } from '../ProductCard/ProductCard';
+
 import { Loader } from '../../components/Loader/Loader';
 import { useState, useEffect } from 'react';
 import { getProductsByCategory } from '../../api/fetching';
@@ -19,12 +20,12 @@ export const ProductDetailsPage = () => {
 
   const [isLoad, setIsLoad] = useState(false);
   const [errorMes, setErrorMes] = useState('');
-  const [currentIndex, setCurrentIndex] = useState(0);
 
-  const [activePicIdx, setActivePicIdx] = useState<number>(0);
-  // const [existingItems, setExistingItems] = useState<ProductDetails[]>([]);
+  const [activePicIdx, setActivePicIdx] =
+    useState<number>(0);
 
-  const { products, isLoading, errorMessage, refetch } = useFetchProducts();
+  const { products, isLoading, errorMessage, refetch } =
+    useFetchProducts();
   const { productId, category } = useParams();
   const { cart, addToCart } = useCart();
   const navigate = useNavigate();
@@ -42,13 +43,12 @@ export const ProductDetailsPage = () => {
     }
 
     getProductsByCategory(category)
-      .then(products => {
-        const currentProduct = products.find(
-          product => product.id === productId,
+      .then(items => {
+        const currentProduct = items.find(
+          item => item.id === productId,
         );
 
         setProductWithDetails(currentProduct || null);
-        // setExistingItems(products);
       })
       .catch(() => setErrorMes('Unable to load products'))
       .finally(() => {
@@ -56,9 +56,8 @@ export const ProductDetailsPage = () => {
       });
   }, [productId, category]);
 
-  // window.scrollTo(0, 0);
-
-  const { favorites, addToFavorite, removeFromFavorite } = useFavorite();
+  const { favorites, addToFavorite, removeFromFavorite } =
+    useFavorite();
 
   if (isLoading || isLoad) {
     return <Loader />;
@@ -105,21 +104,22 @@ export const ProductDetailsPage = () => {
   );
   const shuffled = () => {
     const filtered = [...products].filter(
-      product => product.itemId !== productWithDetails.id,
+      good => good.itemId !== productWithDetails.id,
     );
 
     for (let i = filtered.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
 
-      [filtered[i], filtered[j]] = [filtered[j], filtered[i]];
+      [filtered[i], filtered[j]] = [
+        filtered[j],
+        filtered[i],
+      ];
     }
 
     return filtered.slice(0, 32);
   };
 
   const recommended = shuffled();
-
-  // const recommendShuf = recommended.slice(currentIndex, currentIndex + 4);
 
   const colorsChange = (color: string) =>
     `${productWithDetails.namespaceId}-${productWithDetails.capacity.toLowerCase()}-${color.split(' ').join('-').toLowerCase()}`;
@@ -128,7 +128,6 @@ export const ProductDetailsPage = () => {
     `${productWithDetails.namespaceId}-${capacity.toLowerCase()}-${productWithDetails.color.toLowerCase()}`;
 
   //#endregion
-  console.log(products.length);
 
   return (
     <div className="productDetails">
@@ -143,23 +142,30 @@ export const ProductDetailsPage = () => {
             <span>Back</span>
           </button>
         </div>
-        <h2 className="productDetails__title">{productWithDetails.name}</h2>
+        <h2 className="productDetails__title">
+          {productWithDetails.name}
+        </h2>
 
         <div className="productDetails__top">
           <div className="productDetails__images">
             <div className="productDetails__images-box">
-              {productWithDetails.images.map((image, index) => (
-                <img
-                  key={index}
-                  src={`/${image}`}
-                  alt="product image"
-                  className={classNames('productDetails__images-img', {
-                    'productDetails__images-img--active':
-                      index === activePicIdx,
-                  })}
-                  onClick={() => setActivePicIdx(index)}
-                />
-              ))}
+              {productWithDetails.images.map(
+                (image, index) => (
+                  <img
+                    key={index}
+                    src={`/${image}`}
+                    alt="product image"
+                    className={classNames(
+                      'productDetails__images-img',
+                      {
+                        'productDetails__images-img--active':
+                          index === activePicIdx,
+                      },
+                    )}
+                    onClick={() => setActivePicIdx(index)}
+                  />
+                ),
+              )}
             </div>
             <img
               className="productDetails__image"
@@ -174,18 +180,25 @@ export const ProductDetailsPage = () => {
                 Available colors
               </span>
               <div className="productDetails__colors-button">
-                {productWithDetails.colorsAvailable.map((color, index) => (
-                  <button
-                    className="productDetails__btn"
-                    key={index}
-                    style={{ backgroundColor: `${color}` }}
-                    onClick={() => {
-                      const colorChanged = colorsChange(color);
+                {productWithDetails.colorsAvailable.map(
+                  (color, index) => (
+                    <button
+                      className="productDetails__btn"
+                      key={index}
+                      style={{
+                        backgroundColor: `${color}`,
+                      }}
+                      onClick={() => {
+                        const colorChanged =
+                          colorsChange(color);
 
-                      return navigate(`/product/${category}/${colorChanged}`);
-                    }}
-                  />
-                ))}
+                        return navigate(
+                          `/product/${category}/${colorChanged}`,
+                        );
+                      }}
+                    />
+                  ),
+                )}
               </div>
             </div>
             <hr className="productDetails__divider" />
@@ -194,25 +207,32 @@ export const ProductDetailsPage = () => {
                 Select capacity
               </span>
               <div className="productDetails__capacity-button">
-                {productWithDetails.capacityAvailable.map((item, index) => (
-                  <button
-                    className={classNames('productDetails__capacity-btn', {
-                      'productDetails__capacity-btn--active':
-                        item === productWithDetails.capacity,
-                    })}
-                    type="button"
-                    key={index}
-                    onClick={() => {
-                      const capacityChanged = capacityChange(item);
+                {productWithDetails.capacityAvailable.map(
+                  (item, index) => (
+                    <button
+                      className={classNames(
+                        'productDetails__capacity-btn',
+                        {
+                          'productDetails__capacity-btn--active':
+                            item ===
+                            productWithDetails.capacity,
+                        },
+                      )}
+                      type="button"
+                      key={index}
+                      onClick={() => {
+                        const capacityChanged =
+                          capacityChange(item);
 
-                      return navigate(
-                        `/product/${category}/${capacityChanged}`,
-                      );
-                    }}
-                  >
-                    {item}
-                  </button>
-                ))}
+                        return navigate(
+                          `/product/${category}/${capacityChanged}`,
+                        );
+                      }}
+                    >
+                      {item}
+                    </button>
+                  ),
+                )}
               </div>
             </div>
             <hr className="productDetails__divider" />
@@ -254,7 +274,9 @@ export const ProductDetailsPage = () => {
                 <button
                   type="button"
                   className="productDetails__buttons--heart"
-                  onClick={() => removeFromFavorite(product)}
+                  onClick={() =>
+                    removeFromFavorite(product)
+                  }
                 >
                   <img
                     src="public\img\Icons\selected heart icon.svg"
@@ -275,7 +297,9 @@ export const ProductDetailsPage = () => {
               )}
             </div>
             <div className="productDetails__info">
-              <span className="productDetails__info-title">Tech specs</span>
+              <span className="productDetails__info-title">
+                Tech specs
+              </span>
               <section className="productDetails__info-section">
                 <span className="productDetails__info-section-title">
                   Screen
@@ -302,7 +326,9 @@ export const ProductDetailsPage = () => {
                 </span>
               </section>
               <section className="productDetails__info-section">
-                <span className="productDetails__info-section-title">RAM</span>
+                <span className="productDetails__info-section-title">
+                  RAM
+                </span>
                 <span className="productDetails__info-section-value">
                   {productWithDetails.ram}
                 </span>
@@ -312,16 +338,25 @@ export const ProductDetailsPage = () => {
         </div>
 
         <div className="productDetails__decription">
-          <h3 className="productDetails__subTitle">About</h3>
+          <h3 className="productDetails__subTitle">
+            About
+          </h3>
           <hr className="productDetails__divider" />
-          {productWithDetails.description.map((item, index) => (
-            <div className="productDetails__decription-info" key={index}>
-              <h4 className="productDetails__decription-infoTitle">
-                {item.title}
-              </h4>
-              <p className="productDetails__decription-infoText">{item.text}</p>
-            </div>
-          ))}
+          {productWithDetails.description.map(
+            (item, index) => (
+              <div
+                className="productDetails__decription-info"
+                key={index}
+              >
+                <h4 className="productDetails__decription-infoTitle">
+                  {item.title}
+                </h4>
+                <p className="productDetails__decription-infoText">
+                  {item.text}
+                </p>
+              </div>
+            ),
+          )}
         </div>
 
         <div className="productDetails__productCard">

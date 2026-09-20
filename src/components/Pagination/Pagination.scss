@@ -12,10 +12,11 @@
     margin-top: 24px;
     gap: 8px;
 
-    @include onTablet {
+    @include on-tablet {
       margin-top: 40px;
     }
-    @include onDesktop {
+
+    @include on-desktop {
       margin-top: 40px;
     }
 
@@ -30,7 +31,9 @@
     border-radius: 1px;
     border: 1px solid $elements-color;
     background: transparent;
+
     @include font-style(14px, 21px, 400);
+
     display: flex;
     width: 32px;
     height: 32px;

@@ -6,7 +6,9 @@ interface ProductListProps {
   products: Product[];
 }
 
-export const ProductList: React.FC<ProductListProps> = ({ products }) => {
+export const ProductList: React.FC<ProductListProps> = ({
+  products,
+}) => {
   return (
     <div className="productList">
       {products.length > 0 ? (
