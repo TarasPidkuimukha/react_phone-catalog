@@ -31,7 +31,9 @@ export const Accessories = () => {
     {
       return (
         <div>
-          <p>Oops, something went wrong</p>
+          <p className="wrong">
+            Oops, something went wrong
+          </p>
           <button onClick={refetch}>Reload</button>
         </div>
       );

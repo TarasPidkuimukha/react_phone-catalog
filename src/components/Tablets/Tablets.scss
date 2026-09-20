@@ -57,4 +57,9 @@
       @include font-style(14px, 21px, 400);
     }
   }
+  .wrong {
+    color: $main-text-color;
+
+    @include font-style(48px, 56px, 700);
+  }
 }

@@ -115,4 +115,9 @@
     display: flex;
     flex-direction: column;
   }
+  .wrong {
+    color: $main-text-color;
+
+    @include font-style(48px, 56px, 700);
+  }
 }

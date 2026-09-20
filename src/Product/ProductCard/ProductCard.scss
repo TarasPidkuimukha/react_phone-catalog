@@ -76,7 +76,6 @@
       text-decoration-color: #fff;
       align-items: center;
     }
-
   }
 
   &__divider {
@@ -136,7 +135,6 @@
         background-color: #fff;
         color: #27ae60;
         border: 1px solid $elements-color;
-
       }
     }
 
@@ -152,5 +150,11 @@
       border-radius: 4px;
       flex-shrink: 0;
     }
+  }
+
+  .wrong {
+    color: $main-text-color;
+
+    @include font-style(48px, 56px, 700);
   }
 }
