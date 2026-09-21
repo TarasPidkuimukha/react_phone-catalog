@@ -40,7 +40,7 @@ export const Accessories = () => {
 
   return (
     <div className="accessories">
-      <h1 className="accessories__title">Accessories</h1>
+      <h2 className="accessories__title">Accessories</h2>
       <span className="accessories__count">
         {accessories.length} models
       </span>

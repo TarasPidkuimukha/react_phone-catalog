@@ -40,7 +40,7 @@ export const Tablets = () => {
 
   return (
     <div className="tablets">
-      <h1 className="tablets__title">Tablets</h1>
+      <h2 className="tablets__title">Tablets</h2>
       <span className="tablets__count">
         {tablets.length} models
       </span>

@@ -1,6 +1,18 @@
 @use '../../styles/mixins' as *;
 @use '../../styles/variables' as *;
 
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .homePage {
   margin: 0;
   padding: 0;
@@ -25,6 +37,10 @@
 
       gap: 32px;
     }
+  }
+
+  &__heading {
+    @include font-style(48px, 56px, 700);
   }
 
   &__subtitle {

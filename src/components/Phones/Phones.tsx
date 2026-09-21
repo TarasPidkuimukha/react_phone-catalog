@@ -40,7 +40,7 @@ export const Phones = () => {
 
   return (
     <div className="phones">
-      <h1 className="phones__title">Mobile Phones</h1>
+      <h2 className="phones__title">Mobile Phones</h2>
       <span className="phones__count">
         {phones.length} models
       </span>
