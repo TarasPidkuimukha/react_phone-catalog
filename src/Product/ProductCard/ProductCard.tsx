@@ -98,7 +98,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             onClick={() => removeFromFavorite(product)}
           >
             <img
-              src="./img/Icons/selected heart icon.svg"
+              src="/img/Icons/selected heart icon.svg"
               alt="selected heart button"
             />
           </button>
@@ -108,7 +108,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             onClick={() => addToFavorite(product)}
           >
             <img
-              src="./img/Icons/unselected heart icon.svg"
+              src="/img/Icons/unselected heart icon.svg"
               alt="unselected heart button"
             />
           </button>
