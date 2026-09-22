@@ -153,7 +153,7 @@ export const ProductDetailsPage = () => {
                 (image, index) => (
                   <img
                     key={index}
-                    src={`${image}`}
+                    src={`${import.meta.env.BASE_URL}${image}`}
                     alt="product image"
                     className={classNames(
                       'productDetails__images-img',
@@ -279,7 +279,7 @@ export const ProductDetailsPage = () => {
                   }
                 >
                   <img
-                    src="/img/Icons/selected heart icon.svg"
+                    src={`${import.meta.env.BASE_URL}img/Icons/selected-heart-icon.svg`}
                     alt="selected heart button"
                   />
                 </button>
@@ -290,7 +290,7 @@ export const ProductDetailsPage = () => {
                   onClick={() => addToFavorite(product)}
                 >
                   <img
-                    src="/img/Icons/unselected heart icon.svg"
+                    src={`${import.meta.env.BASE_URL}img/Icons/unselected-heart-icon.svg`}
                     alt="unselected heart button"
                   />
                 </button>

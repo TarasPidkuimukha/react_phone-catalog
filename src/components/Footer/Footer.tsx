@@ -11,7 +11,7 @@ export const Footer = () => {
       <div className="footer__container">
         <Link to="/" className="footer__logo">
           <img
-            src="/img/Icons/Logo.svg"
+            src={`${import.meta.env.BASE_URL}img/Icons/Logo.svg`}
             alt="logo"
             className="footer__logo-icon"
           />

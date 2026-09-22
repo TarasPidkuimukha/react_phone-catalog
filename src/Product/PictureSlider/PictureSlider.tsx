@@ -9,9 +9,9 @@ import 'swiper/css/pagination';
 import './PictureSlider.scss';
 
 const bannerImages = [
-  '/img/banner-accessories.png',
-  '/img/banner-phones.png',
-  '/img/banner-tablets.png',
+  'img/banner-accessories.png',
+  'img/banner-phones.png',
+  'img/banner-tablets.png',
 ];
 
 export const PictureSlider = () => {
@@ -40,7 +40,7 @@ export const PictureSlider = () => {
           <SwiperSlide key={index}>
             <img
               className="pictureSlider__content-img"
-              src={img}
+              src={`${import.meta.env.BASE_URL}${img}`}
             />
           </SwiperSlide>
         ))}
