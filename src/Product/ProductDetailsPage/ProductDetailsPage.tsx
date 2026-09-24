@@ -153,7 +153,7 @@ export const ProductDetailsPage = () => {
                 (image, index) => (
                   <img
                     key={index}
-                    src={`${import.meta.env.BASE_URL}${image}`}
+                    src={`${import.meta.env.BASE_URL}/${image}`}
                     alt="product image"
                     className={classNames(
                       'productDetails__images-img',
@@ -169,7 +169,7 @@ export const ProductDetailsPage = () => {
             </div>
             <img
               className="productDetails__image"
-              src={`${import.meta.env.BASE_URL}${productWithDetails.images[activePicIdx]}`}
+              src={`${import.meta.env.BASE_URL}/${productWithDetails.images[activePicIdx]}`}
               alt="product image"
             />
           </div>

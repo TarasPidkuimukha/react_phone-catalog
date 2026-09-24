@@ -40,7 +40,7 @@ export const PictureSlider = () => {
           <SwiperSlide key={index}>
             <img
               className="pictureSlider__content-img"
-              src={`${import.meta.env.BASE_URL}${img}`}
+              src={`${import.meta.env.BASE_URL}/${img}`}
             />
           </SwiperSlide>
         ))}
