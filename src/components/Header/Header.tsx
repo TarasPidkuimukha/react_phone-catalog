@@ -22,7 +22,7 @@ export const Header = () => {
         <div className="header__nav">
           <NavLink to="/" className="header__logo-link">
             <img
-              src={`${import.meta.env.BASE_URL}img/Icons/Logo.svg`}
+              src={`${import.meta.env.BASE_URL}/img/Icons/Logo.svg`}
               alt="logo"
               className="header__logo"
             />
@@ -34,7 +34,7 @@ export const Header = () => {
             onClick={toggle}
           >
             <img
-              src={`${import.meta.env.BASE_URL}img/Icons/burger-menu.svg`}
+              src={`${import.meta.env.BASE_URL}/img/Icons/burger-menu.svg`}
               alt="menu"
             />
           </button>
@@ -77,7 +77,7 @@ export const Header = () => {
               to={'/favorites'}
             >
               <img
-                src={`${import.meta.env.BASE_URL}img/Icons/unselected-heart-icon.svg`}
+                src={`${import.meta.env.BASE_URL}/img/Icons/unselected-heart-icon.svg`}
                 alt="unselected-heart-icon"
                 className="header__icon"
               />
@@ -94,7 +94,7 @@ export const Header = () => {
               to={'/cart'}
             >
               <img
-                src={`${import.meta.env.BASE_URL}img/Icons/img/Icons/cart-icon.svg.svg`}
+                src={`${import.meta.env.BASE_URL}/img/Icons/img/Icons/cart-icon.svg.svg`}
                 alt="cart_icon"
                 className="header__icon"
               />
@@ -116,7 +116,7 @@ export const Header = () => {
         <div className="header__mob-header">
           <NavLink to="/" className="header__logo-link">
             <img
-              src={`${import.meta.env.BASE_URL}img/Icons/Logo.svg`}
+              src={`${import.meta.env.BASE_URL}/img/Icons/Logo.svg`}
               alt="logo"
               className="header__logo"
             />
@@ -127,7 +127,7 @@ export const Header = () => {
             onClick={toggle}
           >
             <img
-              src={`${import.meta.env.BASE_URL}img/Icons/closing-icon.svg`}
+              src={`${import.meta.env.BASE_URL}/img/Icons/closing-icon.svg`}
               alt="x"
             />
           </button>
@@ -180,7 +180,7 @@ export const Header = () => {
               to={'/favorites'}
             >
               <img
-                src={`${import.meta.env.BASE_URL}img/Icons/unselected-heart-icon.svg`}
+                src={`${import.meta.env.BASE_URL}/img/Icons/unselected-heart-icon.svg`}
                 alt=""
                 className="header__icon"
               />
@@ -198,7 +198,7 @@ export const Header = () => {
               to={'/cart'}
             >
               <img
-                src={`${import.meta.env.BASE_URL}img/Icons/cart-icon.svg`}
+                src={`${import.meta.env.BASE_URL}/img/Icons/cart-icon.svg`}
                 alt="cart_icon"
                 className="header__icon"
               />

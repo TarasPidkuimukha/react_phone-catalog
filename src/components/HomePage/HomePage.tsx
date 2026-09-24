@@ -81,7 +81,7 @@ export const HomePage = () => {
                 to="/phones"
               >
                 <img
-                  src={`${import.meta.env.BASE_URL}img/category-phones.webp`}
+                  src={`${import.meta.env.BASE_URL}/img/category-phones.webp`}
                   alt="picture"
                   className="homePage__category-card-img"
                 />
@@ -99,7 +99,7 @@ export const HomePage = () => {
                 to="/tablets"
               >
                 <img
-                  src={`${import.meta.env.BASE_URL}img/category-tablets.webp`}
+                  src={`${import.meta.env.BASE_URL}/img/category-tablets.webp`}
                   alt="picture"
                   className="homePage__category-card-img"
                 />
@@ -117,7 +117,7 @@ export const HomePage = () => {
                 to="/accessories"
               >
                 <img
-                  src={`${import.meta.env.BASE_URL}img/category-accessories.webp`}
+                  src={`${import.meta.env.BASE_URL}/img/category-accessories.webp`}
                   alt="picture"
                   className="homePage__category-card-img"
                 />
