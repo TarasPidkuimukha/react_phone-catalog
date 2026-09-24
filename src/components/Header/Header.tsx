@@ -94,7 +94,7 @@ export const Header = () => {
               to={'/cart'}
             >
               <img
-                src={`${import.meta.env.BASE_URL}/img/Icons/img/Icons/cart-icon.svg.svg`}
+                src={`${import.meta.env.BASE_URL}/img/Icons/cart-icon.svg.svg`}
                 alt="cart_icon"
                 className="header__icon"
               />
