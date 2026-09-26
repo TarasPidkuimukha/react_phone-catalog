@@ -9,8 +9,7 @@ import './HomePage.scss';
 
 export const HomePage = () => {
   //#region
-  const { products, isLoading, errorMessage, refetch } =
-    useFetchProducts();
+  const { products, isLoading, errorMessage, refetch } = useFetchProducts();
 
   if (isLoading) {
     return <Loader />;
@@ -27,15 +26,11 @@ export const HomePage = () => {
     }
   }
 
-  const phones = products.filter(
-    product => product.category === 'phones',
-  );
+  const phones = products.filter(product => product.category === 'phones');
   const accessories = products.filter(
     product => product.category === 'accessories',
   );
-  const tablets = products.filter(
-    product => product.category === 'tablets',
-  );
+  const tablets = products.filter(product => product.category === 'tablets');
 
   const withDiscount = [...products].filter(
     product => product.price !== product.fullPrice,
@@ -48,40 +43,28 @@ export const HomePage = () => {
     return diffB - diffA;
   });
 
-  const newestProduct = [...products].sort(
-    (a, b) => b.year - a.year,
-  );
+  const newestProduct = [...products].sort((a, b) => b.year - a.year);
 
   //#endregion
   return (
     <div className="homePage">
       <div className="homePage__container">
         <h1 className="visually-hidden">Product Catalog</h1>
-        <h2 className="homePage__heading ">
-          Welcome to Nice Gadgets store!
-        </h2>
+        <h2 className="homePage__heading ">Welcome to Nice Gadgets store!</h2>
 
         <div className="homePage__pictureSlider">
           <PictureSlider />
         </div>
 
-        <ProductsSlider
-          title="Brand new models"
-          products={newestProduct}
-        />
+        <ProductsSlider title="Brand new models" products={newestProduct} />
 
-        <h2 className="homePage__subtitle">
-          Shop be category
-        </h2>
+        <h2 className="homePage__subtitle">Shop be category</h2>
         <div className="homePage__categories">
           <ul className="homePage__categories-list">
             <li className="homePage__categories-item">
-              <Link
-                className="homePage__category-card"
-                to="/phones"
-              >
+              <Link className="homePage__category-card" to="/phones">
                 <img
-                  src={`${import.meta.env.BASE_URL}/img/category-phones.webp`}
+                  src={`img/category-phones.webp`}
                   alt="picture"
                   className="homePage__category-card-img"
                 />
@@ -94,30 +77,22 @@ export const HomePage = () => {
               </Link>
             </li>
             <li className="homePage__categories-item">
-              <Link
-                className="homePage__category-card"
-                to="/tablets"
-              >
+              <Link className="homePage__category-card" to="/tablets">
                 <img
-                  src={`${import.meta.env.BASE_URL}/img/category-tablets.webp`}
+                  src={`img/category-tablets.webp`}
                   alt="picture"
                   className="homePage__category-card-img"
                 />
-                <span className="homePage__category-card-title">
-                  Tablets
-                </span>
+                <span className="homePage__category-card-title">Tablets</span>
                 <span className="homePage__category-card__count">
                   {tablets.length} models
                 </span>
               </Link>
             </li>
             <li className="homePage__categories-item">
-              <Link
-                className="homePage__category-card"
-                to="/accessories"
-              >
+              <Link className="homePage__category-card" to="/accessories">
                 <img
-                  src={`${import.meta.env.BASE_URL}/img/category-accessories.webp`}
+                  src={`img/category-accessories.webp`}
                   alt="picture"
                   className="homePage__category-card-img"
                 />
@@ -131,10 +106,7 @@ export const HomePage = () => {
             </li>
           </ul>
         </div>
-        <ProductsSlider
-          title="Hot prices"
-          products={discountPrice}
-        />
+        <ProductsSlider title="Hot prices" products={discountPrice} />
       </div>
     </div>
   );

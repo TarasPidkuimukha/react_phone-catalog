@@ -21,11 +21,9 @@ export const ProductDetailsPage = () => {
   const [isLoad, setIsLoad] = useState(false);
   const [errorMes, setErrorMes] = useState('');
 
-  const [activePicIdx, setActivePicIdx] =
-    useState<number>(0);
+  const [activePicIdx, setActivePicIdx] = useState<number>(0);
 
-  const { products, isLoading, errorMessage, refetch } =
-    useFetchProducts();
+  const { products, isLoading, errorMessage, refetch } = useFetchProducts();
   const { productId, category } = useParams();
   const { cart, addToCart } = useCart();
   const navigate = useNavigate();
@@ -44,9 +42,7 @@ export const ProductDetailsPage = () => {
 
     getProductsByCategory(category)
       .then(items => {
-        const currentProduct = items.find(
-          item => item.id === productId,
-        );
+        const currentProduct = items.find(item => item.id === productId);
 
         setProductWithDetails(currentProduct || null);
       })
@@ -56,8 +52,7 @@ export const ProductDetailsPage = () => {
       });
   }, [productId, category]);
 
-  const { favorites, addToFavorite, removeFromFavorite } =
-    useFavorite();
+  const { favorites, addToFavorite, removeFromFavorite } = useFavorite();
 
   if (isLoading || isLoad) {
     return <Loader />;
@@ -110,10 +105,7 @@ export const ProductDetailsPage = () => {
     for (let i = filtered.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
 
-      [filtered[i], filtered[j]] = [
-        filtered[j],
-        filtered[i],
-      ];
+      [filtered[i], filtered[j]] = [filtered[j], filtered[i]];
     }
 
     return filtered.slice(0, 32);
@@ -142,34 +134,27 @@ export const ProductDetailsPage = () => {
             <span>Back</span>
           </button>
         </div>
-        <h2 className="productDetails__title">
-          {productWithDetails.name}
-        </h2>
+        <h2 className="productDetails__title">{productWithDetails.name}</h2>
 
         <div className="productDetails__top">
           <div className="productDetails__images">
             <div className="productDetails__images-box">
-              {productWithDetails.images.map(
-                (image, index) => (
-                  <img
-                    key={index}
-                    src={`${import.meta.env.BASE_URL}/${image}`}
-                    alt="product image"
-                    className={classNames(
-                      'productDetails__images-img',
-                      {
-                        'productDetails__images-img--active':
-                          index === activePicIdx,
-                      },
-                    )}
-                    onClick={() => setActivePicIdx(index)}
-                  />
-                ),
-              )}
+              {productWithDetails.images.map((image, index) => (
+                <img
+                  key={index}
+                  src={`${image}`}
+                  alt="product image"
+                  className={classNames('productDetails__images-img', {
+                    'productDetails__images-img--active':
+                      index === activePicIdx,
+                  })}
+                  onClick={() => setActivePicIdx(index)}
+                />
+              ))}
             </div>
             <img
               className="productDetails__image"
-              src={`${import.meta.env.BASE_URL}/${productWithDetails.images[activePicIdx]}`}
+              src={`${productWithDetails.images[activePicIdx]}`}
               alt="product image"
             />
           </div>
@@ -180,25 +165,20 @@ export const ProductDetailsPage = () => {
                 Available colors
               </span>
               <div className="productDetails__colors-button">
-                {productWithDetails.colorsAvailable.map(
-                  (color, index) => (
-                    <button
-                      className="productDetails__btn"
-                      key={index}
-                      style={{
-                        backgroundColor: `${color}`,
-                      }}
-                      onClick={() => {
-                        const colorChanged =
-                          colorsChange(color);
+                {productWithDetails.colorsAvailable.map((color, index) => (
+                  <button
+                    className="productDetails__btn"
+                    key={index}
+                    style={{
+                      backgroundColor: `${color}`,
+                    }}
+                    onClick={() => {
+                      const colorChanged = colorsChange(color);
 
-                        return navigate(
-                          `/product/${category}/${colorChanged}`,
-                        );
-                      }}
-                    />
-                  ),
-                )}
+                      return navigate(`/product/${category}/${colorChanged}`);
+                    }}
+                  />
+                ))}
               </div>
             </div>
             <hr className="productDetails__divider" />
@@ -207,32 +187,25 @@ export const ProductDetailsPage = () => {
                 Select capacity
               </span>
               <div className="productDetails__capacity-button">
-                {productWithDetails.capacityAvailable.map(
-                  (item, index) => (
-                    <button
-                      className={classNames(
-                        'productDetails__capacity-btn',
-                        {
-                          'productDetails__capacity-btn--active':
-                            item ===
-                            productWithDetails.capacity,
-                        },
-                      )}
-                      type="button"
-                      key={index}
-                      onClick={() => {
-                        const capacityChanged =
-                          capacityChange(item);
+                {productWithDetails.capacityAvailable.map((item, index) => (
+                  <button
+                    className={classNames('productDetails__capacity-btn', {
+                      'productDetails__capacity-btn--active':
+                        item === productWithDetails.capacity,
+                    })}
+                    type="button"
+                    key={index}
+                    onClick={() => {
+                      const capacityChanged = capacityChange(item);
 
-                        return navigate(
-                          `/product/${category}/${capacityChanged}`,
-                        );
-                      }}
-                    >
-                      {item}
-                    </button>
-                  ),
-                )}
+                      return navigate(
+                        `/product/${category}/${capacityChanged}`,
+                      );
+                    }}
+                  >
+                    {item}
+                  </button>
+                ))}
               </div>
             </div>
             <hr className="productDetails__divider" />
@@ -274,12 +247,10 @@ export const ProductDetailsPage = () => {
                 <button
                   type="button"
                   className="productDetails__buttons--heart"
-                  onClick={() =>
-                    removeFromFavorite(product)
-                  }
+                  onClick={() => removeFromFavorite(product)}
                 >
                   <img
-                    src={`${import.meta.env.BASE_URL}/img/Icons/selected-heart-icon.svg`}
+                    src={`img/Icons/selected-heart-icon.svg`}
                     alt="selected heart button"
                   />
                 </button>
@@ -290,16 +261,14 @@ export const ProductDetailsPage = () => {
                   onClick={() => addToFavorite(product)}
                 >
                   <img
-                    src={`${import.meta.env.BASE_URL}/img/Icons/unselected-heart-icon.svg`}
+                    src={`img/Icons/unselected-heart-icon.svg`}
                     alt="unselected heart button"
                   />
                 </button>
               )}
             </div>
             <div className="productDetails__info">
-              <span className="productDetails__info-title">
-                Tech specs
-              </span>
+              <span className="productDetails__info-title">Tech specs</span>
               <section className="productDetails__info-section">
                 <span className="productDetails__info-section-title">
                   Screen
@@ -326,9 +295,7 @@ export const ProductDetailsPage = () => {
                 </span>
               </section>
               <section className="productDetails__info-section">
-                <span className="productDetails__info-section-title">
-                  RAM
-                </span>
+                <span className="productDetails__info-section-title">RAM</span>
                 <span className="productDetails__info-section-value">
                   {productWithDetails.ram}
                 </span>
@@ -338,25 +305,16 @@ export const ProductDetailsPage = () => {
         </div>
 
         <div className="productDetails__decription">
-          <h3 className="productDetails__subTitle">
-            About
-          </h3>
+          <h3 className="productDetails__subTitle">About</h3>
           <hr className="productDetails__divider" />
-          {productWithDetails.description.map(
-            (item, index) => (
-              <div
-                className="productDetails__decription-info"
-                key={index}
-              >
-                <h4 className="productDetails__decription-infoTitle">
-                  {item.title}
-                </h4>
-                <p className="productDetails__decription-infoText">
-                  {item.text}
-                </p>
-              </div>
-            ),
-          )}
+          {productWithDetails.description.map((item, index) => (
+            <div className="productDetails__decription-info" key={index}>
+              <h4 className="productDetails__decription-infoTitle">
+                {item.title}
+              </h4>
+              <p className="productDetails__decription-infoText">{item.text}</p>
+            </div>
+          ))}
         </div>
 
         <div className="productDetails__productCard">

@@ -11,17 +11,14 @@ export const Footer = () => {
       <div className="footer__container">
         <Link to="/" className="footer__logo">
           <img
-            src={`${import.meta.env.BASE_URL}/img/Icons/Logo.svg`}
+            src={`img/Icons/Logo.svg`}
             alt="logo"
             className="footer__logo-icon"
           />
         </Link>
         <ul className="footer__list">
           <li>
-            <a
-              className="footer__link"
-              href="https://github.com"
-            >
+            <a className="footer__link" href="https://github.com">
               GITHUB
             </a>
           </li>
@@ -42,13 +39,8 @@ export const Footer = () => {
           type="button"
           onClick={() => scrollToTop()}
         >
-          <span className="footer__back-text">
-            Back to top
-          </span>
-          <span className="footer__arrow-btn chevron-up">
-            {' '}
-            &lsaquo;
-          </span>
+          <span className="footer__back-text">Back to top</span>
+          <span className="footer__arrow-btn chevron-up"> &lsaquo;</span>
         </button>
       </div>
     </footer>

@@ -8,24 +8,15 @@ interface ProductCardProps {
   product: Product;
 }
 
-export const ProductCard: React.FC<ProductCardProps> = ({
-  product,
-}) => {
+export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const { cart, addToCart } = useCart();
-  const { favorites, addToFavorite, removeFromFavorite } =
-    useFavorite();
-  const findAddedItem = cart.some(
-    item => item.product.id === product.id,
-  );
-  const findFavItem = favorites.some(
-    item => item.product.id === product.id,
-  );
+  const { favorites, addToFavorite, removeFromFavorite } = useFavorite();
+  const findAddedItem = cart.some(item => item.product.id === product.id);
+  const findFavItem = favorites.some(item => item.product.id === product.id);
 
   return (
     <div className="productCard">
-      <Link
-        to={`/product/${product.category}/${product.itemId}`}
-      >
+      <Link to={`/product/${product.category}/${product.itemId}`}>
         <div className="productCard__container">
           <img
             className="productCard__img"
@@ -33,9 +24,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             alt="product photo"
           />
         </div>
-        <span className="productCard__name">
-          {product.name}
-        </span>
+        <span className="productCard__name">{product.name}</span>
       </Link>
       <section className="productCard__price">
         {product.price === product.fullPrice ? (
@@ -54,26 +43,20 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       <hr className="productCard__divider" />
       <div className="productCard__info">
         <section className="productCard__info--section">
-          <span className="productCard__info--section--title">
-            Screen
-          </span>
+          <span className="productCard__info--section--title">Screen</span>
           <span className="productCard__info--section--value">
             {product.screen}
           </span>
         </section>
         <section className="productCard__info--section">
-          <span className="productCard__info--section--title">
-            Capacity
-          </span>
+          <span className="productCard__info--section--title">Capacity</span>
           <span className="productCard__info--section--value">
             {product.capacity}
           </span>
         </section>
 
         <section className="productCard__info--section">
-          <span className="productCard__info--section--title">
-            RAM
-          </span>
+          <span className="productCard__info--section--title">RAM</span>
           <span className="productCard__info--section--value">
             {product.ram}
           </span>
@@ -81,9 +64,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       </div>
       <div className="productCard__button">
         {findAddedItem ? (
-          <button className="productCard__button--add--added">
-            Added
-          </button>
+          <button className="productCard__button--add--added">Added</button>
         ) : (
           <button
             className="productCard__button--add"
@@ -98,7 +79,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             onClick={() => removeFromFavorite(product)}
           >
             <img
-              src={`${import.meta.env.BASE_URL}/img/Icons/selected-heart-icon.svg`}
+              src={`img/Icons/selected-heart-icon.svg`}
               alt="selected heart button"
             />
           </button>
@@ -108,7 +89,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             onClick={() => addToFavorite(product)}
           >
             <img
-              src={`${import.meta.env.BASE_URL}/img/Icons/unselected-heart-icon.svg`}
+              src={`img/Icons/unselected-heart-icon.svg`}
               alt="unselected heart button"
             />
           </button>

@@ -38,10 +38,7 @@ export const PictureSlider = () => {
       >
         {bannerImages.map((img, index) => (
           <SwiperSlide key={index}>
-            <img
-              className="pictureSlider__content-img"
-              src={`${import.meta.env.BASE_URL}/${img}`}
-            />
+            <img className="pictureSlider__content-img" src={`${img}`} />
           </SwiperSlide>
         ))}
       </Swiper>
