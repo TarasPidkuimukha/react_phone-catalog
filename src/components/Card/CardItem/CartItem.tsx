@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { useCart, CartItemType } from '../../../context/CartContext';
 import './CartItem.scss';
 
@@ -13,10 +14,14 @@ export const CartItem: React.FC<CartItemType> = ({ product, quantity }) => {
         >
           <img src={`img/Icons/closing-icon.svg`} alt="x" />
         </button>
+        <Link
+          className="cartItem__info-link"
+          to={`/product/${product.category}/${product.itemId}`}
+        >
+          <img className="cartItem__info-img" src={product.image} />
 
-        <img className="cartItem__info-img" src={product.image} />
-
-        <p className="cartItem__info-title">{product.name}</p>
+          <p className="cartItem__info-title">{product.name}</p>
+        </Link>
       </div>
       <div className="cartItem__actions">
         <div className="cartItem__quantity">

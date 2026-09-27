@@ -25,7 +25,7 @@ export const ProductDetailsPage = () => {
 
   const { products, isLoading, errorMessage, refetch } = useFetchProducts();
   const { productId, category } = useParams();
-  const { cart, addToCart } = useCart();
+  const { cart, addToCart, removeFromCart } = useCart();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -231,6 +231,7 @@ export const ProductDetailsPage = () => {
                 <button
                   type="button"
                   className="productDetails__buttons--add--added"
+                  onClick={() => removeFromCart(product.itemId)}
                 >
                   Added
                 </button>

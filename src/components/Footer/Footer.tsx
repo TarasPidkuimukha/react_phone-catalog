@@ -18,12 +18,18 @@ export const Footer = () => {
         </Link>
         <ul className="footer__list">
           <li>
-            <a className="footer__link" href="https://github.com">
+            <a
+              className="footer__link"
+              href="https://github.com/TarasPidkuimukha/react_phone-catalog"
+            >
               GITHUB
             </a>
           </li>
           <li>
-            <a className="footer__link" href="">
+            <a
+              className="footer__link"
+              href="https://github.com/TarasPidkuimukha"
+            >
               CONTACTS
             </a>
           </li>

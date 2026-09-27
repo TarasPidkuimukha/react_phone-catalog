@@ -9,7 +9,7 @@ interface ProductCardProps {
 }
 
 export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
-  const { cart, addToCart } = useCart();
+  const { cart, addToCart, removeFromCart } = useCart();
   const { favorites, addToFavorite, removeFromFavorite } = useFavorite();
   const findAddedItem = cart.some(item => item.product.id === product.id);
   const findFavItem = favorites.some(item => item.product.id === product.id);
@@ -64,7 +64,12 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       </div>
       <div className="productCard__button">
         {findAddedItem ? (
-          <button className="productCard__button--add--added">Added</button>
+          <button
+            className="productCard__button--add--added"
+            onClick={() => removeFromCart(product.itemId)}
+          >
+            Added
+          </button>
         ) : (
           <button
             className="productCard__button--add"
