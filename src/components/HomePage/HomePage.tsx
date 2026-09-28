@@ -36,14 +36,18 @@ export const HomePage = () => {
     product => product.price !== product.fullPrice,
   );
 
-  const discountPrice = withDiscount.sort((a, b) => {
-    const diffA = a.price - a.price;
-    const diffB = b.price - b.price;
+  const discountPrice = withDiscount
+    .sort((a, b) => {
+      const diffA = a.price - a.price;
+      const diffB = b.price - b.price;
 
-    return diffB - diffA;
-  });
+      return diffB - diffA;
+    })
+    .slice(0, 8);
 
-  const newestProduct = [...products].sort((a, b) => b.year - a.year);
+  const newestProduct = [...products]
+    .sort((a, b) => b.year - a.year)
+    .slice(0, 8);
 
   //#endregion
   return (

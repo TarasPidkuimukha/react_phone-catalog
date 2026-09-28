@@ -14,9 +14,10 @@ interface ProductsSliderProps {
   title?: string;
 }
 
-export const ProductsSlider: React.FC<
-  ProductsSliderProps
-> = ({ products, title }) => {
+export const ProductsSlider: React.FC<ProductsSliderProps> = ({
+  products,
+  title,
+}) => {
   const swiperRef = useRef<SwiperType | null>(null);
 
   return (
