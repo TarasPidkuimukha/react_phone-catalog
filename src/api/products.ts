@@ -15,9 +15,7 @@ export const useFetchProducts = () => {
 
     getProducts()
       .then(setProducts)
-      .catch(() =>
-        setErrorMessage('Unable to load products'),
-      )
+      .catch(() => setErrorMessage('Unable to load products'))
       .finally(() => {
         setIsLoading(false);
       });

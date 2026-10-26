@@ -1,15 +1,19 @@
 import { NavLink } from 'react-router-dom';
-import { useCart } from '../../context/CartContext';
-import { useFavorite } from '../../context/FavoriteContext';
 
 import './Header.scss';
 import { useState } from 'react';
 import classNames from 'classnames';
+import { useAppSelector } from '../../app/hooks';
+import { selectCartQuantity } from '../../context/cartSlice';
+
 export const Header = () => {
-  const { cart } = useCart();
-  const { favoriteTotal } = useFavorite();
-  const cartQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
+  const cartQuantity = useAppSelector(selectCartQuantity);
+
   const [isOpen, setIsOpen] = useState(false);
+
+  const favoriteTotal = useAppSelector(
+    state => state.favorite.favorites.length,
+  );
 
   const toggle = () => setIsOpen(prev => !prev);
 

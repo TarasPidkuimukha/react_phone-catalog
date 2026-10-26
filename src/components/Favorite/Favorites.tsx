@@ -1,11 +1,12 @@
-import { useFavorite } from '../../context/FavoriteContext';
+import { useAppSelector } from '../../app/hooks';
+
 import { ProductList } from '../../Product/ProductList/ProductList';
 import './Favorites.scss';
 
 export const Favorites = () => {
-  const { favorites } = useFavorite();
+  const { favorites } = useAppSelector(state => state.favorite);
 
-  const products = favorites.map(item => item.product);
+  const products = favorites;
 
   return (
     <div className="favorites">
@@ -13,17 +14,13 @@ export const Favorites = () => {
 
       {products.length > 0 ? (
         <div className="favorites__items">
-          <p className="favorites__count">
-            {products.length} Items
-          </p>
+          <p className="favorites__count">{products.length} Items</p>
           <div className="favorites__content">
             <ProductList products={products} />
           </div>
         </div>
       ) : (
-        <p className="favorites__subTitle">
-          There are no favorites yet
-        </p>
+        <p className="favorites__subTitle">There are no favorites yet</p>
       )}
     </div>
   );

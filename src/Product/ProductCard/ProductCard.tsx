@@ -1,18 +1,27 @@
 import { Link } from 'react-router-dom';
 import { Product } from '../../Types/types';
-import { useCart } from '../../context/CartContext';
-import { useFavorite } from '../../context/FavoriteContext';
+
+import { addToFavorite, removeFromFavorite } from '../../context/favoriteSlice';
+
+import { addToCart, removeFromCart } from '../../context/cartSlice';
+
 import './ProductCard.scss';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 
 interface ProductCardProps {
   product: Product;
 }
 
 export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
-  const { cart, addToCart, removeFromCart } = useCart();
-  const { favorites, addToFavorite, removeFromFavorite } = useFavorite();
-  const findAddedItem = cart.some(item => item.product.id === product.id);
-  const findFavItem = favorites.some(item => item.product.id === product.id);
+  const { cartProducts } = useAppSelector(state => state.cart);
+
+  const dispatch = useAppDispatch();
+  const { favorites } = useAppSelector(state => state.favorite);
+
+  const findAddedItem = cartProducts.some(
+    item => item.cartProduct.itemId === product.itemId,
+  );
+  const findFavItem = favorites.some(item => item.id === product.id);
 
   return (
     <div className="productCard">
@@ -66,14 +75,14 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         {findAddedItem ? (
           <button
             className="productCard__button--add--added"
-            onClick={() => removeFromCart(product.itemId)}
+            onClick={() => dispatch(removeFromCart(product.itemId))}
           >
             Added
           </button>
         ) : (
           <button
             className="productCard__button--add"
-            onClick={() => addToCart(product)}
+            onClick={() => dispatch(addToCart(product))}
           >
             Add to cart
           </button>
@@ -81,7 +90,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         {findFavItem ? (
           <button
             className="productCard__button--heart"
-            onClick={() => removeFromFavorite(product)}
+            onClick={() => dispatch(removeFromFavorite(product))}
           >
             <img
               src={`img/Icons/selected-heart-icon.svg`}
@@ -91,7 +100,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         ) : (
           <button
             className="productCard__button--heart"
-            onClick={() => addToFavorite(product)}
+            onClick={() => dispatch(addToFavorite(product))}
           >
             <img
               src={`img/Icons/unselected-heart-icon.svg`}

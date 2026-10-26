@@ -1,11 +1,15 @@
 /* eslint-disable @typescript-eslint/indent */
 import { useNavigate, useParams } from 'react-router-dom';
 import { useFetchProducts } from '../../api/products';
-import { useFavorite } from '../../context/FavoriteContext';
-import { useCart } from '../../context/CartContext';
+
+import { addToCart, removeFromCart } from '../../context/cartSlice';
+
+import { addToFavorite, removeFromFavorite } from '../../context/favoriteSlice';
+
+import { useAppSelector, useAppDispatch } from '../../app/hooks';
 
 import { Loader } from '../../components/Loader/Loader';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { getProductsByCategory } from '../../api/fetching';
 import { Product, ProductDetails } from '../../Types/types';
 import classNames from 'classnames';
@@ -25,7 +29,13 @@ export const ProductDetailsPage = () => {
 
   const { products, isLoading, errorMessage, refetch } = useFetchProducts();
   const { productId, category } = useParams();
-  const { cart, addToCart, removeFromCart } = useCart();
+
+  const { cartProducts } = useAppSelector(state => state.cart);
+
+  const dispatch = useAppDispatch();
+
+  const { favorites } = useAppSelector(state => state.favorite);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -52,19 +62,30 @@ export const ProductDetailsPage = () => {
       });
   }, [productId, category]);
 
-  const { favorites, addToFavorite, removeFromFavorite } = useFavorite();
+  const findAddedItem = cartProducts.some(
+    item => item.cartProduct.itemId === productWithDetails?.id,
+  );
+
+  const findFavItem = favorites.some(
+    item => item.itemId === productWithDetails?.id,
+  );
+
+  const recommended = useMemo(() => {
+    const filtered = [...products].filter(
+      good => good.itemId !== productWithDetails?.id,
+    );
+
+    for (let i = filtered.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+
+      [filtered[i], filtered[j]] = [filtered[j], filtered[i]];
+    }
+
+    return filtered.slice(0, 32);
+  }, [products, productWithDetails?.id]);
 
   if (isLoading || isLoad) {
     return <Loader />;
-  }
-
-  if (errorMessage || errorMes) {
-    return (
-      <div>
-        <p>Oops, something went wrong</p>
-        <button onClick={refetch}>Reload</button>
-      </div>
-    );
   }
 
   if (!productWithDetails) {
@@ -75,6 +96,15 @@ export const ProductDetailsPage = () => {
         </div>
       );
     }
+  }
+
+  if (errorMessage || errorMes) {
+    return (
+      <div>
+        <p>Oops, something went wrong</p>
+        <button onClick={refetch}>Reload</button>
+      </div>
+    );
   }
 
   const product: Product = {
@@ -90,28 +120,6 @@ export const ProductDetailsPage = () => {
     image: productWithDetails.images[0],
     year: 0,
   };
-
-  const findAddedItem = cart.some(
-    item => item.product.itemId === productWithDetails.id,
-  );
-  const findFavItem = favorites.some(
-    item => item.product.itemId === productWithDetails.id,
-  );
-  const shuffled = () => {
-    const filtered = [...products].filter(
-      good => good.itemId !== productWithDetails.id,
-    );
-
-    for (let i = filtered.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-
-      [filtered[i], filtered[j]] = [filtered[j], filtered[i]];
-    }
-
-    return filtered.slice(0, 32);
-  };
-
-  const recommended = shuffled();
 
   const colorsChange = (color: string) =>
     `${productWithDetails.namespaceId}-${productWithDetails.capacity.toLowerCase()}-${color.split(' ').join('-').toLowerCase()}`;
@@ -231,7 +239,7 @@ export const ProductDetailsPage = () => {
                 <button
                   type="button"
                   className="productDetails__buttons--add--added"
-                  onClick={() => removeFromCart(product.itemId)}
+                  onClick={() => dispatch(removeFromCart(product.itemId))}
                 >
                   Added
                 </button>
@@ -239,7 +247,7 @@ export const ProductDetailsPage = () => {
                 <button
                   type="button"
                   className="productDetails__buttons--add"
-                  onClick={() => addToCart(product)}
+                  onClick={() => dispatch(addToCart(product))}
                 >
                   Add to cart
                 </button>
@@ -248,7 +256,7 @@ export const ProductDetailsPage = () => {
                 <button
                   type="button"
                   className="productDetails__buttons--heart"
-                  onClick={() => removeFromFavorite(product)}
+                  onClick={() => dispatch(removeFromFavorite(product))}
                 >
                   <img
                     src={`img/Icons/selected-heart-icon.svg`}
@@ -259,7 +267,7 @@ export const ProductDetailsPage = () => {
                 <button
                   type="button"
                   className="productDetails__buttons--heart"
-                  onClick={() => addToFavorite(product)}
+                  onClick={() => dispatch(addToFavorite(product))}
                 >
                   <img
                     src={`img/Icons/unselected-heart-icon.svg`}

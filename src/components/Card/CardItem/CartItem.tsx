@@ -1,33 +1,41 @@
 import { Link } from 'react-router-dom';
-import { useCart, CartItemType } from '../../../context/CartContext';
+
 import './CartItem.scss';
 
-export const CartItem: React.FC<CartItemType> = ({ product, quantity }) => {
-  const { decreaseQuantity, increaseQuantity, removeFromCart } = useCart();
+import {
+  removeFromCart,
+  increaseQuantity,
+  decreaseQuantity,
+  CartItemType,
+} from '../../../context/cartSlice';
+import { useAppDispatch } from '../../../app/hooks';
+
+export const CartItem: React.FC<CartItemType> = ({ cartProduct, quantity }) => {
+  const dispatch = useAppDispatch();
 
   return (
     <div className="cartItem">
       <div className="cartItem__info">
         <button
           className="cartItem__info-btn"
-          onClick={() => removeFromCart(product.itemId)}
+          onClick={() => dispatch(removeFromCart(cartProduct.itemId))}
         >
           <img src={`img/Icons/closing-icon.svg`} alt="x" />
         </button>
         <Link
           className="cartItem__info-link"
-          to={`/product/${product.category}/${product.itemId}`}
+          to={`/product/${cartProduct.category}/${cartProduct.itemId}`}
         >
-          <img className="cartItem__info-img" src={product.image} />
+          <img className="cartItem__info-img" src={cartProduct.image} />
 
-          <p className="cartItem__info-title">{product.name}</p>
+          <p className="cartItem__info-title">{cartProduct.name}</p>
         </Link>
       </div>
       <div className="cartItem__actions">
         <div className="cartItem__quantity">
           <button
             className="cartItem__quantity-btn"
-            onClick={() => decreaseQuantity(product.itemId)}
+            onClick={() => dispatch(decreaseQuantity(cartProduct.itemId))}
           >
             -
           </button>
@@ -35,13 +43,15 @@ export const CartItem: React.FC<CartItemType> = ({ product, quantity }) => {
 
           <button
             className="cartItem__quantity-btn"
-            onClick={() => increaseQuantity(product.itemId)}
+            onClick={() => dispatch(increaseQuantity(cartProduct.itemId))}
           >
             +
           </button>
         </div>
-        <p className="cartItem__price">${product.price}</p>
+        <p className="cartItem__price">${cartProduct.price}</p>
       </div>
     </div>
   );
 };
+
+//треба додати діспатч
